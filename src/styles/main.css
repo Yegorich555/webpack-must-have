@@ -2,6 +2,10 @@
 @import "sanitize.css";
 @import "fontface.css";
 
+* {
+  box-sizing: border-box;
+}
+
 body {
   font-family: "OpenSans-Regular", sans-serif;
 }
