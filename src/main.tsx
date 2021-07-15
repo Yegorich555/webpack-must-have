@@ -21,11 +21,13 @@ import blizzard from "images/blizzard-entertainment.svg";
 // import Header from "./components/header";
 import Products from "./components/products";
 import About from "./components/about";
+import ErrorBoundary from "./components/ErrorBoundary";
 
 interface AppProps {
   nothing: boolean;
 }
 interface AppState {
+  iMadeError: boolean;
   title: string;
 }
 
@@ -104,6 +106,7 @@ class AppContainer extends Component<AppProps, AppState> {
   constructor(props: AppProps) {
     super(props);
     this.state = {
+      iMadeError: true,
       title: someTypeScript("Test-block for css-modules"),
     };
     // test class-dead-code
@@ -130,12 +133,18 @@ class AppContainer extends Component<AppProps, AppState> {
             </Toolbar>
           </StyledAppBar>
           <Route render={() => <Redirect to={{ pathname: "/" }} />} />
+
           <Route path={links.products} exact>
-            <Products />
+            <ErrorBoundary>
+              <Products iMadeError={this.state.iMadeError} />
+            </ErrorBoundary>
           </Route>
-          <Route path={links.about} exact>
-            <About />
-          </Route>
+
+          <ErrorBoundary>
+            <Route path={links.about} exact>
+              <About />
+            </Route>
+          </ErrorBoundary>
           <Route path={links.home} exact>
             <div className="test-block">
               <h2 className={style.mainTitle}>{this.state.title}</h2>
@@ -146,7 +155,7 @@ class AppContainer extends Component<AppProps, AppState> {
             </div>
             {/*  or it can be
           <img src='/src/images/testSmall.png' alt="smallImage"></img>
-        */}
+            */}
             <div className={["test-block", style.svgBackground].join(" ")}>
               <h2>Test-block for svg-url-loader</h2>
               <img src={imgCamera} alt="small_SVG_Image" />
