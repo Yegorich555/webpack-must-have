@@ -1,0 +1,23 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+  text-decoration: none;
+  color: white;
+}
+
+header {
+  background-color: black;
+  display: flex;
+  justify-content: space-between;
+  padding: 1px 10px;
+  border-right: solid 3px gray;
+  border-radius: 0 4px 4px 0;
+  align-items: center;
+  height: 50px;
+
+  .logo {
+    margin: 0;
+  }
+}

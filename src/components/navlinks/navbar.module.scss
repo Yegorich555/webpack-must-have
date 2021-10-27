@@ -1,0 +1,19 @@
+.nav {
+  display: flex;
+
+  .item {
+    text-align: center;
+    transition: 0.1s linear;
+    border-bottom: solid 3px transparent;
+    padding: 5px 15px;
+    //background-color: #8b00ff;
+    a.active {
+      color: gold;
+    }
+
+    &:hover {
+      background-color: gray;
+      border-bottom: solid 3px #8b00ff;
+    }
+  }
+}
