@@ -2,6 +2,20 @@
 @import "sanitize.css";
 @import "fontface.css";
 
+:root {
+  --primary-color: #DCDCDC;
+  --secondary-color: #E3E3E3;
+  --active-color: #9933CC;
+  --dark-color: #121212;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+}
+
 body {
   font-family: "OpenSans-Regular", sans-serif;
 }
@@ -11,6 +25,81 @@ h2 {
   display: block;
   background-color: white;
 }
+
+.logo {
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  color: var(--primary-color);
+  font-size: 1.5rem;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  background: var(--dark-color);
+}
+
+.navigation > ul {
+  display: flex;
+  justify-content: space-between;
+}
+
+.navigation ul li {
+  position: relative;
+  display: block;
+  list-style: none;
+  padding: 1.1rem 1.2rem;
+}
+
+.navigation ul li ul {
+  background: var(--dark-color);
+  position: absolute;
+  width: 200px;
+  left: 0;
+}
+
+.navigation ul li a {
+  display: inline-block;
+  text-decoration: none;
+  line-height: 1.2rem;
+  font-size: 1.2rem;
+  color: var(--primary-color)
+
+}
+
+.active {
+  background: #272727;
+}
+
+.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 10%;
+  background: var(--active-color);
+}
+
+.navigation .dropdown {
+  display: none;
+}
+
+.navigation ul li:hover {
+  background: var(--active-color);
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  padding: 1.1rem 1.5rem;
+}
+
+/* Default css */
 
 ::placeholder {
   /*test for autoprefixer in postcss*/
@@ -25,6 +114,6 @@ h2 {
   align-items: center;
 }
 
-.test-block + .test-block {
+/* .test-block + .test-block {
   margin-top: 20px;
-}
+} */

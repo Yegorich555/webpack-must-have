@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    @font-face {
+    font-family: "Open Sans";
+    src: url("/fonts/OpenSans-Regular-webfont.woff2") format("woff2"),
+    url("/fonts/OpenSans-Regular-webfont.woff") format("woff");
+    }
+
+    :root {
+      --primary-color: #DCDCDC;
+      --secondary-color: #E3E3E3;
+      --active-color: #9933CC;
+      --dark-color: #121212;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+    }
+
+
+    .logo {
+      display: block;
+      text-align: center;
+      text-decoration: none;
+      color: var(--primary-color);
+      font-size: 1.5rem;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+      background: var(--dark-color);
+    }
+
+    .navigation > ul {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .navigation ul li {
+      position: relative;
+      display: block;
+      list-style: none;
+      padding: 1.1rem 1.2rem;
+
+    }
+
+    .navigation ul li ul {
+      background: var(--dark-color);
+      position: absolute;
+      width: 200px;
+      left: 0;
+    }
+
+    .navigation ul li a {
+      display: inline-block;
+      text-decoration: none;
+      line-height: 1.2rem;
+      font-size: 1.2rem;
+      color: var(--primary-color)
+
+    }
+
+    .active {
+      background: #272727;
+    }
+
+    .active::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 10%;
+      background: var(--active-color);
+    }
+
+    .navigation .dropdown {
+      display: none;
+    }
+
+    .navigation ul li:hover {
+      background: var(--active-color);
+    }
+
+  </style>
+  <title>Document</title>
+</head>
+<body>
+  <header class="navbar">
+    <div>
+      <a href="#" class="logo">Game Store</a>
+    </div>
+    <div>
+      <nav class="navigation">
+        <ul>
+          <li class="active">
+            <a href="#" class="nav-link">Home</a>
+          </li>
+          <li>
+            <a href="#" class="nav-link">Products <span>&#11206;</span></a>
+            <ul class="dropdown">
+              <li>
+                <a href="#" class="nav-link">PC</a>
+              </li>
+              <li>
+                <a href="#" class="nav-link">Mobile</a>
+              </li>
+              <li>
+                <a href="#" class="nav-link">Console</a>
+              </li>
+              <li>
+                <a href="#" class="nav-link">Card games</a>
+              </li>
+              <li>
+                <a href="#" class="nav-link">Desk games</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#" class="nav-link">About</a>
+          </li>
+          <li>
+            <a href="#" class="nav-link">Sign In</a>
+          </li>
+          <li>
+            <a href="#" class="nav-link">Sign Up</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+
+  </header>
+
+</body>
+</html>
