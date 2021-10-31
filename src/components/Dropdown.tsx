@@ -1,4 +1,5 @@
 import Navlink from "./Navlink";
+import { NavLink } from "react-router-dom";
 
 interface Props {
   className?: string;
@@ -9,9 +10,9 @@ interface Props {
 export default function Dropdown({ className = "", link = "#", text }: Props): JSX.Element {
   return (
     <li className={"" || className}>
-      <a href={link}>
+      <NavLink to={link}>
         {text} <span>&#11206;</span>
-      </a>
+      </NavLink>
       <ul className="dropdown">
         <Navlink text="PC" link="#" className={""} />
         <Navlink text="Console" link="#" className={""} />

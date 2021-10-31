@@ -3,9 +3,9 @@
 @import "fontface.css";
 
 :root {
-  --primary-color: #DCDCDC;
-  --secondary-color: #E3E3E3;
-  --active-color: #9933CC;
+  --primary-color: #dcdcdc;
+  --secondary-color: #e3e3e3;
+  --active-color: #9933cc;
   --dark-color: #121212;
 }
 
@@ -13,7 +13,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
 }
 
 body {
@@ -51,7 +51,6 @@ h2 {
   position: relative;
   display: block;
   list-style: none;
-  padding: 1.1rem 1.2rem;
 }
 
 .navigation ul li ul {
@@ -63,19 +62,15 @@ h2 {
 
 .navigation ul li a {
   display: inline-block;
+  padding: 1.1rem 1.2rem;
   text-decoration: none;
   line-height: 1.2rem;
   font-size: 1.2rem;
-  color: var(--primary-color)
-
-}
-
-.active {
-  background: #272727;
+  color: var(--primary-color);
 }
 
 .active::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: 0;
   left: 0;
@@ -94,9 +89,39 @@ h2 {
 
 footer {
   position: fixed;
+  background: #fafafa;
   bottom: 0;
   left: 0;
-  padding: 1.1rem 1.5rem;
+  padding: 0 1.5rem;
+  width: 100vw;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.companies {
+  display: flex;
+  min-width: 30%;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.companies div {
+  width: 50px;
+  height: 50px;
+  padding: 0.1rem;
+}
+
+.companies div:hover {
+  background-color: #e3e3e3;
+}
+
+.companies img {
+  width: 100%;
+  height: auto;
 }
 
 /* Default css */
