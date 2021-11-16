@@ -1,0 +1,31 @@
+{
+  "cards": [
+    {
+      "id": 1,
+      "image": "https://upload.wikimedia.org/wikipedia/ru/3/33/Overwatch_Origins_Edition_PC_cover.jpg",
+      "title": "Overwatch",
+      "price": "23.99$",
+      "text": "Overwatch is a 2016 team-based multiplayer first-person shooter game developed and published by Blizzard Entertainment.",
+      "stars": 3,
+      "date": "1999-11-17"
+    },
+    {
+      "id": 2,
+      "image": "https://image.api.playstation.com/vulcan/img/cfn/11307x4B5WLoVoIUtdewG4uJ_YuDRTwBxQy0qP8ylgazLLc01PBxbsFG1pGOWmqhZsxnNkrU3GXbdXIowBAstzlrhtQ4LCI4.png",
+      "title": "Minecraft",
+      "price": "25.99$",
+      "text": "Minecraft is a sandbox video game developed by the Swedish video game developer Mojang Studios.",
+      "stars": 5,
+      "date": "2019-11-17"
+    },
+    {
+      "id": 3,
+      "image": "https://s3.gaming-cdn.com/images/products/932/orig/game-steam-terraria-cover.jpg",
+      "title": "Terraria",
+      "price": "4.99$",
+      "text": "Terraria is a 2D sandbox game with gameplay that revolves around exploration, building, crafting, combat, survival, and mining, playable in both single-player and multiplayer modes.",
+      "stars": 4,
+      "date": "2015-11-17"
+    }
+  ]
+}

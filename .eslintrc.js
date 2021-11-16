@@ -24,6 +24,15 @@ module.exports = {
   },
   plugins: ["json", "prettier", "import", "@typescript-eslint", "unused-imports"],
   rules: {
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        devDependencies: false,
+        optionalDependencies: false,
+        peerDependencies: false,
+        packageDir: "./",
+      },
+    ],
     "@typescript-eslint/no-explicit-any": [
       "error",
       {

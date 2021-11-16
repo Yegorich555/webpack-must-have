@@ -1,0 +1,36 @@
+.input_form {
+  margin: 40px auto;
+  width: 60%;
+  position: relative;
+
+  .input_search {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 7px 7px;
+    width: 100%;
+    border-radius: 20px;
+    border: 2px solid white;
+
+    .searchbar {
+      color: #8f8f8f;
+      width: 100%;
+      height: 35px;
+      line-height: 35px;
+      border: transparent;
+      background-color: black;
+      outline: none;
+    }
+
+    .loader_icon {
+      margin-right: 10px;
+      height: 35px;
+      width: 35px;
+
+      .loader {
+        height: 35px;
+        width: 35px;
+      }
+    }
+  }
+}

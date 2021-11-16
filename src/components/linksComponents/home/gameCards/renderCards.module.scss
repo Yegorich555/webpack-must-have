@@ -1,0 +1,62 @@
+.card {
+  width: 180px;
+  height: 250px;
+  align-items: center;
+  flex-wrap: nowrap;
+  background-size: cover;
+  position: relative;
+  perspective: 1000px;
+
+  .front,
+  .back {
+    text-align: center;
+    position: absolute;
+    backface-visibility: hidden;
+    transition: 1s;
+    border: 2px solid #8b00ff;
+    border-radius: 10px;
+    box-shadow: 0 0 12px #8b00ff;
+    width: 100%;
+    height: 100%;
+  }
+
+  .back {
+    padding: 10px;
+    text-align: center;
+    background-color: black;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    transform: rotateY(180deg);
+
+    .backText {
+      font-size: 80%;
+    }
+  }
+
+  .icon {
+    width: 176px;
+    height: 180px;
+
+    .images {
+      width: 100%;
+      height: 100%;
+      border-radius: 10px 10px 0 0;
+      object-fit: cover;
+    }
+  }
+
+  .iconContent {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+  }
+
+  &:hover .front {
+    transform: rotateY(180deg);
+  }
+
+  &:hover .back {
+    transform: rotateY(360deg);
+  }
+}

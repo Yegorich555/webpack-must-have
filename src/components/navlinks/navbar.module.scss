@@ -5,8 +5,17 @@
     text-align: center;
     transition: 0.1s linear;
     border-bottom: solid 3px transparent;
-    padding: 5px 15px;
-    //background-color: #8b00ff;
+    padding: 5px 27px;
+    margin-right: 5px;
+
+    .modaleButton {
+      background-color: black;
+      border-color: transparent;
+      font-size: 16px;
+      transition: 0.1s linear;
+      border-bottom: solid 3px transparent;
+    }
+
     a.active {
       color: gold;
     }
@@ -14,6 +23,40 @@
     &:hover {
       background-color: gray;
       border-bottom: solid 3px #8b00ff;
+    }
+
+    &:hover .modaleButton {
+      background-color: gray;
+    }
+  }
+
+  .dropDown_link {
+    position: relative;
+    height: 100%;
+
+    .dropDown_wrapper {
+      top: 2.25rem;
+      left: 0;
+      background-color: black;
+      display: none;
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      border-color: transparent;
+      transition: 0.1s linear;
+      border-bottom: solid 3px transparent;
+
+      &:hover {
+        display: block;
+      }
+    }
+
+    &:hover {
+      .dropDown_wrapper {
+        display: block;
+        height: fit-content;
+        z-index: 1;
+      }
     }
   }
 }
