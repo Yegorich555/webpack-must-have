@@ -8,6 +8,8 @@
 - update packages to latest
 - improve ESlint config
 - add NodeJS restriction
+- fix compatibility in Script of package.json
+- add `serve-proxy` script
 
 ## 1.1.0 (March 3, 2021)
 
