@@ -47,13 +47,13 @@ module.exports = {
     "react/jsx-wrap-multilines": ["error", { arrow: true, return: true, declaration: true }],
     "spaced-comment": ["error", "always"],
     "unused-imports/no-unused-imports": "error",
-    "no-underscore-dangle": 0,
+    "no-underscore-dangle": "off",
     "no-unused-expressions": ["error", { allowShortCircuit: true }],
     "no-console": process.env.NODE_ENV === "production" ? "error" : "off",
     "no-debugger": process.env.NODE_ENV === "production" ? "error" : "off",
     "no-alert": process.env.NODE_ENV === "production" ? "error" : "off",
-    "no-plusplus": 0,
-    "class-methods-use-this": 0,
+    "no-plusplus": "off",
+    "class-methods-use-this": "off",
     "max-len": [
       "warn",
       {
