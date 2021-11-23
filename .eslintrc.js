@@ -31,6 +31,7 @@ module.exports = {
         ignoreRestArgs: false,
       },
     ],
+    "no-use-before-define": "off",
     "@typescript-eslint/no-use-before-define": "error",
     "require-await": "error",
     "prettier/prettier": ["error"],
