@@ -1,6 +1,14 @@
 <!-- markdownlint-disable MD024 -->
 <!-- markdownlint-disable MD041 -->
 
+## 1.2.0 (November 23, 2021)
+
+- update to assets-modules (breaking changes); deprecate url-loader, svg-url-loader, file-loader
+- update webpack-dev-server (breaking changes)
+- update packages to latest
+- improve ESlint config
+- add NodeJS restriction
+
 ## 1.1.0 (March 3, 2021)
 
 - update to Webpack 5
@@ -17,7 +25,7 @@
 
 ### Project
 
-- update vscode config
+- update VScode config
 - add package webpack-mock-server
 - minor fixes
 
