@@ -18,6 +18,10 @@
     "lint-md": "./node_modules/.bin/markdownlint --fix **/*.md --ignore node_modules",
     "prepare": "husky install && shx rm -rf .git/hooks && shx ln -s ../.husky .git/hooks && git config --unset core.hooksPath"
   },
+  "engines": {
+    "node": ">=12.20.0 <16"
+  },
+  "engineStrict": true,
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Yegorich555/webpack-must-have.git"
