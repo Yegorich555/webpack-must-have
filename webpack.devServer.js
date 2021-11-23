@@ -11,6 +11,7 @@ const assets = require("./webpack.common").assetsPath;
 
 module.exports = (env, argv) => {
   const devConfig = dev(env, argv);
+  const { proxy } = env;
 
   function remove(searchFunction) {
     devConfig.plugins.splice(devConfig.plugins.findIndex(searchFunction), 1);
@@ -25,6 +26,11 @@ module.exports = (env, argv) => {
     target: "web", // force target otherwise HMR doesn't work for style-loader
     /** @type {import('webpack-dev-server').Configuration} */
     devServer: {
+      // proxy config will be remove if target is empty
+      proxy: {
+        // requires for ignoring CORS issues
+        "/api": { target: proxy, changeOrigin: true, withCredentials: true, secure: false },
+      },
       hot: true,
       historyApiFallback: {
         // provide index.html instead of 404:not found error (for SPA app)
@@ -56,6 +62,13 @@ module.exports = (env, argv) => {
       },
     },
   };
+
+  if (proxy) {
+    delete extendedConfig.devServer.onBeforeSetupMiddleware;
+    console.log("<i> Proxy configured. webpack-mock-server is removed from config");
+  } else {
+    delete extendedConfig.devServer.proxy;
+  }
 
   return merge(devConfig, extendedConfig);
 };
