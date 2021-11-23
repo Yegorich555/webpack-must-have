@@ -13,7 +13,6 @@ const MinifyCssNames = require("mini-css-class-name/css-loader");
 const ObsoleteWebpackPlugin = require("obsolete-webpack-plugin");
 const ScriptExtHtmlWebpackPlugin = require("script-ext-html-webpack-plugin");
 const path = require("path");
-const browserslist = require("browserslist");
 const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
 
 const srcPath = path.resolve(__dirname, "./src/");
@@ -125,7 +124,6 @@ module.exports = function (env, argv) {
               loader: "svg-url-loader", // despite url-loader that converts images into base64 format it converts images to native svg-css format
               options: {
                 limit: filesThreshold,
-                iesafe: filesThreshold >= 4000 && !!browserslist.data.ie, // https://github.com/bhovhannes/svg-url-loader#iesafe
                 name: "images/[name].[ext]", // if file-size more then limit, [file-loader] copies ones into outputPath
               },
             },
@@ -152,7 +150,6 @@ module.exports = function (env, argv) {
               loader: "svg-url-loader", // despite url-loader that converts images into base64 format it converts images to native svg-css format
               options: {
                 limit: filesThreshold,
-                iesafe: filesThreshold >= 4000 && !!browserslist.data.ie, // https://github.com/bhovhannes/svg-url-loader#iesafe
                 name: "fonts/[name].[ext]", // if file-size more then limit,  [file-loader] copies ones into outputPath
               },
             },
