@@ -43,6 +43,5 @@ Webpack version: 5+
 ## TODO. Issues
 
 - add Prepack
-- replace Prettier by better alternative (Prettier works bad)
 - add icomoon to fonts
 - Path autocomplete doesn't read path-alias-config from tsconfig.json

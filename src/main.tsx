@@ -37,14 +37,14 @@ class AppContainer extends Component<AppProps, AppState> {
           <h2 className={style.mainTitle}>{this.state.title}</h2>
         </div>
         <div className={["test-block", style.background].join(" ")}>
-          <h2>Test-block for url-loader</h2>
+          <h2>Test-block for assets-module (previous url-loader)</h2>
           <img src={imgSmall} alt="smallImage" />
         </div>
         {/*  or it can be
           <img src='/src/images/testSmall.png' alt="smallImage"></img>
         */}
         <div className={["test-block", style.svgBackground].join(" ")}>
-          <h2>Test-block for svg-url-loader</h2>
+          <h2>Test-block for assets-module (svg-url-loader)</h2>
           <img src={imgCamera} alt="small_SVG_Image" />
         </div>
       </StrictMode>

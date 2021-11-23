@@ -12,6 +12,7 @@ const CopyWebpackPlugin = require("copy-webpack-plugin");
 const MinifyCssNames = require("mini-css-class-name/css-loader");
 const ObsoleteWebpackPlugin = require("obsolete-webpack-plugin");
 const ScriptExtHtmlWebpackPlugin = require("script-ext-html-webpack-plugin");
+const svgToMiniDataURI = require("mini-svg-data-uri");
 const path = require("path");
 const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
 
@@ -102,58 +103,61 @@ module.exports = function (env, argv) {
         // rule for images
         {
           test: /\.(png|jpe?g|gif|webp)(\?.*)?$/, // optional: optimizing images via pngo etc.
-          exclude: /(node_modules)/,
-          use: [
-            {
-              loader: "url-loader", // it converts images that have size less 'limit' option into inline base64-css-format
-              options: {
-                name: "images/[name].[ext]",
-                limit: filesThreshold, // if file-size more then limit, file-loader copies one into outputPath
-                // by default it uses fallback: 'file-loader'
-                // optional: fallback: 'responsive-loader' //it converts image to multiple images using srcset (IE isn't supported): https://caniuse.com/#search=srcset
-              },
+          type: "asset",
+          generator: {
+            filename: "images/[name][ext][query]", // [hash][ext][query]",
+          },
+          parser: {
+            // it converts images that have size less 'limit' option into inline base64-css-format
+            dataUrlCondition: {
+              maxSize: filesThreshold, // if file-size more then limit, file-loader copies one into outputPath
             },
-          ],
+          },
         },
         // rule for svg-images
         {
           test: /\.(svg)(\?.*)?$/, // for reducing file-size: OptimizeCSSAssetsPlugin > cssnano > SVGO, that congigured in webpack.prod.js
-          exclude: /(node_modules)|(fonts\\.+\.svg)(\?.*)?/,
-          use: [
-            {
-              loader: "svg-url-loader", // despite url-loader that converts images into base64 format it converts images to native svg-css format
-              options: {
-                limit: filesThreshold,
-                name: "images/[name].[ext]", // if file-size more then limit, [file-loader] copies ones into outputPath
-              },
+          exclude: /(fonts\\.+\.svg)(\?.*)?/,
+          type: "asset",
+          generator: {
+            filename: "images/[name][ext][query]", // [hash][ext][query]",
+            dataUrl: (content) => svgToMiniDataURI(content.toString()),
+          },
+          parser: {
+            // it converts images that have size less 'limit' option into inline base64-css-format
+            dataUrlCondition: {
+              maxSize: filesThreshold, // if file-size more then limit, file-loader copies one into outputPath
             },
-          ],
+          },
         },
         // rule for fonts
         {
           test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/i,
-          use: [
-            {
-              loader: "url-loader",
-              options: {
-                limit: filesThreshold,
-                name: "fonts/[name].[ext]", // if file-size more then limit, [file-loader] copies ones into outputPath
-              },
+          type: "asset",
+          generator: {
+            filename: "fonts/[name][ext][query]", // [hash][ext][query]",
+          },
+          parser: {
+            // it converts images that have size less 'limit' option into inline base64-css-format
+            dataUrlCondition: {
+              maxSize: filesThreshold, // if file-size more then limit, file-loader copies one into outputPath
             },
-          ],
+          },
         },
         // special rule for fonts in svg-format
         {
           test: /(fonts\\.+\.svg)(\?.*)?$/i, // for reducing file-size: OptimizeCSSAssetsPlugin > cssnano > SVGO, that congigured in webpack.prod.js
-          use: [
-            {
-              loader: "svg-url-loader", // despite url-loader that converts images into base64 format it converts images to native svg-css format
-              options: {
-                limit: filesThreshold,
-                name: "fonts/[name].[ext]", // if file-size more then limit,  [file-loader] copies ones into outputPath
-              },
+          type: "asset",
+          generator: {
+            filename: "fonts/[name][ext][query]", // [hash][ext][query]",
+            dataUrl: (content) => svgToMiniDataURI(content.toString()),
+          },
+          parser: {
+            // it converts images that have size less 'limit' option into inline base64-css-format
+            dataUrlCondition: {
+              maxSize: filesThreshold, // if file-size more then limit, file-loader copies one into outputPath
             },
-          ],
+          },
         },
         // rules for style-files
         {
