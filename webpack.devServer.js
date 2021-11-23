@@ -5,6 +5,7 @@ const CleanPlugin = require("clean-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const webpackMockServer = require("webpack-mock-server");
+const path = require("path");
 const dev = require("./webpack.dev");
 const assets = require("./webpack.common").assetsPath;
 
@@ -22,6 +23,7 @@ module.exports = (env, argv) => {
   /** @type {import('webpack').Configuration} */
   const extendedConfig = {
     target: "web", // force target otherwise HMR doesn't work for style-loader
+    /** @type {import('webpack-dev-server').Configuration} */
     devServer: {
       hot: true,
       historyApiFallback: {
@@ -30,12 +32,14 @@ module.exports = (env, argv) => {
           { from: /favicon.ico/, to: "public/favicon.ico" }, // provide favicon
         ],
       }, // it enables HTML5 mode: https://developer.mozilla.org/en-US/docs/Web/API/History
-      stats: {
-        children: false, // disable console.info for node_modules/*
-        modules: false,
+      devMiddleware: {
+        stats: {
+          children: false, // disable console.info for node_modules/*
+          modules: false,
+        },
       },
-      before: (app) =>
-        webpackMockServer.use(app, {
+      onBeforeSetupMiddleware: (devServer) =>
+        webpackMockServer.use(devServer.app, {
           entry: ["webpack.mock.ts"],
           tsConfigFileName: "tsconfig.json",
           before: (req, res, next) => {
@@ -46,8 +50,10 @@ module.exports = (env, argv) => {
             next();
           },
         }),
-      contentBase: assets, // folder with static content
-      watchContentBase: true, // enable hot-reload by changes in contentBase folder
+      static: {
+        directory: path.resolve(__dirname, assets), // folder with static content
+        watch: true, // enable hot-reload by changes in contentBase folder
+      },
     },
   };
 
