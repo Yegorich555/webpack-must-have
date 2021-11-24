@@ -45,9 +45,16 @@ module.exports = (env, argv) => {
       ],
     },
     plugins: [
-      // additional config for plugins is placed in webpack.common.js
+      // optional: it creates brotli-compressed files in '[path].gz[query]'
       new CompressionPlugin({
-        // optional: it creates gzipped (compressed) files in '[path].gz[query]'
+        algorithm: "gzip",
+        filename: "[path][base].gz[query]",
+        threshold: common.filesThreshold, // (bytes). Only assets bigger than this size are processed
+      }),
+      // optional: it creates gzip-compressed files in '[path].br[query]'
+      new CompressionPlugin({
+        algorithm: "brotliCompress",
+        filename: "[path][base].br[query]",
         threshold: common.filesThreshold, // (bytes). Only assets bigger than this size are processed
       }),
     ],
