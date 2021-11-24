@@ -14,7 +14,6 @@ interface Error {
   stack?: string;
 }
 export default class App extends Component<AppProps, AppState> {
-
   constructor(props: AppProps) {
     super(props);
     this.state = {
