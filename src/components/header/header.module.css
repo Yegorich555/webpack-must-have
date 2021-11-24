@@ -1,0 +1,59 @@
+@font-face {
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/roboto/v29/KFOlCnqEu92Fr1MmSU5vAw.ttf) format("truetype");
+}
+@font-face {
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/roboto/v29/KFOmCnqEu92Fr1Me5Q.ttf) format("truetype");
+}
+@font-face {
+  font-family: "Roboto Condensed", sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/robotocondensed/v19/ieVi2ZhZI2eCN5jzbjEETS9weq8-32meKCM.ttf) format("truetype");
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  background: #282a36;
+  padding: 0 40px 0 40px;
+  box-sizing: border-box;
+}
+
+header .logo {
+  font-family: "Roboto", sans-serif;
+  font-size: 30px;
+  color: #ffffff;
+  text-decoration: none;
+  padding-top: 7px;
+}
+
+header .navigation {
+  display: flex;
+  justify-content: space-around;
+  width: 500px;
+}
+
+header .navigation li {
+  list-style: none;
+}
+
+header .navigation li a {
+  font-family: "Roboto", sans-serif;
+  font-size: 20px;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+header .navigation li a:hover {
+  color: purple;
+}

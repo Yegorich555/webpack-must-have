@@ -33,3 +33,6 @@ node_modules
 .stylelintcache
 
 tsconfig.tsbuildinfo
+/src/components/header/header.module.less
+/src/components/footer/footer.module.less
+/.idea
