@@ -1,18 +1,17 @@
 .item {
-  white-space: nowrap;
-  color: white;
-  padding: 5px 15px;
-  display: block;
-  border-color: transparent;
-  transition: 0.1s linear;
-  border-bottom: solid 3px transparent;
-
-  &:hover {
-    background-color: gray;
-    border-bottom: solid 3px #8b00ff;
-  }
+    white-space: nowrap;
+    color: white;
+    padding: 5px 12px;
+    display: block;
+    border-color: transparent;
+    transition: 0.1s linear;
+    border-bottom: solid 3px transparent;
+    &:hover {
+        background-color: gray;
+        border-bottom: solid 3px #8b00ff;
+    }
 }
 
-a.active {
-  color: gold;
+.item.active {
+    color: gold;
 }

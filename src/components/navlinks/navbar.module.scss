@@ -53,8 +53,7 @@
 
     &:hover {
       .dropDown_wrapper {
-        display: block;
-        height: fit-content;
+        display: table;
         z-index: 1;
       }
     }

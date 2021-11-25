@@ -1,3 +1,63 @@
-h2 {
-  color: black;
+.modal {
+    padding: 10px;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.4);
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.5s;
+    overflow: hidden;
+    z-index: 999;
+    .modalContent {
+        padding: 20px;
+        color: blue;
+        height: 30vh;
+        width: 30vw;
+        background-color: black;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 20px;
+        border-bottom: solid 3px white;
+        transition: 0.5s;
+        .submitForm {
+            .header_modal {
+                display: flex;
+                justify-content: space-between;
+                margin-bottom: 15px;
+                padding: 10px 7px;
+                .close_icon {
+                    cursor: pointer;
+                }
+            }
+            .inputBlock {
+                display: flex;
+                justify-content: space-between;
+                margin-bottom: 15px;
+            }
+            .inputBlock span {
+                margin-right: 10px;
+                white-space: nowrap;
+            }
+            .inputBlock input {
+                margin-right: 10px;
+                padding: 4px;
+                background-color: black;
+                border: solid 1px white;
+            }
+            .button_block {
+                text-align: center;
+                .buttonSubmit {
+                    background-color: rgb(127, 62, 143);
+                    width: 30%;
+                    border-radius: 7px;
+                    border-color: transparent;
+                    padding: 4px 7px;
+                    text-align: center;
+                }
+            }
+        }
+    }
 }

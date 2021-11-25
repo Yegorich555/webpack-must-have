@@ -1,26 +1,35 @@
 import { useEffect, useState } from "react";
 import { API_CARDS } from "../../../../constants/api";
-import { getApiResourse } from "../../../../utils/network";
+import { getApiCardResourse } from "../../../../utils/network";
 
 import styles from "./gameCards.module.scss";
 import RenderCards from "./renderCards";
 
 interface Card {
-  item: [];
+  id: number;
+  image: string;
+  title: string;
+  price: string;
+  text: string;
+  stars: number;
+  date: string;
 }
 
 function Gamecards(): JSX.Element {
-  const [items, setItems] = useState([]);
+  const [items, setItems] = useState<Card[]>([]);
 
   const getResponse = async (param: string) => {
-    const res = await getApiResourse(param);
+    const res = await getApiCardResourse(param);
+
     if (res) {
       const cardsList = res.map((item: Card) => item);
       setItems(cardsList);
     }
   };
 
-  useEffect(() => getResponse(API_CARDS), []);
+  useEffect(() => {
+    getResponse(API_CARDS);
+  }, []);
 
   return (
     <div className={styles.categoriesContent}>

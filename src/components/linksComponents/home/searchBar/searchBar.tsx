@@ -2,7 +2,7 @@ import { useCallback, useState } from "react";
 // eslint-disable-next-line import/no-extraneous-dependencies
 import debounce from "lodash/debounce";
 import { API_SEARCH } from "../../../../constants/api";
-import { getApiResourse } from "../../../../utils/network";
+import { getApiCardResourse } from "../../../../utils/network";
 import styles from "./searchBar.module.scss";
 import ListResults from "./listResults/listResults";
 
@@ -15,7 +15,7 @@ const Searchbar = (): JSX.Element => {
   const getResponse = async (param: string): Promise<void> => {
     setIsLoading(true);
 
-    const res = await getApiResourse(API_SEARCH + param);
+    const res = await getApiCardResourse(API_SEARCH + param);
     try {
       if (res) {
         setIsLoading(false);
@@ -34,7 +34,6 @@ const Searchbar = (): JSX.Element => {
 
   const searchItems = (searchValue: string) => {
     setSearchInput(searchValue);
-    console.log(typeof searchInput);
 
     if (searchInput !== "") {
       debouncedGetResponse(searchValue);

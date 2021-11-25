@@ -1,3 +1,4 @@
+import { FC } from "react";
 import StarRating from "../starRating/starRating";
 import styles from "./renderCards.module.scss";
 
@@ -14,7 +15,7 @@ interface MyProps {
   item: Cards;
 }
 
-const RenderCards = (props: MyProps): JSX.Element => {
+const RenderCards: FC<MyProps> = (props): JSX.Element => {
   const { id, image, title, price, text, stars } = props.item;
   return (
     <div key={id} className={styles.card}>

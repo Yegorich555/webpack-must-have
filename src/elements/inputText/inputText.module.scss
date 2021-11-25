@@ -1,3 +1,11 @@
-.content {
-  color: $basicColor;
+.inputLabel {
+    margin-right: 10px;
+    white-space: nowrap;
+}
+
+.inputText {
+    margin-right: 10px;
+    padding: 4px;
+    background-color: black;
+    border: solid 1px white;
 }

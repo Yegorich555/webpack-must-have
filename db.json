@@ -1,4 +1,11 @@
 {
+  "users": [
+    {
+      "email": "maxkorzh@gmail.com",
+      "password": "$2a$10$VJU2P5ig/8AhDaxKDKYqruERgmPhkibehTGwIru9pno3o8pj0gWou",
+      "id": 1
+    }
+  ],
   "cards": [
     {
       "id": 1,
