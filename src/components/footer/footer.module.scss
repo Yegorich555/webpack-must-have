@@ -1,0 +1,37 @@
+@mixin builder($d, $jC, $w) {
+  display: $d;
+  justify-content: $jC;
+  width: $w;
+}
+@mixin fonts($fF, $fS, $c) {
+  font-family: $fF, sans-serif;
+  font-size: $fS;
+  color: $c;
+}
+
+footer {
+  @include builder(flex, space-between, 100%);
+  background: $bg;
+
+  a {
+    text-decoration: none;
+    @include fonts("Roboto", 30px, purple);
+    margin: 20px 0 0 38px;
+  }
+
+  .iconBlock {
+    display: flex;
+    justify-content: space-around;
+
+    li {
+      list-style: none;
+      margin-right: 30px;
+
+      img {
+        text-decoration: none;
+        width: 90px;
+        height: 50px;
+      }
+    }
+  }
+}
