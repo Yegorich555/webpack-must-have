@@ -6,7 +6,6 @@ import { links } from "../../constants/constants";
 
 const Header: React.FunctionComponent = function () {
   const [isActive, setIsActive] = useState(false);
-  const [selected, setSelected] = useState("Products");
   const data: Array<string> = ["PC", "Playstation5", "XBox"];
 
   return (
@@ -19,7 +18,7 @@ const Header: React.FunctionComponent = function () {
           <Link to={links.home}>Home</Link>
         </li>
         <li onClick={() => setIsActive(!isActive)} className={header.dropdown}>
-          {selected}
+          Product
           {isActive && (
             <div className={header.dropdownContent}>
               {data.map((elem: string, i) => (
@@ -27,13 +26,10 @@ const Header: React.FunctionComponent = function () {
                   className={header.dropdownItem}
                   key={i}
                   onClick={() => {
-                    setSelected(elem);
                     setIsActive(false);
                   }}
                 >
-                  <Link to={`${links.product}/:${elem}`}>
-                    {elem}
-                  </Link>
+                  <Link to={`${links.product}/:${elem}`}>{elem}</Link>
                 </div>
               ))}
             </div>

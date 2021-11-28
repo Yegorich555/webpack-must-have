@@ -6,7 +6,7 @@ import CardItem from "@/components/cardItem/cardItem";
 import Category from "@/components/categories/category";
 
 const Home: React.FunctionComponent = function () {
-  const [topProducts, setTopProducts] = useState<Array<object | any>>([]);
+  const [topProducts, setTopProducts] = useState<Array<object | unknown>>([]);
 
   useEffect(() => {
     axios.get("api/getTopProducts").then((res) => {
@@ -19,16 +19,17 @@ const Home: React.FunctionComponent = function () {
       <div className={home.firstBlock}>
         <SearchInput />
       </div>
-      <div className={home.thirdBlock}>
-        <Category/>
+      <div className={home.blockWrapper}>
+        <p className={home.title}>Categories</p>
+        <Category />
       </div>
-      <div className={home.secondBlock}>
+      <div className={home.blockWrapper}>
+        <p className={home.title}>New games</p>
         {topProducts.map((elem: object | any, i) => (
           // eslint-disable-next-line react/no-array-index-key
           <CardItem key={i} src={elem.image} title={elem.title} price={elem.price} />
         ))}
       </div>
-
     </div>
   );
 };

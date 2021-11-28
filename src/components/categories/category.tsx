@@ -8,8 +8,8 @@ const Category: React.FunctionComponent = function () {
     <>
       {data.map((elem, i) => (
         // eslint-disable-next-line react/no-array-index-key
-        <Link to={`${links.product}/:${elem}`}>
-          <div className={category.categoryItem} key={i}>{elem}</div>
+        <Link to={`${links.product}/:${elem}`} className={category.categoryItem} key={i}>
+          {elem}
         </Link>
       ))}
     </>

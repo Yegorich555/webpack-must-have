@@ -8,7 +8,7 @@ const Product: React.FunctionComponent = function() {
     return <div>This is Playstation 5 category</div>;
   } else if (value === ":XBox") {
     return <div>This is XBox category</div>;
-  } else if (value === "PC") {
+  } else if (value === ":PC") {
     return <div>This is PC category</div>;
   } else {
     return <div>This is product page</div>;

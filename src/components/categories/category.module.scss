@@ -1,5 +1,17 @@
-a {
-  .categoryItem {
-    background: #ccc;
+.categoryItem {
+  display: flex;
+  width: 350px;
+  height: 270px;
+  background: $darkPurple;
+  border-radius: 27px;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: $w;
+  font-size: 20px;
+  font-family: "Roboto", sans-serif;
+
+  &:hover {
+    box-shadow: 0px 0px 9px 4px rgba(163, 27, 226, 0.52);
   }
 }
