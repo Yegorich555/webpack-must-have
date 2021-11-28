@@ -38,5 +38,36 @@ header {
         }
       }
     }
+
+    .dropdown {
+      position: relative;
+      @include fonts("Roboto", 20px, $w);
+
+      .dropdownContent {
+        position: absolute;
+        top: 130%;
+        left: -26%;
+        padding: 10px;
+        background: #454141;
+        box-shadow: 3px 3px 10px 6px rgba(0, 0, 0, 0.06);
+        font-weight: 500;
+        color: #333;
+
+        .dropdownItem {
+          a {
+            @include fonts("Roboto", 20px, $w);
+            text-decoration: none;
+
+            &:hover {
+              color: $purple;
+            }
+          }
+        }
+      }
+
+      &:hover {
+        color: $purple;
+      }
+    }
   }
 }

@@ -1,10 +1,14 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { Link } from "react-router-dom";
-import React from "react";
+import React, { useState } from "react";
 import header from "./header.module.scss";
-import links from "../../constants/constants";
+import { links } from "../../constants/constants";
 
 const Header: React.FunctionComponent = function () {
+  const [isActive, setIsActive] = useState(false);
+  const [selected, setSelected] = useState("Products");
+  const data: Array<string> = ["PC", "Playstation5", "XBox"];
+
   return (
     <header>
       <Link to={links.home} className={header.logo}>
@@ -14,8 +18,26 @@ const Header: React.FunctionComponent = function () {
         <li>
           <Link to={links.home}>Home</Link>
         </li>
-        <li>
-          <Link to={links.product}>Product</Link>
+        <li onClick={() => setIsActive(!isActive)} className={header.dropdown}>
+          {selected}
+          {isActive && (
+            <div className={header.dropdownContent}>
+              {data.map((elem: string, i) => (
+                <div
+                  className={header.dropdownItem}
+                  key={i}
+                  onClick={() => {
+                    setSelected(elem);
+                    setIsActive(false);
+                  }}
+                >
+                  <Link to={`${links.product}/:${elem}`}>
+                    {elem}
+                  </Link>
+                </div>
+              ))}
+            </div>
+          )}
         </li>
         <li>
           <Link to={links.about}>About</Link>

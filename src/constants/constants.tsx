@@ -5,4 +5,6 @@ const links = {
   signIn: "/signIn",
   signUp: "/signUp",
 };
-export default links;
+const data: Array<string> = ["PC", "Playstation5", "XBox"];
+
+export { links, data };

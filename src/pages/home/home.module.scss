@@ -1,0 +1,20 @@
+@mixin builder($d, $jC, $w) {
+  display: $d;
+  justify-content: $jC;
+  width: $w;
+}
+
+.homeWrapper {
+  margin: 70px 0;
+  flex-wrap: wrap;
+  @include builder(flex, center, 100%);
+
+  .firstBlock {
+    @include builder(flex, center, 100%);
+  }
+
+  .secondBlock {
+    margin-top: 100px;
+    @include builder(flex, space-around, 100%);
+  }
+}
