@@ -2,11 +2,10 @@
 import { Link } from "react-router-dom";
 import React, { useState } from "react";
 import header from "./header.module.scss";
-import { links } from "../../constants/constants";
+import { links, data } from "../../constants/constants";
 
 const Header: React.FunctionComponent = function () {
   const [isActive, setIsActive] = useState(false);
-  const data: Array<string> = ["PC", "Playstation5", "XBox"];
 
   return (
     <header>

@@ -24,7 +24,6 @@ const SearchInput: React.FunctionComponent = function () {
     alert("add");
   };
   const prepareUrl = (query: string) => {
-    console.log(query);
     const url = `https://jsonplaceholder.typicode.com/posts?q=${query}`;
     return encodeURI(url);
   };
@@ -34,7 +33,6 @@ const SearchInput: React.FunctionComponent = function () {
 
     setLoading(true);
     const URL = prepareUrl(input);
-    console.log(URL);
     const response = await axios.get(URL).catch((err) => {
       console.log("Error: ", err);
     });
