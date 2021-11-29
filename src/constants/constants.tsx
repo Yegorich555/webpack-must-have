@@ -1,3 +1,5 @@
+import { Data } from "@/types/types";
+
 const links = {
   home: "/home",
   product: "/product",
@@ -5,6 +7,18 @@ const links = {
   signIn: "/signIn",
   signUp: "/signUp",
 };
-const data: Array<string> = ["PC", "Playstation5", "XBox"];
-
+const data: Array<Data> = [
+  {
+    id: 1,
+    link: "PC",
+  },
+  {
+    id: 2,
+    link: "Playstation5",
+  },
+  {
+    id: 3,
+    link: "XBox",
+  },
+];
 export { links, data };

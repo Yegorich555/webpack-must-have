@@ -14,9 +14,8 @@
 
   input {
     display: flex;
-    width: 500px;
-    height: 34px;
-    padding: 5px;
+    width: 100%;
+    padding: 13px;
     background: $bg;
     border-style: none;
     color: $w;
@@ -33,9 +32,9 @@
 
   .foundElements {
     width: 100%;
-    height: 60px;
+    margin: 20px;
     cursor: pointer;
     font-family: "Roboto", serif;
-    font-size: 15px;
+    font-size: 16px;
   }
 }

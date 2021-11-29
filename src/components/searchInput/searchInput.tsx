@@ -3,10 +3,11 @@ import axios from "axios";
 import MoonLoader from "react-spinners/MoonLoader";
 import s from "./searchInput.module.scss";
 import useDebounce from "../debounceHook/debounceHook";
+import { Post } from "@/types/types";
 
 const SearchInput: React.FunctionComponent = function () {
   const [input, setInput] = useState<string>("");
-  const [postFound, setPostFound] = useState<Array<object>>([]);
+  const [postFound, setPostFound] = useState<Array<Post>>([]);
   const [isExpanded, setExpanded] = useState(false);
   const [isLoading, setLoading] = useState(false);
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
@@ -42,8 +43,17 @@ const SearchInput: React.FunctionComponent = function () {
     setLoading(false);
   };
   useDebounce(input, 500, searchName);
-  console.log(typeof input);
-  // @ts-ignore
+
+  const printInformation = (arr: Array<Post>) => {
+    arr.filter((val: Post) => {
+      if (val.title.toLowerCase().includes(input.toLowerCase())) {
+        return val;
+      }
+      return "";
+    });
+    return arr;
+  };
+
   return (
     <div className={s.search}>
       <input
@@ -58,20 +68,11 @@ const SearchInput: React.FunctionComponent = function () {
       />
       {isLoading && <MoonLoader loading color="#000" size={20} />}
       {isExpanded && input !== ""
-        ? postFound
-            .filter((val:object) => {
-              // @ts-ignore
-              if (val.title.toLowerCase().includes(input.toLowerCase())) {
-                return val;
-              }
-              return "";
-            })
-            .map((val: any) => (
-              // @ts-ignore
-              <div key={val.id} onClick={postAlert} className={s.foundElements}>
-                {val.title}
-              </div>
-            ))
+        ? printInformation(postFound).map((val: Post) => (
+            <div key={val.id} onClick={postAlert} className={s.foundElements}>
+              {val.title}
+            </div>
+          ))
         : input === ""}
     </div>
   );

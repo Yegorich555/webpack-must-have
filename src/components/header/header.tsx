@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import React, { useState } from "react";
 import header from "./header.module.scss";
 import { links, data } from "../../constants/constants";
+import { Data } from "@/types/types";
 
 const Header: React.FunctionComponent = function () {
   const [isActive, setIsActive] = useState(false);
@@ -20,15 +21,15 @@ const Header: React.FunctionComponent = function () {
           Product
           {isActive && (
             <div className={header.dropdownContent}>
-              {data.map((elem: string, i) => (
+              {data.map((elem: Data) => (
                 <div
                   className={header.dropdownItem}
-                  key={i}
+                  key={elem.id}
                   onClick={() => {
                     setIsActive(false);
                   }}
                 >
-                  <Link to={`${links.product}/:${elem}`}>{elem}</Link>
+                  <Link to={`${links.product}/:${elem.link}`}>{elem.link}</Link>
                 </div>
               ))}
             </div>

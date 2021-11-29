@@ -4,9 +4,10 @@ import home from "./home.module.scss";
 import SearchInput from "@/components/searchInput/searchInput";
 import CardItem from "@/components/cardItem/cardItem";
 import Category from "@/components/categories/category";
+import { Product } from "../../types/types";
 
 const Home: React.FunctionComponent = function () {
-  const [topProducts, setTopProducts] = useState<Array<object | unknown>>([]);
+  const [topProducts, setTopProducts] = useState<Array<Product>>([]);
 
   useEffect(() => {
     axios.get("api/getTopProducts").then((res) => {
@@ -25,9 +26,8 @@ const Home: React.FunctionComponent = function () {
       </div>
       <div className={home.blockWrapper}>
         <p className={home.title}>New games</p>
-        {topProducts.map((elem: object | any, i) => (
-          // eslint-disable-next-line react/no-array-index-key
-          <CardItem key={i} src={elem.image} title={elem.title} price={elem.price} />
+        {topProducts.map((elem: Product) => (
+          <CardItem key={elem.id} src={elem.image} title={elem.title} price={String(elem.price)} />
         ))}
       </div>
     </div>
