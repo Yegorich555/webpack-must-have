@@ -5,7 +5,7 @@ const useDebounce: (
   timeout: number,
   callback: { (): Promise<void>; (...args: unknown[]): void }
 ) => void = (value: string, timeout: number, callback: { (): Promise<void>; (...args: unknown[]): void }) => {
-  const [timer, setTimer] = useState<any>();
+  const [timer, setTimer] = useState<ReturnType<typeof setTimeout>>();
   const clearTimer = () => {
     if (timer) clearTimeout(timer);
   };
@@ -15,7 +15,6 @@ const useDebounce: (
 
     if (value && callback) {
       const newTimer: ReturnType<typeof setTimeout> = setTimeout(callback, timeout);
-      console.log(typeof newTimer);
       setTimer(newTimer);
     }
   }, [value]);

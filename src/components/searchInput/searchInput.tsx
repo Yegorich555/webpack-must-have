@@ -3,7 +3,7 @@ import axios from "axios";
 import MoonLoader from "react-spinners/MoonLoader";
 import s from "./searchInput.module.scss";
 import useDebounce from "../debounceHook/debounceHook";
-import { Post } from "@/types/types";
+import { Post } from "../../types/types";
 
 const SearchInput: React.FunctionComponent = function () {
   const [input, setInput] = useState<string>("");
@@ -39,21 +39,11 @@ const SearchInput: React.FunctionComponent = function () {
     });
     if (response) {
       setPostFound(response.data);
+      setLoading(false);
     }
-    setLoading(false);
   };
   useDebounce(input, 500, searchName);
-
-  const printInformation = (arr: Array<Post>) => {
-    arr.filter((val: Post) => {
-      if (val.title.toLowerCase().includes(input.toLowerCase())) {
-        return val;
-      }
-      return "";
-    });
-    return arr;
-  };
-
+  const printInformation = (arr: Array<Post>) => arr.filter((val: Post) => val.title.toLowerCase().includes(input.toLowerCase()));
   return (
     <div className={s.search}>
       <input

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import React, { useState } from "react";
 import header from "./header.module.scss";
 import { links, data } from "../../constants/constants";
-import { Data } from "@/types/types";
+import { DropdownAndCategory } from "../../types/types";
 
 const Header: React.FunctionComponent = function () {
   const [isActive, setIsActive] = useState(false);
@@ -21,7 +21,7 @@ const Header: React.FunctionComponent = function () {
           Product
           {isActive && (
             <div className={header.dropdownContent}>
-              {data.map((elem: Data) => (
+              {data.map((elem: DropdownAndCategory) => (
                 <div
                   className={header.dropdownItem}
                   key={elem.id}

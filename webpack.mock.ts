@@ -18,7 +18,6 @@ export default webpackMockServer.add((app, helper) => {
   });
 
   app.get("/api/getTopProducts", (_req, res) => {
-    // res.sendFile(require.resolve("./data.json"));
     data.sort((a: Product, b: Product) => {
       const c: Date | unknown = new Date(b.date);
       const d: Date | unknown = new Date(a.date);

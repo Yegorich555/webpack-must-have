@@ -1,4 +1,4 @@
-import { Data } from "@/types/types";
+import { DropdownAndCategory } from "../types/types";
 
 const links = {
   home: "/home",
@@ -7,7 +7,7 @@ const links = {
   signIn: "/signIn",
   signUp: "/signUp",
 };
-const data: Array<Data> = [
+const data: Array<DropdownAndCategory> = [
   {
     id: 1,
     link: "PC",

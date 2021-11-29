@@ -1,3 +1,7 @@
+interface Rating {
+  rate: number;
+  count: number;
+}
 export interface Product {
   id: number;
   title: string;
@@ -6,7 +10,7 @@ export interface Product {
   category: string;
   image: string;
   date: string;
-  rating: { rate: number; count: number };
+  rating: Rating;
 }
 
 export interface Post {
@@ -16,7 +20,7 @@ export interface Post {
   body: string;
 }
 
-export interface Data {
+export interface DropdownAndCategory {
   id: number;
   link: string;
 }
