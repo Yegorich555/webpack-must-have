@@ -5,9 +5,7 @@ const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CaseSensitivePathsPlugin = require("case-sensitive-paths-webpack-plugin");
 const PreloadPlugin = require("preload-webpack-plugin");
-const FriendlyErrorsWebpackPlugin = require("friendly-errors-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const CleanPlugin = require("clean-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const MinifyCssNames = require("mini-css-class-name/css-loader");
 const ObsoleteWebpackPlugin = require("obsolete-webpack-plugin");
@@ -45,6 +43,7 @@ module.exports = function (env, argv) {
       filename: "[name].js",
       chunkFilename: "[name].js",
       publicPath: "/", // url that should be used for providing assets
+      clean: true,
     },
     resolve: {
       extensions: [".js", ".jsx", ".ts", ".tsx"], // using import without file-extensions
@@ -219,7 +218,6 @@ module.exports = function (env, argv) {
         "global.VERBOSE": JSON.stringify(false),
       }),
       new CaseSensitivePathsPlugin(), // it fixes bugs between OS in caseSensitivePaths (since Windows isn't CaseSensitive but Linux is)
-      new FriendlyErrorsWebpackPlugin(), // it provides user-friendly errors from webpack (since the last has ugly useless bug-report)
       new HtmlWebpackPlugin({
         // it creates *.html with injecting js and css into template
         template: path.resolve(srcPath, "index.html"),
@@ -250,7 +248,6 @@ module.exports = function (env, argv) {
         filename: isDevMode ? "[name].css" : "[name].[contenthash].css",
         chunkFilename: isDevMode ? "[id].css" : "[id].[contenthash].css",
       }),
-      new CleanPlugin.CleanWebpackPlugin(), // it cleans output folder before extracting files
       // it copies files like images, fonts etc. from 'public' path to 'destPath' (since not every file will be injected into css and js)
       new CopyWebpackPlugin({
         patterns: [
