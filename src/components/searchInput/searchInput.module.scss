@@ -1,0 +1,40 @@
+@mixin builder($d, $jC, $w) {
+  display: $d;
+  justify-content: $jC;
+  width: $w;
+}
+
+.search {
+  background: $lightPurple;
+  width: 500px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  box-shadow: 0px 0px 9px 4px rgba(163, 27, 226, 0.52);
+
+  input {
+    display: flex;
+    width: 100%;
+    padding: 13px;
+    background: $bg;
+    border-style: none;
+    color: $w;
+
+    &:focus {
+      border-style: none;
+      outline: none;
+    }
+
+    .search input::-webkit-input-placeholder {
+      color: $w;
+    }
+  }
+
+  .foundElements {
+    width: 100%;
+    margin: 20px;
+    cursor: pointer;
+    font-family: "Roboto", serif;
+    font-size: 16px;
+  }
+}

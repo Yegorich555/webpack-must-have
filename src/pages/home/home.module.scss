@@ -1,0 +1,35 @@
+@mixin builder($d, $jC, $w) {
+  display: $d;
+  justify-content: $jC;
+  width: $w;
+}
+@mixin fonts($fF, $fS, $c) {
+  font-family: $fF, sans-serif;
+  font-size: $fS;
+  color: $c;
+}
+
+.homeWrapper {
+  margin: 70px 0;
+  flex-wrap: wrap;
+  @include builder(flex, center, 100%);
+
+  .firstBlock {
+    @include builder(flex, center, 100%);
+  }
+
+  .blockWrapper {
+    .title {
+      @include builder(flex, flex-start, 100%);
+      @include fonts("Roboto", 25px, $w);
+      flex-wrap: wrap;
+    }
+    @include builder(flex, space-around, 100%);
+    flex-wrap: wrap;
+    background: rgba(52, 28, 56, 0.78);
+    border-radius: 27px;
+    margin: 100px 50px 0 50px;
+    padding: 50px;
+    box-sizing: border-box;
+  }
+}

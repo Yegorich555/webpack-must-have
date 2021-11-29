@@ -3,6 +3,7 @@
   justify-content: $jC;
   width: $w;
 }
+
 @mixin fonts($fF, $fS, $c) {
   font-family: $fF, sans-serif;
   font-size: $fS;
@@ -36,6 +37,40 @@ header {
         &:hover {
           color: $purple;
         }
+      }
+    }
+
+    .dropdown {
+      position: relative;
+      display: flex;
+      @include fonts("Roboto", 20px, $w);
+
+      .dropdownContent {
+        position: absolute;
+        top: 130%;
+        display: flex;
+        flex-direction: column;
+        left: -35%;
+        padding: 10px;
+        background: $bg;
+        box-shadow: 3px 3px 10px 6px rgba(0, 0, 0, 0.06);
+        font-weight: 500;
+        color: #333;
+
+        .dropdownItem {
+          a {
+            @include fonts("Roboto", 20px, $w);
+            text-decoration: none;
+
+            &:hover {
+              color: $purple;
+            }
+          }
+        }
+      }
+
+      &:hover {
+        color: $purple;
       }
     }
   }

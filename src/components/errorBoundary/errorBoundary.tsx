@@ -15,7 +15,7 @@ class ErrorBoundary extends Component<ErrProps, ErrState> {
 
   // @ts-ignore
   componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
-    alert(errorInfo);
+    alert(error);
     console.error(error);
   }
 

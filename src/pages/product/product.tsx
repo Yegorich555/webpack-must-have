@@ -1,6 +1,7 @@
 import React from "react";
 
 const Product: React.FunctionComponent = function () {
-  return <div>This is product page</div>;
+  // const { value }:any = useParams();
+  return <div>Product page</div>;
 };
 export default Product;

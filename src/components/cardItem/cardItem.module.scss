@@ -1,0 +1,43 @@
+@mixin fonts($fF, $fS, $c) {
+  font-family: $fF, sans-serif;
+  font-size: $fS;
+  color: $c;
+}
+@mixin setSize($w, $h) {
+  width: $w;
+  height: $h;
+}
+
+.cardItem {
+  @include setSize(250px, 360px);
+  background: $darkPurple;
+  border-radius: 27px;
+
+  &:hover {
+    box-shadow: 0 0 9px 4px rgba(163, 27, 226, 0.52);
+  }
+
+  .cardPicture {
+    border-radius: 27px 27px 0 0;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    @include setSize(100%, 260px);
+  }
+
+  .infoWrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    margin-top: 20px;
+
+    .title {
+      @include fonts("Roboto", 14px, $w);
+    }
+
+    .price {
+      @include fonts("Roboto", 16px, $w);
+    }
+  }
+}
