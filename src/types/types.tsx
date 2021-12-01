@@ -1,3 +1,5 @@
+import {ReactChild, ReactFragment, ReactPortal, Dispatch, SetStateAction } from "react";
+
 interface Rating {
   rate: number;
   count: number;
@@ -23,4 +25,28 @@ export interface Post {
 export interface DropdownAndCategory {
   id: number;
   link: string;
+}
+
+type ReactNode = ReactChild | ReactFragment | ReactPortal | boolean | null | undefined;
+type Dispatcher<S> = Dispatch<SetStateAction<S>>;
+export interface Signin {
+  active: boolean;
+  setActive: Dispatcher<boolean>;
+  userLoggedIn: any;
+  setUserName?: Dispatcher<string>;
+}
+type controllEl = () => void;
+
+export interface ElementsForLogInLogOut {
+  controllElements?: any;
+  modalActive: boolean;
+  setModalActive: Dispatcher<boolean>;
+  authorized?: boolean;
+  setAuthorized?: Dispatcher<boolean>;
+  checkAuthorized?: boolean;
+  setCheckAuthorized?: Dispatcher<boolean>;
+  controllModalHeader?: controllEl;
+  children?: ReactNode;
+  setUserName: Dispatcher<string>;
+  userName?: string;
 }
