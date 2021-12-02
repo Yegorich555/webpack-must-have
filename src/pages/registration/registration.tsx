@@ -32,23 +32,34 @@ const Registration: React.FunctionComponent<Registration> = function ({
   const [input, setInput] = useState({
     name: "",
     password: "",
+    passwordDuplicate: "",
   });
 
   const nameCheck = /^(\S+)[,\s]*$/;
   const passwordCheck = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/;
-
+  const compare = () => {
+    if (input.passwordDuplicate !== input.password) {
+      setPasswordError("passwords don't match");
+    } else {
+      setPasswordError("Good");
+    }
+  };
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     if (e.target.name === "password") {
-      !passwordCheck.test(String(e.target.value).toLowerCase())
-        ? setPasswordError(
-            "Password should include at least 1 number [0-9], at least one letter in lower and one in upper case and at least one symbol "
-          )
-        : setPasswordError("");
+      if (!passwordCheck.test(String(e.target.value).toLowerCase())) {
+        setPasswordError(
+          "Password should start from number, include at least 1 number [0-9], at least one letter in lower and one in upper case and at least one symbol "
+        );
+      } else {
+        setPasswordError("");
+      }
     }
     if (e.target.name === "name") {
-      !nameCheck.test(String(e.target.value).toLowerCase())
-        ? setNameError("Login should start with letter in uppercase and then letters lower case")
-        : setNameError("");
+      if(!nameCheck.test(String(e.target.value).toLowerCase())) {
+        setNameError("Login should start with letter in uppercase and then letters lower case");
+      } else {
+        setNameError("");
+      }
     }
 
     const { name, value } = e.target;
@@ -56,18 +67,13 @@ const Registration: React.FunctionComponent<Registration> = function ({
       ...prevInput,
       [name]: value,
     }));
+    compare();
   }
   const redirect = () => {
     history.push("/profile");
   };
 
-  const compare = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.value !== input.password) {
-      setPasswordError("passwords don't match");
-    } else {
-      setPasswordError("Good");
-    }
-  };
+
   function handleClick(e: { preventDefault: () => void }) {
     e.preventDefault();
     const formData = {
@@ -92,7 +98,11 @@ const Registration: React.FunctionComponent<Registration> = function ({
     setRegistrationModal(false);
     userLoggedIn();
   }
-  const enabled = input.name.length > 0 && input.password.length > 0;
+  const enable =
+    input.name.length > 0 &&
+    input.password.length > 0 &&
+    input.passwordDuplicate.length > 0 &&
+    (passwordDirty || nameDirty);
   return (
     <Modal isActive={active}>
       <form className={signin.formData}>
@@ -127,10 +137,17 @@ const Registration: React.FunctionComponent<Registration> = function ({
         <div className={signin.wrapper}>
           <span className={signin.title}>Second Password</span>
           {passwordDirty && passwordError && <div style={{ color: "red" }}>{passwordError}</div>}
-          <input type="password" name="password1" data-rule="password" required onChange={(e) => compare(e)} />
+          <input
+            type="password"
+            name="passwordDuplicate"
+            value={input.passwordDuplicate}
+            data-rule="passwordDuplicate"
+            onChange={(e) => handleChange(e)}
+            required
+          />
         </div>
         <br />
-        <button type="button" className={signin.but} onClick={handleClick} disabled={!enabled}>
+        <button type="button" className={signin.but} onClick={handleClick} disabled={!enable}>
           Отправить
         </button>
       </form>

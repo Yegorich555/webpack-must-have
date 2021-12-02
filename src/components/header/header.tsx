@@ -27,6 +27,7 @@ const Header: React.FunctionComponent<ElementsForLogInLogOut> = function ({
   const register = () => {
     setRegister(true);
     setRegistrationModal(true);
+    setCheckSignIn(false);
   };
   const history = useHistory();
   const logOut = () => {
@@ -34,7 +35,7 @@ const Header: React.FunctionComponent<ElementsForLogInLogOut> = function ({
       setCheckAuthorized(false);
     }
     localStorage.removeItem("token");
-    history.push("/home");
+    history.push("/");
   };
   return (
     <header>

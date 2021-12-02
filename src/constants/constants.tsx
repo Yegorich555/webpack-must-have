@@ -1,7 +1,7 @@
 import { DropdownAndCategory } from "../types/types";
 
 const links = {
-  home: "/home",
+  home: "/",
   product: "/product",
   about: "/about",
   signIn: "/signIn",

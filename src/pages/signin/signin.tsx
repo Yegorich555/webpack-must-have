@@ -9,6 +9,7 @@ const Signin: React.FunctionComponent<Signin> = function ({ active, userLoggedIn
   const [passwordDirty, setPasswordDirty] = useState(false);
   const [nameError, setNameError] = useState("Field is empty!");
   const [passwordError, setPasswordError] = useState("Field is empty!");
+  const [checkField, setCheckField]=useState(false);
   const blurHandler = (e: React.FocusEvent<HTMLInputElement, Element>) => {
     switch (e.target.name) {
       case "name":
@@ -29,29 +30,29 @@ const Signin: React.FunctionComponent<Signin> = function ({ active, userLoggedIn
 
   const nameCheck = /^(\S+)[,\s]*$/;
   const passwordCheck = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/;
-  let checked = false;
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     if (e.target.name === "password") {
       if (!passwordCheck.test(String(e.target.value).toLowerCase())) {
         setPasswordError(
           "Password should start from number, include at least 1 number [0-9], at least one letter in lower and one in upper case and at least one symbol "
         );
-        checked = true;
+        setCheckField(true);
       } else {
         setPasswordError("");
-        checked=false;
+        setCheckField(false);
       }
     }
     if (e.target.name === "name") {
       if(!nameCheck.test(String(e.target.value).toLowerCase())) {
         setNameError("Login should start with letter in uppercase and then letters lower case");
-        checked = true;
+        setCheckField(true);
       }
       else{
         setNameError("");
-        checked=false
+        setCheckField(false);
       }
     }
+
 
     const { name, value } = e.target;
     setInput((prevInput) => ({
@@ -79,10 +80,9 @@ const Signin: React.FunctionComponent<Signin> = function ({ active, userLoggedIn
       .catch((err) => {
         console.log(err);
       });
-    return checked;
   }
-  console.log(checked)
-  const enabled = input.name.length > 0 && input.password.length > 0 && (nameDirty || passwordDirty);
+
+  const enabled = input.name.length > 0 && input.password.length > 0 && !checkField;
   return (
     <Modal isActive={active}>
       <form className={signin.formData}>
@@ -99,6 +99,7 @@ const Signin: React.FunctionComponent<Signin> = function ({ active, userLoggedIn
             onBlur={(e) => blurHandler(e)}
           />
         </div>
+
         <br />
         <div className={signin.wrapper}>
           <span className={signin.title}>Password</span>
