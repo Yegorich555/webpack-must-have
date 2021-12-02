@@ -29,24 +29,31 @@ export interface DropdownAndCategory {
 
 type ReactNode = ReactChild | ReactFragment | ReactPortal | boolean | null | undefined;
 type Dispatcher<S> = Dispatch<SetStateAction<S>>;
+type controllEl = () => void;
+
 export interface Signin {
   active: boolean;
-  setActive: Dispatcher<boolean>;
   userLoggedIn: any;
   setUserName?: Dispatcher<string>;
 }
-type controllEl = () => void;
 
 export interface ElementsForLogInLogOut {
   controllElements?: any;
   modalActive: boolean;
   setModalActive: Dispatcher<boolean>;
   authorized?: boolean;
-  setAuthorized?: Dispatcher<boolean>;
+  setAuthorizedInfo?: Dispatcher<boolean>;
   checkAuthorized?: boolean;
   setCheckAuthorized?: Dispatcher<boolean>;
   controllModalHeader?: controllEl;
   children?: ReactNode;
   setUserName: Dispatcher<string>;
   userName?: string;
+}
+
+export interface Registration {
+  active: boolean;
+  userLoggedIn: any;
+  setRegistrationModal: Dispatcher<boolean>;
+  setUserName?: Dispatcher<string>;
 }

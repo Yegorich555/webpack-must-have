@@ -8,7 +8,7 @@ const Layout: React.FunctionComponent<ElementsForLogInLogOut> = function ({
   modalActive,
   setModalActive,
   authorized,
-  setAuthorized,
+  setAuthorizedInfo,
   userName,
   setUserName,
   children,
@@ -20,7 +20,7 @@ const Layout: React.FunctionComponent<ElementsForLogInLogOut> = function ({
         modalActive={modalActive}
         setModalActive={setModalActive}
         checkAuthorized={authorized}
-        setCheckAuthorized={setAuthorized}
+        setCheckAuthorized={setAuthorizedInfo}
         userName={userName}
         setUserName={setUserName}
       />

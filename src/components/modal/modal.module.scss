@@ -1,7 +1,7 @@
 .modal {
   top: 58%;
   left: 50%;
-  padding: 300px;
+  padding: 185px;
   transform: translate(-50%, -50%);
   background: rgba(163, 27, 226, 0.64);
   position: fixed;
@@ -10,13 +10,12 @@
   justify-content: center;
   transition: 0.5s;
   opacity: 0;
-  pointer-events: none;
 }
 
 .active {
   top: 58%;
   left: 50%;
-  padding: 300px;
+  padding: 185px;
   transform: translate(-50%, -50%);
   background: rgba(163, 27, 226, 0.64);
   position: fixed;
@@ -24,7 +23,6 @@
   align-items: center;
   justify-content: center;
   transition: 0.5s;
-  pointer-events: none;
   opacity: 1;
 }
 
@@ -35,4 +33,11 @@
   transform: scale(0.5);
   transition: 0.4s all;
   width: 50vw;
+}
+
+.modalContent {
+  background: $bg;
+  background: #282a36;
+  padding: 100px;
+  border-radius: 20px;
 }

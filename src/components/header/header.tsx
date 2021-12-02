@@ -1,10 +1,10 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { Link, useHistory } from "react-router-dom";
 import React, { useState } from "react";
 import header from "./header.module.scss";
 import { links, data } from "../../constants/constants";
 import { DropdownAndCategory, ElementsForLogInLogOut } from "../../types/types";
 import Signin from "@/pages/signin/signin";
+import Registration from "@/pages/registration/registration";
 
 const Header: React.FunctionComponent<ElementsForLogInLogOut> = function ({
   controllModalHeader,
@@ -13,14 +13,21 @@ const Header: React.FunctionComponent<ElementsForLogInLogOut> = function ({
   checkAuthorized,
   setCheckAuthorized,
   userName,
-  setUserName
+  setUserName,
 }) {
-  const [isActive, setIsActive] = useState(false);
-
+  const [isActive, setIsActive] = useState<boolean>(false);
+  const [checkRegister, setRegister] = useState<boolean>(false);
+  const [checkSignIn, setCheckSignIn] = useState<boolean>(false);
+  const [registraionModal, setRegistrationModal] = useState<boolean>(false);
   const signIn = () => {
     setModalActive(true);
+    setCheckSignIn(true);
   };
 
+  const register = () => {
+    setRegister(true);
+    setRegistrationModal(true);
+  };
   const history = useHistory();
   const logOut = () => {
     if (setCheckAuthorized) {
@@ -59,27 +66,35 @@ const Header: React.FunctionComponent<ElementsForLogInLogOut> = function ({
         <li>
           <Link to={links.about}>About</Link>
         </li>
-        {!checkAuthorized ? (
+        {checkAuthorized ? (
           <>
-            <li onClick={signIn}>Sign In</li>
-            <li>Registration</li>
+            <li className={header.dropdown}>{userName}</li>
+            <li className={header.dropdown} onClick={logOut}>Log Out</li>
           </>
         ) : (
           <>
-            <li>{userName}</li>
-            <li onClick={logOut}>Log Out</li>
+            <li className={header.dropdown} onClick={signIn}>Sign In</li>
+            <li className={header.dropdown} onClick={register}>Registration</li>
           </>
         )}
       </ul>
-      {!checkAuthorized ? (
+      {(checkRegister) ? (
+        <Registration
+          active={registraionModal}
+          userLoggedIn={controllModalHeader}
+          setRegistrationModal={setRegistrationModal}
+          setUserName={setUserName} />
+      ) : (
+        ""
+      )}
+      {(checkSignIn) ? (
         <Signin
           active={modalActive}
-          setActive={setModalActive}
           userLoggedIn={controllModalHeader}
           setUserName={setUserName}
         />
       ) : (
-        ""
+       ""
       )}
     </header>
   );

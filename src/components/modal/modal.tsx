@@ -1,19 +1,13 @@
-import React, { Dispatch, ReactElement, SetStateAction } from "react";
+import React, { ReactElement } from "react";
 import modal from "./modal.module.scss";
 interface Modal {
   isActive: boolean;
-  setIsActive: Dispatch<SetStateAction<boolean>>;
   children: ReactElement;
 }
-const Modal: React.FunctionComponent<Modal> = function ({ isActive, setIsActive, children }) {
-  const modalShow = () => {
-    setIsActive(true);
-  };
+const Modal: React.FunctionComponent<Modal> = function ({ isActive, children }) {
   return (
-    <div className={isActive ? modal.active : modal.modal} onClick={modalShow}>
-      <div className={isActive ? "modal content" : "content"} onClick={(e) => e.stopPropagation()}>
-        {children}
-      </div>
+    <div className={isActive ? modal.active : modal.modal}>
+      <div className={isActive ? modal.modalContent : modal.content}>{children}</div>
     </div>
   );
 };

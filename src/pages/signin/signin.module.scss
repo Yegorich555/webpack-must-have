@@ -1,7 +1,36 @@
-.but {
-  pointer-events: all;
+@mixin fonts($fF, $fS, $c) {
+  font-family: $fF, sans-serif;
+  font-size: $fS;
+  color: $c;
 }
 
 .formData {
-  pointer-events: all;
+  display: flex;
+  flex-direction: column;
+
+  .wrapper {
+    .title {
+      @include fonts("Roboto", 24px, $w);
+    }
+
+    div {
+      pointer-events: all;
+      font-family: "Roboto", sans-serif;
+      font-size: 16px;
+    }
+
+    input {
+      pointer-events: all;
+      padding: 4px 80px;
+    }
+  }
+
+  .but {
+    pointer-events: all;
+    padding: 7px 50px;
+    border-radius: 13px;
+    background: $purple;
+    @include fonts("Roboto", 14px, $w);
+    cursor: pointer;
+  }
 }

@@ -1,14 +1,21 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useHistory } from "react-router-dom";
 import Modal from "@/components/modal/modal";
-import signin from "./signin.module.scss";
-import { Signin } from "@/types/types";
+import signin from "@/pages/signin/signin.module.scss";
+import { Registration } from "../../types/types";
 
-const Signin: React.FunctionComponent<Signin> = function ({ active, userLoggedIn, setUserName }) {
+const Registration: React.FunctionComponent<Registration> = function ({
+  active,
+  userLoggedIn,
+  setRegistrationModal,
+  setUserName,
+}) {
   const [nameDirty, setNameDirty] = useState(false);
   const [passwordDirty, setPasswordDirty] = useState(false);
   const [nameError, setNameError] = useState("Field is empty!");
   const [passwordError, setPasswordError] = useState("Field is empty!");
+  const history = useHistory();
   const blurHandler = (e: React.FocusEvent<HTMLInputElement, Element>) => {
     switch (e.target.name) {
       case "name":
@@ -29,28 +36,19 @@ const Signin: React.FunctionComponent<Signin> = function ({ active, userLoggedIn
 
   const nameCheck = /^(\S+)[,\s]*$/;
   const passwordCheck = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/;
-  let checked = false;
+
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     if (e.target.name === "password") {
-      if (!passwordCheck.test(String(e.target.value).toLowerCase())) {
-        setPasswordError(
-          "Password should start from number, include at least 1 number [0-9], at least one letter in lower and one in upper case and at least one symbol "
-        );
-        checked = true;
-      } else {
-        setPasswordError("");
-        checked=false;
-      }
+      !passwordCheck.test(String(e.target.value).toLowerCase())
+        ? setPasswordError(
+            "Password should include at least 1 number [0-9], at least one letter in lower and one in upper case and at least one symbol "
+          )
+        : setPasswordError("");
     }
     if (e.target.name === "name") {
-      if(!nameCheck.test(String(e.target.value).toLowerCase())) {
-        setNameError("Login should start with letter in uppercase and then letters lower case");
-        checked = true;
-      }
-      else{
-        setNameError("");
-        checked=false
-      }
+      !nameCheck.test(String(e.target.value).toLowerCase())
+        ? setNameError("Login should start with letter in uppercase and then letters lower case")
+        : setNameError("");
     }
 
     const { name, value } = e.target;
@@ -59,7 +57,17 @@ const Signin: React.FunctionComponent<Signin> = function ({ active, userLoggedIn
       [name]: value,
     }));
   }
+  const redirect = () => {
+    history.push("/profile");
+  };
 
+  const compare = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.value !== input.password) {
+      setPasswordError("passwords don't match");
+    } else {
+      setPasswordError("Good");
+    }
+  };
   function handleClick(e: { preventDefault: () => void }) {
     e.preventDefault();
     const formData = {
@@ -67,22 +75,24 @@ const Signin: React.FunctionComponent<Signin> = function ({ active, userLoggedIn
       password: input.password,
     };
     axios
-      .post("/api/auth/signIn/", formData)
+      .put("/api/auth/signUp", formData)
       .then((res) => {
-        console.log(res);
-        localStorage.setItem("token", JSON.stringify(res.data));
-        const info: object = JSON.parse(localStorage.getItem("token") as string);
-        // @ts-ignore
-        setUserName(info.name);
-        userLoggedIn();
+        console.log(res.data);
+        if (res.data) {
+          localStorage.setItem("token", JSON.stringify(res.data));
+          const info: object = JSON.parse(localStorage.getItem("token") as string);
+          // @ts-ignore
+          setUserName(info.name);
+          redirect();
+        }
       })
       .catch((err) => {
         console.log(err);
       });
-    return checked;
+    setRegistrationModal(false);
+    userLoggedIn();
   }
-  console.log(checked)
-  const enabled = input.name.length > 0 && input.password.length > 0 && (nameDirty || passwordDirty);
+  const enabled = input.name.length > 0 && input.password.length > 0;
   return (
     <Modal isActive={active}>
       <form className={signin.formData}>
@@ -114,6 +124,12 @@ const Signin: React.FunctionComponent<Signin> = function ({ active, userLoggedIn
           />
         </div>
         <br />
+        <div className={signin.wrapper}>
+          <span className={signin.title}>Second Password</span>
+          {passwordDirty && passwordError && <div style={{ color: "red" }}>{passwordError}</div>}
+          <input type="password" name="password1" data-rule="password" required onChange={(e) => compare(e)} />
+        </div>
+        <br />
         <button type="button" className={signin.but} onClick={handleClick} disabled={!enabled}>
           Отправить
         </button>
@@ -121,4 +137,4 @@ const Signin: React.FunctionComponent<Signin> = function ({ active, userLoggedIn
     </Modal>
   );
 };
-export default Signin;
+export default Registration;

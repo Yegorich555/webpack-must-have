@@ -6,6 +6,7 @@ const links = {
   about: "/about",
   signIn: "/signIn",
   signUp: "/signUp",
+  profile: "/profile",
 };
 const data: Array<DropdownAndCategory> = [
   {
