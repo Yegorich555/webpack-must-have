@@ -4,6 +4,11 @@
       "email": "maxkorzh@gmail.com",
       "password": "$2a$10$VJU2P5ig/8AhDaxKDKYqruERgmPhkibehTGwIru9pno3o8pj0gWou",
       "id": 1
+    },
+    {
+      "email": "qwert@gmail.com",
+      "password": "$2a$10$goqlhYZih5ua5UC/XSOx4u6xdVVBrJ6vGAKC4u9N8NLDTwfZrO2Ay",
+      "id": 2
     }
   ],
   "cards": [

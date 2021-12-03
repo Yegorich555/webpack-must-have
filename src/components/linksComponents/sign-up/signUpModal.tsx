@@ -1,10 +1,12 @@
 import { FaTimes } from "react-icons/fa";
 import InputText from "@/elements/inputText/inputText";
 import { useState } from "react";
+import { toast, ToastContainer } from "react-toastify";
 import styles from "./signUpModal.module.scss";
 import Modal from "../../../modal/modal";
 import { getApiResourse } from "../../../utils/network";
 import { API_SIGN_UP } from "../../../constants/api";
+import "react-toastify/dist/ReactToastify.css";
 
 interface MyState {
   isOpen: boolean;
@@ -13,13 +15,11 @@ interface MyState {
 }
 
 const SignUpModal = ({ isOpen, onClose, isSignIn }: MyState): JSX.Element | null => {
-  console.log("sign-up");
-
-  const [login, setlogin] = useState("");
+  const [login, setLogin] = useState("");
   const [firstUserPassword, setFirstUserPassword] = useState("");
   const [secondUserPassword, setSecondUserPassword] = useState("");
   const updateLogin = (value: string) => {
-    setlogin(value);
+    setLogin(value);
   };
   const firstPassword = (value: string) => {
     setFirstUserPassword(value);
@@ -28,14 +28,19 @@ const SignUpModal = ({ isOpen, onClose, isSignIn }: MyState): JSX.Element | null
     setSecondUserPassword(value);
   };
 
+  const notify = (textError = "something error") => {
+    toast(textError, {
+      className: "custom_toast",
+      draggable: true,
+      position: toast.POSITION.BOTTOM_CENTER,
+    });
+  };
   const signUp = async (param: string, data = {}) => {
     try {
-      const res = await getApiResourse(param, data);
-      if (res) {
-        isSignIn();
-      }
+      await getApiResourse(param, data);
+      isSignIn();
     } catch (error) {
-      alert(error);
+      notify();
     }
   };
 
@@ -45,18 +50,12 @@ const SignUpModal = ({ isOpen, onClose, isSignIn }: MyState): JSX.Element | null
         email: login,
         password: firstUserPassword,
       });
-    } else alert("Password mismatch");
+    } else notify("Password mismatch");
   };
-
-  // useEffect(() => {
-  //   getResponse("http://localhost:3000/register", {
-  //     email: "nils123on@email.com",
-  //     password: "nil123",
-  //   });
-  // }, []);
 
   return (
     <>
+      <ToastContainer />
       <Modal onClose={onClose} isOpen={isOpen}>
         <form action="submit" className={styles.submitForm}>
           <div className={styles.header_modal}>

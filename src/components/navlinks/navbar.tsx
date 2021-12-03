@@ -1,16 +1,15 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { NavLink } from "react-router-dom";
 import { FaShoppingCart } from "react-icons/fa";
 import DropDown from "../linksComponents/dropDown/dropDown";
 import styles from "./navbar.module.scss";
 import SignInModal from "../linksComponents/sign-in/signInModal";
 import SignUpModal from "../linksComponents/sign-up/signUpModal";
+import { UsersContext } from "../routes/provider";
 
-interface NavProps {
-  checkIfAuth: () => void;
-}
+const Navbar = (): JSX.Element => {
+  const { checkIfAuth } = useContext(UsersContext);
 
-const Navbar = ({ checkIfAuth }: NavProps): JSX.Element => {
   const [openSignUp, setOpenSignUp] = useState(false);
   const [openAbout, setOpenAbout] = useState(false);
   const [openSignIn, setOpenSignIn] = useState(false);
@@ -29,15 +28,13 @@ const Navbar = ({ checkIfAuth }: NavProps): JSX.Element => {
         </NavLink>
       </li>
       <li className={`${styles.item} ${styles.dropDown_link}`}>
-        {!userName ? (
+        {!openAbout ? (
           <button type="button" className={styles.modaleButton} onClick={() => setOpenAbout(true)}>
             <SignInModal
               isOpen={openAbout}
               onClose={() => {
                 setOpenAbout(false);
-                console.log("close modal");
               }}
-              isSignIn={showUserName}
             />
             <NavLink to="/products" activeClassName={styles.active}>
               Products
@@ -58,15 +55,13 @@ const Navbar = ({ checkIfAuth }: NavProps): JSX.Element => {
         )}
       </li>
       <li className={styles.item}>
-        {!userName ? (
+        {!openAbout ? (
           <button type="button" className={styles.modaleButton} onClick={() => setOpenAbout(true)}>
             <SignInModal
               isOpen={openAbout}
               onClose={() => {
                 setOpenAbout(false);
-                console.log("close modal");
               }}
-              isSignIn={showUserName}
             />
             <NavLink to="/about" activeClassName={styles.active}>
               About
@@ -84,7 +79,7 @@ const Navbar = ({ checkIfAuth }: NavProps): JSX.Element => {
             <NavLink to="/sign-in" activeClassName={styles.active}>
               Sign In
             </NavLink>
-            <SignInModal isOpen={openSignIn} onClose={() => setOpenSignIn(false)} isSignIn={showUserName} />
+            <SignInModal isOpen={openSignIn} onClose={() => setOpenSignIn(false)} />
           </button>
         ) : (
           <NavLink to="/sign-in" activeClassName={styles.active}>

@@ -1,12 +1,7 @@
-import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-export const getApiResourse = async (url: string, data = {}) => {
-  toast.error("something wrong");
-  toast.success("well");
-
-  try {
-    const response = await fetch(url, {
+export const getApiResourse = async(url, data = {}) => {
+  const res = await fetch(url, {
       method: "POST", // *GET, POST, PUT, DELETE, etc.
       mode: "cors", // no-cors, *cors, same-origin
       cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
@@ -18,22 +13,25 @@ export const getApiResourse = async (url: string, data = {}) => {
       redirect: "follow", // manual, *follow, error
       referrerPolicy: "no-referrer", // no-referrer, *client
       body: JSON.stringify(data), // body data type must match "Content-Type" header
+    })
+    .then((response) => {
+      if (response.status >= 200 && response.status < 300) {
+        return response;
+      }
+      const error = new Error(response.statusText);
+      error.response = response;
+      throw error;
+    })
+    .catch((e) => {
+      console.log(`Error: ${e.message}`);
+      console.log(e.response);
     });
 
-    if (response.status === 400) {
-      return [false, <ToastContainer draggable={false} />];
-    }
-    if (!response.ok) {
-      return false;
-    }
-    return await response.json();
-  } catch (error) {
-    alert("kkkkkkk");
-    return false;
-  }
+  const result = await res.json();
+  return result;
 };
 
-export const getApiCardResourse = async (url: string) => {
+export const getApiCardResourse = async(url) => {
   try {
     const res = await fetch(url);
     if (!res.ok) {
