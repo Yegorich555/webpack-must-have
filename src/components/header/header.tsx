@@ -34,6 +34,7 @@ const Header: React.FunctionComponent<ElementsForLogInLogOut> = function ({
     if (setCheckAuthorized) {
       setCheckAuthorized(false);
     }
+    window.history.replaceState({}, document.title);
     localStorage.removeItem("token");
     history.push("/");
   };
@@ -70,33 +71,32 @@ const Header: React.FunctionComponent<ElementsForLogInLogOut> = function ({
         {checkAuthorized ? (
           <>
             <li className={header.dropdown}>{userName}</li>
-            <li className={header.dropdown} onClick={logOut}>Log Out</li>
+            <li className={header.dropdown} onClick={logOut}>
+              Log Out
+            </li>
           </>
         ) : (
           <>
-            <li className={header.dropdown} onClick={signIn}>Sign In</li>
-            <li className={header.dropdown} onClick={register}>Registration</li>
+            <li className={header.dropdown} onClick={signIn}>
+              Sign In
+            </li>
+            <li className={header.dropdown} onClick={register}>
+              Registration
+            </li>
           </>
         )}
       </ul>
-      {(checkRegister) ? (
+      {checkRegister ? (
         <Registration
           active={registraionModal}
           userLoggedIn={controllModalHeader}
           setRegistrationModal={setRegistrationModal}
-          setUserName={setUserName} />
-      ) : (
-        ""
-      )}
-      {(checkSignIn) ? (
-        <Signin
-          active={modalActive}
-          userLoggedIn={controllModalHeader}
           setUserName={setUserName}
         />
       ) : (
-       ""
+        ""
       )}
+      {checkSignIn ? <Signin active={modalActive} userLoggedIn={controllModalHeader} setUserName={setUserName} /> : ""}
     </header>
   );
 };

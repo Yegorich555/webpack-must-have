@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import { useEffect, useState } from "react";
 import Home from "./pages/home/home";
 import Product from "./pages/product/product";
@@ -6,13 +6,14 @@ import About from "./pages/about/about";
 import { links } from "./constants/constants";
 import Layout from "./components/layout/layout";
 import ErrorBoundary from "./components/errorBoundary/errorBoundary";
-import Signin from "./pages/signin/signin";
 import Profile from "@/pages/profile/profile";
+import PrivateRoute from "./authenticated";
 
 const App: React.FunctionComponent = function () {
-  const [modalActive, setModalActive] = useState<boolean>(false);
+  const [modalActive, setModalActive] = useState<boolean>(true);
   const [authorized, setAuthorized] = useState<boolean>(false);
   const [userName, setUserName] = useState<string>("Name");
+
   const changeState = () => {
     setAuthorized(true);
     setModalActive(false);
@@ -20,6 +21,7 @@ const App: React.FunctionComponent = function () {
 
   useEffect(() => {
     localStorage.clear();
+    window.history.replaceState({}, document.title)
   }, []);
 
   return (
@@ -34,23 +36,16 @@ const App: React.FunctionComponent = function () {
         setUserName={setUserName}
       >
         <Switch>
-          <Route exact path={links.home} component={Home} />
           <ErrorBoundary>
-            {authorized ? (
-              <>
-                <Route exact path={links.product} component={Product} />
-                <Route exact path={`${links.product}/:value`} component={Product} />
-                <Route exact path={links.about} component={About} />
-                <Route exact path={links.profile} component={Profile} />
-              </>
-            ) : (
-              <>
-                <div style={{ minHeight: "100vh" }}>At first you should login</div>
-              <Signin active={true}  userLoggedIn={changeState} setUserName={setUserName} />
-              </>
-            )}
+            <Route
+              exact
+              path={links.home}
+              component={() => <Home modalActive={modalActive} userLoggedIn={changeState} setUserName={setUserName} />}
+            />
+            <PrivateRoute path={links.profile} component={() => <Profile />} auth={authorized} />
+            <PrivateRoute path={links.product} component={() => <Product />} auth={authorized} />
+            <PrivateRoute path={links.about} component={() => <About />} auth={authorized} />
           </ErrorBoundary>
-          <Redirect to={links.home} />
         </Switch>
       </Layout>
     </Router>
