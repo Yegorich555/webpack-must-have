@@ -1,77 +1,66 @@
-@mixin builder($d, $jC, $w) {
-  display: $d;
-  justify-content: $jC;
-  width: $w;
-}
-
 @mixin fonts($fF, $fS, $c) {
   font-family: $fF, sans-serif;
   font-size: $fS;
   color: $c;
 }
 
-header {
-  @include builder(flex, space-between, 100%);
+.main {
+  width: 100%;
   background: $bg;
+  display: flex;
+  justify-content: space-between;
   padding: 0 40px 0 40px;
   box-sizing: border-box;
+  align-items: center;
 
   .logo {
     @include fonts("Roboto", 30px, $w);
     text-decoration: none;
     padding-top: 7px;
   }
+}
 
-  .navigation {
-    display: flex;
-    justify-content: space-around;
+.menu {
+  display: flex;
+  padding: 0;
+  list-style: none;
+}
 
-    li {
-      list-style: none;
-      margin-right: 40px;
+.item {
+  position: relative;
+  padding: 5px 0;
+}
 
-      a {
-        @include fonts("Roboto", 20px, $w);
-        text-decoration: none;
+.menuSub {
+  position: absolute;
+  flex-direction: column;
+  max-height: 0;
+  visibility: hidden;
+  opacity: 0;
+  transition: 0.3s;
+  background-color: $bg;
+  padding: 10px;
+}
 
-        &:hover {
-          color: $purple;
-        }
-      }
-    }
+.menuSub .item {
+  white-space: nowrap;
+}
 
-    .dropdown {
-      position: relative;
-      display: flex;
-      @include fonts("Roboto", 20px, $w);
+.menuRoot .item:not(:last-child) {
+  margin-right: 30px;
+}
 
-      .dropdownContent {
-        position: absolute;
-        top: 130%;
-        display: flex;
-        flex-direction: column;
-        left: -35%;
-        padding: 10px;
-        background: $bg;
-        box-shadow: 3px 3px 10px 6px rgba(0, 0, 0, 0.06);
-        font-weight: 500;
-        color: #333;
+.item:hover > .menuSub {
+  max-height: 5000px;
+  visibility: visible;
+  opacity: 1;
+}
 
-        .dropdownItem {
-          a {
-            @include fonts("Roboto", 20px, $w);
-            text-decoration: none;
+a {
+  @include fonts("Roboto", 20px, $w);
+  text-decoration: none;
 
-            &:hover {
-              color: $purple;
-            }
-          }
-        }
-      }
-
-      &:hover {
-        color: $purple;
-      }
-    }
+  &:hover {
+    color: $purple;
   }
 }
