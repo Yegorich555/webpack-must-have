@@ -43,7 +43,8 @@ const App: React.FunctionComponent = function () {
               component={() => <Home modalActive={modalActive} userLoggedIn={changeState} setUserName={setUserName} />}
             />
             <PrivateRoute path={links.profile} component={() => <Profile />} auth={authorized} />
-            <PrivateRoute path={links.product} component={() => <Product />} auth={authorized} />
+            <PrivateRoute path={links.products} component={() => <Product />} auth={authorized} />
+            <PrivateRoute path={`${links.products}/:platform`} component={() => <Product />} auth={authorized} />
             <PrivateRoute path={links.about} component={() => <About />} auth={authorized} />
           </ErrorBoundary>
         </Switch>

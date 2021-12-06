@@ -8,7 +8,7 @@ const Category: React.FunctionComponent = function () {
   return (
     <>
       {data.map((elem: DropdownAndCategory) => (
-        <Link to={`${links.product}/:${elem.link}`} className={category.categoryItem} key={elem.id}>
+        <Link to={`${links.products}/:${elem.link}`} className={category.categoryItem} key={elem.id}>
           {elem.link}
         </Link>
       ))}
