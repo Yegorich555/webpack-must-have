@@ -1,14 +1,22 @@
 {
   "users": [
     {
-      "email": "maxkorzh@gmail.com",
-      "password": "$2a$10$VJU2P5ig/8AhDaxKDKYqruERgmPhkibehTGwIru9pno3o8pj0gWou",
+      "email": "qwert@gmail.com",
+      "password": "$2a$10$n3zK3BQ2BdL2ZVW9DUyHXOXM7YJg5gtsVqOXZV6TdivARygjXjKsa",
+      "userName": "maxim",
       "id": 1
     },
     {
-      "email": "qwert@gmail.com",
-      "password": "$2a$10$goqlhYZih5ua5UC/XSOx4u6xdVVBrJ6vGAKC4u9N8NLDTwfZrO2Ay",
+      "email": "jfjfj@gmail.com",
+      "password": "$2a$10$c5XoZ6jL8Hpd.RQptQKLMewM73689rmF2sr4hKtJsGXLpirtdtD0a",
+      "userName": "ljkljklj",
       "id": 2
+    },
+    {
+      "email": "max@gmail.com",
+      "password": "$2a$10$zn75f4SuJ2BQlfyj5iBgQ.L5SGaARc.4bsw..TBn55tIKtoPrPHLG",
+      "userName": "testUser",
+      "id": 3
     }
   ],
   "cards": [

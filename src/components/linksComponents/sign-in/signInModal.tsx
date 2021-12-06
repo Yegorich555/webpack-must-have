@@ -2,6 +2,7 @@ import { FaTimes } from "react-icons/fa";
 import InputText from "@/elements/inputText/inputText";
 import { useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
+import { useHistory } from "react-router-dom";
 import { API_SIGN_IN } from "../../../constants/api";
 
 import styles from "./signInModal.module.scss";
@@ -13,9 +14,14 @@ import "./toast.css";
 interface MyState {
   isOpen: boolean;
   onClose: () => void;
+  checkIfAuth: () => void;
+  createUserName: (name: string) => void;
+  url: string;
 }
 
-const SignInModal = ({ isOpen, onClose }: MyState): JSX.Element | null => {
+const SignInModal = ({ isOpen, onClose, checkIfAuth, createUserName, url }: MyState): JSX.Element | null => {
+  const history = useHistory();
+
   const [login, setLogin] = useState("");
   const [userPassword, setUserPassword] = useState("");
   const updateLogin = (value: string) => {
@@ -33,19 +39,22 @@ const SignInModal = ({ isOpen, onClose }: MyState): JSX.Element | null => {
     });
   };
 
-  const signIn = async (param: string, data = {}) => {
+  const redirectToComponent = () => {
+    history.push(url);
+  };
+
+  const submitUser = async () => {
     try {
-      await getApiResourse(param, data);
+      const res = await getApiResourse(API_SIGN_IN, {
+        email: login,
+        password: userPassword,
+      });
+      createUserName(res.user.userName);
+      checkIfAuth();
+      redirectToComponent();
     } catch (error) {
       notify();
     }
-  };
-
-  const submitUser = () => {
-    signIn(API_SIGN_IN, {
-      email: login,
-      password: userPassword,
-    });
   };
 
   return (
@@ -78,7 +87,7 @@ const SignInModal = ({ isOpen, onClose }: MyState): JSX.Element | null => {
             />
           </div>
           <div className={styles.button_block}>
-            <button type="button" className={styles.buttonSubmit} onClick={submitUser}>
+            <button type="button" className={styles.buttonSubmit} onClick={() => submitUser()}>
               Submit
             </button>
           </div>

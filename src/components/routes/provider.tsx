@@ -13,6 +13,7 @@ interface ContextProvider {
 
 const UsersContextProvider = ({ children }: ContextProvider): JSX.Element => {
   const [loggedUser, setLoggedUser] = useState(false);
+
   function checkIfAuth() {
     setLoggedUser(true);
   }

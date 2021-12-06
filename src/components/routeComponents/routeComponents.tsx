@@ -1,24 +1,21 @@
-import { useContext } from "react";
-import { Route } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import About from "../linksComponents/about/about";
 import Home from "../linksComponents/home/home";
 import Products from "../linksComponents/products/products";
 import ProtectedRoute from "../ProtectedRoute/protectedRoute";
-import { UsersContext } from "../routes/provider";
 
-const Routecomponents = (): JSX.Element => {
-  const { loggedUser } = useContext(UsersContext);
-
-  return (
-    <div>
-      <Route path="/home" render={() => <Home />} />
-      <ProtectedRoute path="/products" loggedUser={loggedUser} component={Products} />
-      <ProtectedRoute path="/about" loggedUser={loggedUser} component={About} />
-      <Route path="/products" render={() => <Products />} />
-      <Route path="/sign-in" render={() => <Home />} />
+const Routecomponents = (): JSX.Element => (
+  <div>
+    <Switch>
+      <ProtectedRoute path="/products" component={Products} />
+      <ProtectedRoute path="/about" component={About} />
+      {/* <Route path="/products" render={() => <Products />} />
+    <Route path="/about" render={() => <About />} /> */}
+      <Route path="/sign-in" render={() => <Products />} />
       <Route path="/sign-up" render={() => <Home />} />
-    </div>
-  );
-};
+      <Route path="/home" render={() => <Home />} />
+    </Switch>
+  </div>
+);
 
 export default Routecomponents;

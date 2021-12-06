@@ -8,16 +8,16 @@ import SignUpModal from "../linksComponents/sign-up/signUpModal";
 import { UsersContext } from "../routes/provider";
 
 const Navbar = (): JSX.Element => {
-  const { checkIfAuth } = useContext(UsersContext);
+  const { loggedUser, checkIfAuth } = useContext(UsersContext);
 
   const [openSignUp, setOpenSignUp] = useState(false);
   const [openAbout, setOpenAbout] = useState(false);
+  const [openProducts, setOpenProducts] = useState(false);
   const [openSignIn, setOpenSignIn] = useState(false);
-  const [userName, setUserName] = useState(false);
+  const [userName, setUserName] = useState("");
 
-  const showUserName = () => {
-    setUserName(true);
-    checkIfAuth();
+  const createUserName = (name: string) => {
+    setUserName(name);
   };
 
   return (
@@ -28,13 +28,16 @@ const Navbar = (): JSX.Element => {
         </NavLink>
       </li>
       <li className={`${styles.item} ${styles.dropDown_link}`}>
-        {!openAbout ? (
-          <button type="button" className={styles.modaleButton} onClick={() => setOpenAbout(true)}>
+        {!loggedUser ? (
+          <button type="button" className={styles.modaleButton} onClick={() => setOpenProducts(true)}>
             <SignInModal
-              isOpen={openAbout}
+              isOpen={openProducts}
               onClose={() => {
-                setOpenAbout(false);
+                setOpenProducts(false);
               }}
+              checkIfAuth={checkIfAuth}
+              createUserName={createUserName}
+              url="/products"
             />
             <NavLink to="/products" activeClassName={styles.active}>
               Products
@@ -55,13 +58,16 @@ const Navbar = (): JSX.Element => {
         )}
       </li>
       <li className={styles.item}>
-        {!openAbout ? (
+        {!loggedUser ? (
           <button type="button" className={styles.modaleButton} onClick={() => setOpenAbout(true)}>
             <SignInModal
               isOpen={openAbout}
               onClose={() => {
                 setOpenAbout(false);
               }}
+              checkIfAuth={checkIfAuth}
+              createUserName={createUserName}
+              url="/about"
             />
             <NavLink to="/about" activeClassName={styles.active}>
               About
@@ -74,26 +80,37 @@ const Navbar = (): JSX.Element => {
         )}
       </li>
       <li className={styles.item}>
-        {!userName ? (
+        {!loggedUser ? (
           <button type="button" className={styles.modaleButton} onClick={() => setOpenSignIn(true)}>
             <NavLink to="/sign-in" activeClassName={styles.active}>
               Sign In
             </NavLink>
-            <SignInModal isOpen={openSignIn} onClose={() => setOpenSignIn(false)} />
+            <SignInModal
+              isOpen={openSignIn}
+              onClose={() => setOpenSignIn(false)}
+              checkIfAuth={checkIfAuth}
+              createUserName={createUserName}
+              url="/home"
+            />
           </button>
         ) : (
           <NavLink to="/sign-in" activeClassName={styles.active}>
-            User Name
+            {userName}
           </NavLink>
         )}
       </li>
       <li className={styles.item}>
-        {!userName ? (
+        {!loggedUser ? (
           <button type="button" className={styles.modaleButton} onClick={() => setOpenSignUp(true)}>
             <NavLink to="/sign-up" activeClassName={styles.active}>
               Sign Up
             </NavLink>
-            <SignUpModal isOpen={openSignUp} onClose={() => setOpenSignUp(false)} isSignIn={showUserName} />
+            <SignUpModal
+              isOpen={openSignUp}
+              onClose={() => setOpenSignUp(false)}
+              checkIfAuth={checkIfAuth}
+              createUserName={createUserName}
+            />
           </button>
         ) : (
           <NavLink to="/sign-in" activeClassName={styles.active}>

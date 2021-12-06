@@ -11,13 +11,20 @@ import "react-toastify/dist/ReactToastify.css";
 interface MyState {
   isOpen: boolean;
   onClose: () => void;
-  isSignIn: () => void;
+  checkIfAuth: () => void;
+  createUserName: (name: string) => void;
 }
 
-const SignUpModal = ({ isOpen, onClose, isSignIn }: MyState): JSX.Element | null => {
+const SignUpModal = ({ isOpen, onClose, checkIfAuth, createUserName }: MyState): JSX.Element | null => {
   const [login, setLogin] = useState("");
+  // const [userName, setUserName] = useState("");
   const [firstUserPassword, setFirstUserPassword] = useState("");
   const [secondUserPassword, setSecondUserPassword] = useState("");
+  const [userName, setUserName] = useState("");
+
+  const updateUserName = (value: string) => {
+    setUserName(value);
+  };
   const updateLogin = (value: string) => {
     setLogin(value);
   };
@@ -38,7 +45,7 @@ const SignUpModal = ({ isOpen, onClose, isSignIn }: MyState): JSX.Element | null
   const signUp = async (param: string, data = {}) => {
     try {
       await getApiResourse(param, data);
-      isSignIn();
+      checkIfAuth();
     } catch (error) {
       notify();
     }
@@ -47,9 +54,11 @@ const SignUpModal = ({ isOpen, onClose, isSignIn }: MyState): JSX.Element | null
   const submitUser = () => {
     if (firstUserPassword === secondUserPassword) {
       signUp(API_SIGN_UP, {
+        userName,
         email: login,
         password: firstUserPassword,
       });
+      createUserName(userName);
     } else notify("Password mismatch");
   };
 
@@ -63,6 +72,15 @@ const SignUpModal = ({ isOpen, onClose, isSignIn }: MyState): JSX.Element | null
             <button type="button" onClick={onClose} className={styles.close_icon}>
               <FaTimes />
             </button>
+          </div>
+          <div className={styles.inputBlock}>
+            <InputText
+              message="User Name"
+              inputType="text"
+              value={userName}
+              inputPlaceHolder="enter your user name"
+              onChange={updateUserName}
+            />
           </div>
           <div className={styles.inputBlock}>
             <InputText
