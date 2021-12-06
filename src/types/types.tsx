@@ -27,6 +27,15 @@ export interface DropdownAndCategory {
   link: string;
 }
 
+interface Card {
+  image: string;
+  title: string;
+  price: number;
+}
+export interface CardProps {
+  item: Card;
+}
+
 type ReactNode = ReactChild | ReactFragment | ReactPortal | boolean | null | undefined;
 type Dispatcher<S> = Dispatch<SetStateAction<S>>;
 type controllEl = () => void;
@@ -117,4 +126,18 @@ export interface HeaderItemTypes {
 export interface HeaderListTypes {
   headerMenuArr: Array<headerObject>;
   root: boolean;
+}
+export interface HandleClickTypes {
+  [key: string]: any;
+  preventDefault: () => void;
+}
+export interface signInPostDataTypes {
+  formData: object;
+  userLoggedIn: any;
+  setUserName: Dispatcher<string> | undefined;
+}
+export interface registrationPostDataTypes {
+  formData: object;
+  redirect: any;
+  setUserName: Dispatcher<string> | undefined;
 }

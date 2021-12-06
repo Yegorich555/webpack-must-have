@@ -1,8 +1,4 @@
-@mixin fonts($fF, $fS, $c) {
-  font-family: $fF, sans-serif;
-  font-size: $fS;
-  color: $c;
-}
+@import "src/styles/mixin";
 
 .formData {
   display: flex;
@@ -17,10 +13,9 @@
     flex-wrap: wrap;
     flex-direction: column;
 
-    div {
+    .invalid {
       pointer-events: all;
-      font-family: "Roboto", sans-serif;
-      font-size: 16px;
+      @include fonts("Roboto", 16px, red);
     }
 
     input {

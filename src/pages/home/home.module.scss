@@ -1,13 +1,4 @@
-@mixin builder($d, $jC, $w) {
-  display: $d;
-  justify-content: $jC;
-  width: $w;
-}
-@mixin fonts($fF, $fS, $c) {
-  font-family: $fF, sans-serif;
-  font-size: $fS;
-  color: $c;
-}
+@import "src/styles/mixin";
 
 .homeWrapper {
   margin: 70px 0;

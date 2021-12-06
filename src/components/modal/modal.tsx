@@ -8,12 +8,11 @@ interface Modal {
 }
 
 const Modal: React.FunctionComponent<Modal> = function ({ isActive, children }) {
-  const portal = document.getElementById("portal") as HTMLElement;
   return ReactDom.createPortal(
     <div className={isActive ? modal.active : modal.modal}>
       <div className={isActive ? modal.modalContent : modal.content}>{children}</div>
     </div>,
-    portal
+    document.getElementById("portal") as HTMLElement
   );
 };
 export default Modal;

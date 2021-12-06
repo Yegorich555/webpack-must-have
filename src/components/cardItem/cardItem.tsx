@@ -1,18 +1,13 @@
 import React from "react";
 import card from "./cardItem.module.scss";
-
-type CardProps = {
-  src: string;
-  title: string;
-  price: string;
-};
-const CardItem: React.FunctionComponent<CardProps> = function ({ src, title, price }) {
+import { CardProps } from "../../types/types";
+const CardItem: React.FunctionComponent<CardProps> = function ({ item }) {
   return (
     <div className={card.cardItem}>
-      <div className={card.cardPicture} style={{ backgroundImage: `url(${src})` }} />
+      <div className={card.cardPicture} style={{ backgroundImage: `url(${item.image})` }} />
       <div className={card.infoWrapper}>
-        <p className={card.title}>{title}</p>
-        <p className={card.price}>{price}$</p>
+        <p className={card.title}>{item.title}</p>
+        <p className={card.price}>{item.price}$</p>
       </div>
     </div>
   );

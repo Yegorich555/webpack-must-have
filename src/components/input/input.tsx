@@ -77,10 +77,10 @@ const Input: React.FunctionComponent<InputTypes> = function ({
   }
 
   return (
-    <div className={signin.wrapper}>
+    <label className={signin.wrapper}>
       <span className={signin.title}>{text}</span>
-      {nameDirty && nameError && <div style={{ color: "red" }}>{nameError}</div>}
-      {passwordDirty && passwordError && <div style={{ color: "red" }}>{passwordError}</div>}
+      {nameDirty && nameError && <div className={signin.invalid}>{nameError}</div>}
+      {passwordDirty && passwordError && <div className={signin.invalid}>{passwordError}</div>}
       <input
         type={type}
         name={name}
@@ -89,7 +89,7 @@ const Input: React.FunctionComponent<InputTypes> = function ({
         onChange={(e) => handleChange(e)}
         onBlur={(e) => blurHandler(e)}
       />
-    </div>
+    </label>
   );
 };
 export default Input;

@@ -6,7 +6,7 @@ import SearchInput from "@/components/searchInput/searchInput";
 import CardItem from "@/components/cardItem/cardItem";
 import Category from "@/components/categories/category";
 import { HomeType, Product } from "../../types/types";
-import Signin from "../signin/signin";
+import SignIn from "../signIn/signIn";
 
 interface ShowModalLocation {
   from: object;
@@ -35,10 +35,10 @@ const Home: React.FunctionComponent<HomeType> = function ({ modalActive, userLog
       <div className={home.blockWrapper}>
         <p className={home.title}>New games</p>
         {topProducts.map((elem: Product) => (
-          <CardItem key={elem.id} src={elem.image} title={elem.title} price={String(elem.price)} />
+          <CardItem key={elem.id} item={elem} />
         ))}
       </div>
-      {state?.show ? <Signin active={modalActive} userLoggedIn={userLoggedIn} setUserName={setUserName} /> : ""}
+      {state?.show ? <SignIn active={modalActive} userLoggedIn={userLoggedIn} setUserName={setUserName} /> : ""}
     </div>
   );
 };

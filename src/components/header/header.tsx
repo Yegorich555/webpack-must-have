@@ -3,7 +3,7 @@ import { useHistory, Link } from "react-router-dom";
 import header from "./header.module.scss";
 import { links, headerData } from "../../constants/constants";
 import { ElementsForLogInLogOut } from "../../types/types";
-import Signin from "@/pages/signin/signin";
+import SignIn from "@/pages/signIn/signIn";
 import Registration from "@/pages/registration/registration";
 import HeaderList from "@/components/header/headerList";
 
@@ -16,8 +16,8 @@ const Header: React.FunctionComponent<ElementsForLogInLogOut> = function ({
   userName,
   setUserName,
 }) {
-  const [checkRegister, setRegister] = useState<boolean>(false);
-  const [checkSignIn, setCheckSignIn] = useState<boolean>(false);
+  const [userRegister, setRegister] = useState<boolean>(false);
+  const [userSignIn, setCheckSignIn] = useState<boolean>(false);
   const [registraionModal, setRegistrationModal] = useState<boolean>(false);
   const signIn = () => {
     setModalActive(true);
@@ -43,28 +43,28 @@ const Header: React.FunctionComponent<ElementsForLogInLogOut> = function ({
       <Link to={links.home} className={header.logo}>
         Game Store
       </Link>
-      <div>
+      <div className={header.wrapper}>
         <HeaderList headerMenuArr={headerData} root />
-        <ul>
+        <ul className={header.menu}>
           {checkAuthorized ? (
             <>
-              <li className={header.dropdown}>{userName}</li>
-              <li className={header.dropdown} onClick={logOut}>
+              <li className={header.buttons}>{userName}</li>
+              <li className={header.buttons} onClick={logOut}>
                 Log Out
               </li>
             </>
           ) : (
             <>
-              <li className={header.dropdown} onClick={signIn}>
+              <li className={header.buttons} onClick={signIn}>
                 Sign In
               </li>
-              <li className={header.dropdown} onClick={register}>
+              <li className={header.buttons} onClick={register}>
                 Registration
               </li>
             </>
           )}
         </ul>
-        {checkRegister ? (
+        {userRegister ? (
           <Registration
             active={registraionModal}
             userLoggedIn={controllModalHeader}
@@ -75,7 +75,7 @@ const Header: React.FunctionComponent<ElementsForLogInLogOut> = function ({
           ""
         )}
       </div>
-      {checkSignIn ? <Signin active={modalActive} userLoggedIn={controllModalHeader} setUserName={setUserName} /> : ""}
+      {userSignIn ? <SignIn active={modalActive} userLoggedIn={controllModalHeader} setUserName={setUserName} /> : ""}
     </header>
   );
 };

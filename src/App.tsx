@@ -7,7 +7,7 @@ import { links } from "./constants/constants";
 import Layout from "./components/layout/layout";
 import ErrorBoundary from "./components/errorBoundary/errorBoundary";
 import Profile from "@/pages/profile/profile";
-import PrivateRoute from "./authenticated";
+import PrivateRoute from "./components/privateRoute/privateRoute";
 
 const App: React.FunctionComponent = function () {
   const [modalActive, setModalActive] = useState<boolean>(true);
@@ -21,7 +21,7 @@ const App: React.FunctionComponent = function () {
 
   useEffect(() => {
     localStorage.clear();
-    window.history.replaceState({}, document.title)
+    window.history.replaceState({}, document.title);
   }, []);
 
   return (

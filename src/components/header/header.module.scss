@@ -1,8 +1,4 @@
-@mixin fonts($fF, $fS, $c) {
-  font-family: $fF, sans-serif;
-  font-size: $fS;
-  color: $c;
-}
+@import "src/styles/mixin";
 
 .main {
   width: 100%;
@@ -18,12 +14,28 @@
     text-decoration: none;
     padding-top: 7px;
   }
+
+  .wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
 }
 
 .menu {
   display: flex;
   padding: 0;
   list-style: none;
+}
+
+.buttons {
+  @include fonts("Roboto", 20px, $w);
+  cursor: pointer;
+  margin-right: 30px;
+
+  &:hover {
+    color: $purple;
+  }
 }
 
 .item {
@@ -46,7 +58,7 @@
   white-space: nowrap;
 }
 
-.menuRoot .item:not(:last-child) {
+.menuRoot .item {
   margin-right: 30px;
 }
 

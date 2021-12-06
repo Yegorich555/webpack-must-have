@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import axios from "axios";
 import { useHistory } from "react-router-dom";
 import Modal from "@/components/modal/modal";
 import signin from "../../components/input/input.module.scss";
-import { Registration } from "../../types/types";
+import { Registration, HandleClickTypes } from "../../types/types";
 import Input from "../../components/input/input";
+import { registrationPostData } from "@/api/signInRegistrationQuery";
 
 const Registration: React.FunctionComponent<Registration> = function ({
   active,
@@ -25,27 +25,13 @@ const Registration: React.FunctionComponent<Registration> = function ({
     history.push("/profile");
   };
 
-  function handleClick(e: { preventDefault: () => void }) {
+  function handleClick(e: HandleClickTypes) {
     e.preventDefault();
     const formData = {
       name: input.name,
       password: input.password,
     };
-    axios
-      .put("/api/auth/signUp", formData)
-      .then((res) => {
-        console.log(res.data);
-        if (res.data) {
-          localStorage.setItem("token", JSON.stringify(res.data));
-          const info: object = JSON.parse(localStorage.getItem("token") as string);
-          // @ts-ignore
-          setUserName(info.name);
-          redirect();
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    registrationPostData({ formData, setUserName, redirect });
     setRegistrationModal(false);
     userLoggedIn();
   }
