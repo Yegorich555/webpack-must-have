@@ -4,10 +4,9 @@ import header from "./header.module.scss";
 import HeaderList from "@/components/header/headerList";
 import { HeaderItemTypes } from "@/types/types";
 
-const HeaderItem: React.FunctionComponent<HeaderItemTypes> = function ({ item}) {
-  const classesList = [header.item].join(" ");
+const HeaderItem: React.FunctionComponent<HeaderItemTypes> = function ({ item }) {
   return (
-    <li className={classesList}>
+    <li className={header.item}>
       <Link to={item.path}>{item.label}</Link>
       {item.sub && <HeaderList headerMenuArr={item.sub} root={false} />}
     </li>

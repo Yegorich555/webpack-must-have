@@ -24,11 +24,13 @@ export interface DropdownAndCategory {
   id: number;
   link: string;
 }
-type subObj = {
+interface subObj {
+  id: number;
   label: string;
   path: string;
 };
-type headerObject = {
+interface headerObject {
+  id : number;
   label?: string;
   path?: string | any;
   sub?: Array<subObj>;
