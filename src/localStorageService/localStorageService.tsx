@@ -1,4 +1,4 @@
-class LocalStorageService {
+class ServiseLocalStorage {
   private setElem(key: string, newData:any) {
     localStorage.setItem(key, JSON.stringify(newData));
   }
@@ -23,5 +23,5 @@ class LocalStorageService {
     this.removeElem("token");
   }
 }
-const SERVISE = new LocalStorageService();
-export default SERVISE;
+const localStorageService = new ServiseLocalStorage();
+export default localStorageService;

@@ -6,7 +6,7 @@ import { ElementsForLogInLogOut } from "../../types/types";
 import SignIn from "@/pages/signIn/signIn";
 import Registration from "@/pages/registration/registration";
 import HeaderList from "@/components/header/headerList";
-import SERVISE from "@/localStorageService/localStorageService";
+import localStorageService from "@/localStorageService/localStorageService";
 
 const Header: React.FunctionComponent<ElementsForLogInLogOut> = function ({
   controllModalHeader,
@@ -35,7 +35,7 @@ const Header: React.FunctionComponent<ElementsForLogInLogOut> = function ({
     if (setCheckAuthorized) {
       setCheckAuthorized(false);
     }
-    SERVISE.removeToken();
+    localStorageService.removeToken();
     history.push("/");
     window.history.replaceState({}, document.title);
   };

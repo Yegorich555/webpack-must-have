@@ -4,7 +4,7 @@ import signin from "../../components/input/input.module.scss";
 import { Signin } from "@/types/types";
 import Input from "@/components/input/input";
 import { signInPostData } from "@/api/signInRegistrationQuery";
-import SERVISE from "@/localStorageService/localStorageService";
+import localStorageService from "@/localStorageService/localStorageService";
 
 const SignIn: React.FunctionComponent<Signin> = function ({ active, userLoggedIn, setUserName }) {
   const [checkField, setCheckField] = useState(false);
@@ -22,8 +22,8 @@ const SignIn: React.FunctionComponent<Signin> = function ({ active, userLoggedIn
     };
     signInPostData({ formData })
       .then((res) => {
-        SERVISE.setToken(res.data);
-        const dataUser = SERVISE.getToken();
+        localStorageService.setToken(res.data);
+        const dataUser = localStorageService.getToken();
         // @ts-ignore
         setUserName(dataUser.name);
         userLoggedIn();
