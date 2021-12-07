@@ -52,5 +52,4 @@ const App: React.FunctionComponent = function () {
     </Router>
   );
 };
-
 export default App;
