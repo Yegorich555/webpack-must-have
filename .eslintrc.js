@@ -31,10 +31,8 @@ module.exports = {
         ignoreRestArgs: false,
       },
     ],
-    "no-use-before-define": "off",
     "@typescript-eslint/no-use-before-define": "error",
-    "require-await": "error",
-    "prettier/prettier": ["error"],
+
     "react/jsx-filename-extension": ["error", { extensions: [".tsx"] }],
     "react/destructuring-assignment": 0,
     // "react/jsx-max-props-per-line": [1, { maximum: 1 }], //it doesn't work with prettier, you can remove prettier from rules: 'prettier/prettier'...
@@ -47,6 +45,11 @@ module.exports = {
     "react/jsx-wrap-multilines": ["error", { arrow: true, return: true, declaration: true }],
     // watch bug: https://github.com/airbnb/javascript/pull/2501
     "react/function-component-definition": [2, { namedComponents: "function-declaration" }],
+
+    "prettier/prettier": ["error"],
+
+    "no-use-before-define": "off",
+    "require-await": "error",
     "spaced-comment": ["error", "always"],
     "unused-imports/no-unused-imports": "error",
     "no-underscore-dangle": "off",
