@@ -5,6 +5,7 @@ import signin from "../../components/input/input.module.scss";
 import { Registration, HandleClickTypes } from "../../types/types";
 import Input from "../../components/input/input";
 import { registrationPostData } from "@/api/signInRegistrationQuery";
+import SERVISE from "@/localStorageService/localStorageService";
 
 const Registration: React.FunctionComponent<Registration> = function ({
   active,
@@ -31,7 +32,19 @@ const Registration: React.FunctionComponent<Registration> = function ({
       name: input.name,
       password: input.password,
     };
-    registrationPostData({ formData, setUserName, redirect });
+    registrationPostData({ formData })
+      .then((res) => {
+        if (res.data) {
+          SERVISE.setToken(res.data);
+          const info = SERVISE.getToken();
+          // @ts-ignore
+          setUserName(info.name);
+          redirect();
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
     setRegistrationModal(false);
     userLoggedIn();
   }

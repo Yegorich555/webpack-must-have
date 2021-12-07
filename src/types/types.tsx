@@ -131,13 +131,6 @@ export interface HandleClickTypes {
   [key: string]: any;
   preventDefault: () => void;
 }
-export interface signInPostDataTypes {
+export interface signInRegistraionPostDataTypes {
   formData: object;
-  userLoggedIn: any;
-  setUserName: Dispatcher<string> | undefined;
-}
-export interface registrationPostDataTypes {
-  formData: object;
-  redirect: any;
-  setUserName: Dispatcher<string> | undefined;
 }
