@@ -1,7 +1,13 @@
 import React from "react";
+import { useParams } from "react-router-dom";
 
 const Product: React.FunctionComponent = function () {
-  // const { value }:any = useParams();
-  return <div>Product page</div>;
+  const { platform } = useParams<any>();
+  return (
+    <>
+      <div>Product page</div>
+      {platform && <h2>{platform}</h2>}
+    </>
+  );
 };
 export default Product;

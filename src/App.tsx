@@ -15,8 +15,8 @@ class App extends Component<unknown, unknown> {
           <Switch>
             <Route exact path={links.home} component={Home} />
             <ErrorBoundary>
-              <Route exact path={links.product} component={Product} />
-              <Route exact path={`${links.product}/:value`} component={Product} />
+              <Route exact path={links.products} component={Product} />
+              <Route path={`${links.products}/:platform`} component={Product} />
               <Route exact path={links.about} component={About} />
               <Route path={links.signIn} />
               <Route path={links.signUp} />
