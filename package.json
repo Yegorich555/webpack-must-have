@@ -121,9 +121,13 @@
     "react-dropdown": "^1.9.2",
     "react-icons": "^4.3.1",
     "react-lodash": "^0.1.2",
+    "react-redux": "^7.2.6",
     "react-router-dom": "^5.3.0",
     "react-select": "^5.2.1",
     "react-toastify": "^8.1.0",
+    "redux": "^4.1.2",
+    "redux-devtools-extension": "^2.13.9",
+    "redux-thunk": "^2.4.1",
     "uuid": "^8.3.2"
   }
 }

@@ -6,22 +6,28 @@ import { getApiCardResourse } from "../../../../utils/network";
 import styles from "./searchBar.module.scss";
 import ListResults from "./listResults/listResults";
 
+interface Card {
+  id: number;
+  image: string;
+  title: string;
+  price: string;
+  text: string;
+  stars: number;
+  date: string;
+}
+
 const Searchbar = (): JSX.Element => {
   const [searchInput, setSearchInput] = useState("");
-  const [items, setItems] = useState([]);
+  const [items, setItems] = useState<Array<Card>>([]);
 
   const [isLoading, setIsLoading] = useState(false);
 
-  const getResponse = async (param: string): Promise<void> => {
+  const getResponse = async (param: string) => {
     setIsLoading(true);
-
-    const res = await getApiCardResourse(API_SEARCH + param);
     try {
-      if (res) {
-        setIsLoading(false);
-        const arr = res.map((e: string | number) => e);
-        setItems(arr);
-      }
+      const res = await getApiCardResourse<Array<Card>>(API_SEARCH + param);
+      setIsLoading(false);
+      setItems(res);
     } catch (error) {
       console.log(error);
     }
@@ -34,7 +40,6 @@ const Searchbar = (): JSX.Element => {
 
   const searchItems = (searchValue: string) => {
     setSearchInput(searchValue);
-
     if (searchInput !== "") {
       debouncedGetResponse(searchValue);
     } else console.log("enter value");

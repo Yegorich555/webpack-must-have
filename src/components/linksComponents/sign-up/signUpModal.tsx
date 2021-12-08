@@ -2,6 +2,8 @@ import { FaTimes } from "react-icons/fa";
 import InputText from "@/elements/inputText/inputText";
 import { useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
+import { setUserName } from "@/components/store/reducers/userReducer";
+import { useDispatch } from "react-redux";
 import styles from "./signUpModal.module.scss";
 import Modal from "../../../modal/modal";
 import { getApiResourse } from "../../../utils/network";
@@ -11,19 +13,17 @@ import "react-toastify/dist/ReactToastify.css";
 interface MyState {
   isOpen: boolean;
   onClose: () => void;
-  checkIfAuth: () => void;
-  createUserName: (name: string) => void;
 }
 
-const SignUpModal = ({ isOpen, onClose, checkIfAuth, createUserName }: MyState): JSX.Element | null => {
+const SignUpModal = ({ isOpen, onClose }: MyState): JSX.Element | null => {
   const [login, setLogin] = useState("");
   // const [userName, setUserName] = useState("");
   const [firstUserPassword, setFirstUserPassword] = useState("");
   const [secondUserPassword, setSecondUserPassword] = useState("");
-  const [userName, setUserName] = useState("");
+  const [userNickName, setUserNickName] = useState("");
 
   const updateUserName = (value: string) => {
-    setUserName(value);
+    setUserNickName(value);
   };
   const updateLogin = (value: string) => {
     setLogin(value);
@@ -34,6 +34,7 @@ const SignUpModal = ({ isOpen, onClose, checkIfAuth, createUserName }: MyState):
   const secondPassword = (value: string) => {
     setSecondUserPassword(value);
   };
+  const dispatch = useDispatch();
 
   const notify = (textError = "something error") => {
     toast(textError, {
@@ -42,25 +43,31 @@ const SignUpModal = ({ isOpen, onClose, checkIfAuth, createUserName }: MyState):
       position: toast.POSITION.BOTTOM_CENTER,
     });
   };
-  const signUp = async (param: string, data = {}) => {
-    try {
-      await getApiResourse(param, data);
-      checkIfAuth();
-    } catch (error) {
-      notify();
-    }
-  };
-
-  const submitUser = () => {
+  const submitUser = async () => {
     if (firstUserPassword === secondUserPassword) {
-      signUp(API_SIGN_UP, {
-        userName,
-        email: login,
-        password: firstUserPassword,
-      });
-      createUserName(userName);
+      try {
+        await getApiResourse(API_SIGN_UP, {
+          userName: userNickName,
+          email: login,
+          password: firstUserPassword,
+        });
+        dispatch(setUserName(userNickName));
+      } catch (error) {
+        notify();
+      }
     } else notify("Password mismatch");
   };
+
+  // const submitUser = () => {
+  //   if (firstUserPassword === secondUserPassword) {
+  //     signUp(API_SIGN_UP, {
+  //       userName,
+  //       email: login,
+  //       password: firstUserPassword,
+  //     });
+  //     // createUserName(userName);
+  //   } else notify("Password mismatch");
+  // };
 
   return (
     <>
@@ -77,7 +84,7 @@ const SignUpModal = ({ isOpen, onClose, checkIfAuth, createUserName }: MyState):
             <InputText
               message="User Name"
               inputType="text"
-              value={userName}
+              value={userNickName}
               inputPlaceHolder="enter your user name"
               onChange={updateUserName}
             />

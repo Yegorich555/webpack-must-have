@@ -3,6 +3,8 @@ import InputText from "@/elements/inputText/inputText";
 import { useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import { useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setUserName } from "@/components/store/reducers/userReducer";
 import { API_SIGN_IN } from "../../../constants/api";
 
 import styles from "./signInModal.module.scss";
@@ -14,13 +16,13 @@ import "./toast.css";
 interface MyState {
   isOpen: boolean;
   onClose: () => void;
-  checkIfAuth: () => void;
-  createUserName: (name: string) => void;
   url: string;
 }
 
-const SignInModal = ({ isOpen, onClose, checkIfAuth, createUserName, url }: MyState): JSX.Element | null => {
+const SignInModal = ({ isOpen, onClose, url }: MyState): JSX.Element | null => {
   const history = useHistory();
+
+  const dispatch = useDispatch();
 
   const [login, setLogin] = useState("");
   const [userPassword, setUserPassword] = useState("");
@@ -49,8 +51,7 @@ const SignInModal = ({ isOpen, onClose, checkIfAuth, createUserName, url }: MySt
         email: login,
         password: userPassword,
       });
-      createUserName(res.user.userName);
-      checkIfAuth();
+      dispatch(setUserName(res.user.userName));
       redirectToComponent();
     } catch (error) {
       notify();

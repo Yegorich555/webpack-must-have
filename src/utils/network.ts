@@ -1,6 +1,16 @@
 import "react-toastify/dist/ReactToastify.css";
 
-export const getApiResourse = async (url, data = {}) => {
+interface ApiUserInterface {
+  password: string;
+  email: string;
+  userName?: string;
+}
+
+interface Result {
+  user: { password: string; email: string; userName: string };
+}
+
+export const getApiResourse = async (url: string, data: ApiUserInterface): Promise<Result> => {
   const res = await fetch(url, {
     method: "POST", // *GET, POST, PUT, DELETE, etc.
     mode: "cors", // no-cors, *cors, same-origin
@@ -14,12 +24,11 @@ export const getApiResourse = async (url, data = {}) => {
     referrerPolicy: "no-referrer", // no-referrer, *client
     body: JSON.stringify(data), // body data type must match "Content-Type" header
   })
-    .then((response) => {
+    .then((response: Response) => {
       if (response.status >= 200 && response.status < 300) {
-        return response;
+        return response.json();
       }
       const error = new Error(response.statusText);
-      error.response = response;
       throw error;
     })
     .catch((e) => {
@@ -27,20 +36,22 @@ export const getApiResourse = async (url, data = {}) => {
       console.log(e.response);
     });
 
-  const result = await res.json();
-  return result;
+  return res;
 };
 
-export const getApiCardResourse = async (url) => {
-  try {
-    const res = await fetch(url);
-    if (!res.ok) {
-      console.log("Couldn't fetch");
-      return false;
-    }
-    return await res.json();
-  } catch (error) {
-    console.log("Couldn't fetch", error);
-    return false;
-  }
+export const getApiCardResourse = async <T>(url: string): Promise<T> => {
+  const res = await fetch(url)
+    .then((response: Response) => {
+      if (response.status >= 200 && response.status < 300) {
+        return response.json();
+      }
+      const error = new Error(response.statusText);
+      throw error;
+    })
+    .catch((e) => {
+      console.log(`Error: ${e.message}`);
+      console.log(e.response);
+    });
+
+  return res;
 };

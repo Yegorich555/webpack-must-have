@@ -16,14 +16,14 @@ interface Card {
 }
 
 function Gamecards(): JSX.Element {
-  const [items, setItems] = useState<Card[]>([]);
+  const [items, setItems] = useState<Array<Card>>([]);
 
   const getResponse = async (param: string) => {
-    const res = await getApiCardResourse(param);
-
-    if (res) {
-      const cardsList = res.map((item: Card) => item);
-      setItems(cardsList);
+    try {
+      const res = await getApiCardResourse<Array<Card>>(param);
+      setItems(res);
+    } catch (error) {
+      console.log(error);
     }
   };
 

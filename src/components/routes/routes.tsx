@@ -1,15 +1,16 @@
 import { BrowserRouter } from "react-router-dom";
+import { Provider } from "react-redux";
 import Footer from "../footer/footer";
 import Header from "../header/header";
 import Routecomponents from "../routeComponents/routeComponents";
-import UsersContextProvider from "./provider";
+import { store } from "../store/reducers/store";
 
 const Routes = (): JSX.Element => (
   <BrowserRouter>
-    <UsersContextProvider>
+    <Provider store={store}>
       <Header />
       <Routecomponents />
-    </UsersContextProvider>
+    </Provider>
     <Footer />
   </BrowserRouter>
 );
