@@ -1,21 +1,17 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useHistory } from "react-router-dom";
 import Modal from "@/components/modal/modal";
 import signin from "../../components/input/input.module.scss";
-import { Registration, HandleClickTypes } from "../../types/types";
+import { Registration, HandleClickTypes, ElementsForLogInLogOut } from "../../types/types";
 import Input from "../../components/input/input";
 import { registrationPostData } from "@/api/signInRegistrationQuery";
 import localStorageService from "@/localStorageService/localStorageService";
+import { Context } from "@/constants/context";
 
-const Registration: React.FunctionComponent<Registration> = function ({
-  active,
-  userLoggedIn,
-  setRegistrationModal,
-  setUserName,
-}) {
+const Registration: React.FunctionComponent<Registration> = function ({ setRegistrationModal, active }) {
   const [checkField, setCheckField] = useState(false);
   const history = useHistory();
-
+  const { changeState, setUserName } = useContext<ElementsForLogInLogOut>(Context);
   const [input, setInput] = useState({
     name: "",
     password: "",
@@ -46,7 +42,7 @@ const Registration: React.FunctionComponent<Registration> = function ({
         console.log(err);
       });
     setRegistrationModal(false);
-    userLoggedIn();
+    changeState();
   }
   const enabled =
     input.name.length > 0 && input.password.length > 0 && input.passwordDuplicate.length > 0 && !checkField;

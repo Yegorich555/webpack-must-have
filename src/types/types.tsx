@@ -38,7 +38,7 @@ export interface CardProps {
 
 type ReactNode = ReactChild | ReactFragment | ReactPortal | boolean | null | undefined;
 type Dispatcher<S> = Dispatch<SetStateAction<S>>;
-type controllEl = () => void;
+
 
 type InputObjectRegistration = {
   name: string;
@@ -61,10 +61,7 @@ export interface InputTypes {
   input: InputObjectRegistration | InputSignInObject;
 }
 
-export interface Signin {
-  active: boolean;
-  userLoggedIn: any;
-  setUserName?: Dispatcher<string>;
+export interface SignIn {
   checkField?: boolean;
   setCheckField?: Dispatcher<boolean>;
   input?: object;
@@ -72,18 +69,14 @@ export interface Signin {
 }
 
 export interface ElementsForLogInLogOut {
-  controllElements?: any;
-  userLoggedIn?: any;
+  changeState:any;
+  setAuthorized: Dispatcher<boolean>;
   modalActive: boolean;
   setModalActive: Dispatcher<boolean>;
-  authorized?: boolean;
-  setAuthorizedInfo?: Dispatcher<boolean>;
-  checkAuthorized?: boolean;
-  setCheckAuthorized?: Dispatcher<boolean>;
-  controllModalHeader?: controllEl;
+  authorized: boolean;
   children?: ReactNode;
   setUserName: Dispatcher<string>;
-  userName?: string;
+  userName: string;
 }
 export interface HomeType {
   modalActive: boolean;
@@ -93,11 +86,7 @@ export interface HomeType {
 }
 export interface Registration {
   active: boolean;
-  userLoggedIn: any;
   setRegistrationModal: Dispatcher<boolean>;
-  setUserName?: Dispatcher<string>;
-  input?: InputObjectRegistration;
-  setElem?: Dispatcher<InputObjectRegistration>;
 }
 export interface AppType {
   modalActive: boolean;

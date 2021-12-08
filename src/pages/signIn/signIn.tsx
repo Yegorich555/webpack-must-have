@@ -1,14 +1,15 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Modal from "@/components/modal/modal";
 import signin from "../../components/input/input.module.scss";
-import { Signin } from "@/types/types";
+import { SignIn } from "@/types/types";
 import Input from "@/components/input/input";
 import { signInPostData } from "@/api/signInRegistrationQuery";
 import localStorageService from "@/localStorageService/localStorageService";
+import { Context } from "@/constants/context";
 
-const SignIn: React.FunctionComponent<Signin> = function ({ active, userLoggedIn, setUserName }) {
+const SignIn: React.FunctionComponent<SignIn> = function () {
   const [checkField, setCheckField] = useState(false);
-
+  const { changeState, modalActive, setUserName } = useContext(Context);
   const [input, setInput] = useState({
     name: "",
     password: "",
@@ -26,7 +27,7 @@ const SignIn: React.FunctionComponent<Signin> = function ({ active, userLoggedIn
         const dataUser = localStorageService.getToken();
         // @ts-ignore
         setUserName(dataUser.name);
-        userLoggedIn();
+        changeState();
       })
       .catch((err) => {
         console.log(err);
@@ -35,7 +36,7 @@ const SignIn: React.FunctionComponent<Signin> = function ({ active, userLoggedIn
 
   const enabled = input.name.length > 0 && input.password.length > 0 && !checkField;
   return (
-    <Modal isActive={active}>
+    <Modal isActive={modalActive}>
       <form className={signin.formData}>
         <Input
           type="text"

@@ -5,7 +5,7 @@ import home from "./home.module.scss";
 import SearchInput from "@/components/searchInput/searchInput";
 import CardItem from "@/components/cardItem/cardItem";
 import Category from "@/components/categories/category";
-import { HomeType, Product } from "../../types/types";
+import { Product } from "../../types/types";
 import SignIn from "../signIn/signIn";
 
 interface ShowModalLocation {
@@ -13,7 +13,7 @@ interface ShowModalLocation {
   show: boolean;
 }
 
-const Home: React.FunctionComponent<HomeType> = function ({ modalActive, userLoggedIn, setUserName }) {
+const Home: React.FunctionComponent = function () {
   const [topProducts, setTopProducts] = useState<Array<Product>>([]);
   const location = useLocation();
   const state = location.state as ShowModalLocation;
@@ -38,7 +38,7 @@ const Home: React.FunctionComponent<HomeType> = function ({ modalActive, userLog
           <CardItem key={elem.id} item={elem} />
         ))}
       </div>
-      {state?.show ? <SignIn active={modalActive} userLoggedIn={userLoggedIn} setUserName={setUserName} /> : ""}
+      {state?.show ? <SignIn /> : ""}
     </div>
   );
 };
