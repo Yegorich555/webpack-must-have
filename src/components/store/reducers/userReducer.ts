@@ -27,4 +27,4 @@ export const userReducer = (state = defaultState, action: UserAction): UserState
   }
 };
 
-export const setUserName = (userName: string) => ({ type: SET_USER_NAME, payload: userName });
+export const setUserName = (userName: string): SetUserNameAction => ({ type: SET_USER_NAME, payload: userName });
