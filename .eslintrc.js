@@ -19,8 +19,7 @@ module.exports = {
     browser: true,
   },
   globals: {
-    DEV_SERVER: true,
-    API_DOMAIN: true,
+    DEV: true,
   },
   plugins: ["json", "prettier", "import", "@typescript-eslint", "unused-imports"],
   rules: {
@@ -31,6 +30,7 @@ module.exports = {
         ignoreRestArgs: false,
       },
     ],
+    "@typescript-eslint/no-shadow": ["error"],
     "@typescript-eslint/no-use-before-define": "error",
 
     "react/jsx-filename-extension": ["error", { extensions: [".tsx"] }],
@@ -48,6 +48,7 @@ module.exports = {
 
     "prettier/prettier": ["error"],
 
+    "no-shadow": "off",
     "no-use-before-define": "off",
     "require-await": "error",
     "spaced-comment": ["error", "always"],
