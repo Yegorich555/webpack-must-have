@@ -2,33 +2,10 @@
   "users": [
     {
       "email": "qwe@gmail.com",
-      "password": "$2a$10$1zaYpag6CR8HWoOEOv40Q.o60dDhz6YyNY2KnNZweeBWopY4vb5Ky",
-      "userName": "qwe@gmail.com",
+      "userName": "max",
+      "description": "hiiifllkjlkj",
+      "password": "$2a$10$tK7Mv05WqbFDiaxP0A8n9.71pO8zz0k6MKMgvIq4q/5PNMeJLR/Wu",
       "id": 1
-    },
-    {
-      "email": "qweqwe@gmail.com",
-      "password": "$2a$10$l3KOtKy4DrNHaqP/znVMlO1/nLmQOwI7FkIvJ9MVJvMGm80me3Fpi",
-      "userName": "userName",
-      "id": 2
-    },
-    {
-      "email": "qweqweq@gmail.com",
-      "password": "$2a$10$Prj2/G2xfITb03dSmiMiiOMlNlOnJmicqvfM9eTM3vV0hHV03VHNu",
-      "userName": "userName",
-      "id": 3
-    },
-    {
-      "email": "userName@gmail.com",
-      "password": "$2a$10$KCr.BFRq2giNbEE.IZv4supVIdQUFGp0p7tH/ECBytvIJOvvQ8aZO",
-      "userName": "qweqweqwe",
-      "id": 4
-    },
-    {
-      "email": "qweqweqwe@gmail.com",
-      "password": "$2a$10$AdQILIsbaaEhyo7PFnR7IeB2M9N.D7ZS98iCuTCW74wn5FmYb4VS2",
-      "userName": "qweqwewqe",
-      "id": 5
     }
   ],
   "cards": [

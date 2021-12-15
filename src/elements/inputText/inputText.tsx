@@ -2,10 +2,10 @@ import { FC } from "react";
 import styles from "./inputText.module.scss";
 
 interface InputProps {
-  message: string;
+  message?: string;
   inputType: string;
   value: string;
-  inputPlaceHolder: string;
+  inputPlaceHolder?: string;
   onChange: (value: string) => void;
 }
 

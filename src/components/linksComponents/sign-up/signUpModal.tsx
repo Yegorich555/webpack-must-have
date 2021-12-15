@@ -50,24 +50,16 @@ const SignUpModal = ({ isOpen, onClose }: MyState): JSX.Element | null => {
           userName: userNickName,
           email: login,
           password: firstUserPassword,
+          description: "profile description",
         });
-        dispatch(setUserName(userNickName));
+        dispatch(
+          setUserName({ userName: userNickName, description: "profile description", password: firstUserPassword })
+        );
       } catch (error) {
         notify();
       }
     } else notify("Password mismatch");
   };
-
-  // const submitUser = () => {
-  //   if (firstUserPassword === secondUserPassword) {
-  //     signUp(API_SIGN_UP, {
-  //       userName,
-  //       email: login,
-  //       password: firstUserPassword,
-  //     });
-  //     // createUserName(userName);
-  //   } else notify("Password mismatch");
-  // };
 
   return (
     <>

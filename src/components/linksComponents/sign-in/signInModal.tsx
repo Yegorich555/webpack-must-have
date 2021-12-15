@@ -51,7 +51,15 @@ const SignInModal = ({ isOpen, onClose, url }: MyState): JSX.Element | null => {
         email: login,
         password: userPassword,
       });
-      dispatch(setUserName(res.user.userName));
+      dispatch(
+        setUserName({
+          userName: res.user.userName,
+          email: login,
+          id: res.user.id,
+          description: res.user.description,
+          password: userPassword,
+        })
+      );
       redirectToComponent();
     } catch (error) {
       notify();

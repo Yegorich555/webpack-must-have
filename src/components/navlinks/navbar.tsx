@@ -87,7 +87,7 @@ const Navbar = (): JSX.Element => {
             <SignInModal isOpen={openSignIn} onClose={() => setOpenSignIn(false)} url="/home" />
           </button>
         ) : (
-          <NavLink to="/sign-in" activeClassName={styles.active}>
+          <NavLink to="/profile" activeClassName={styles.active}>
             {userName}
           </NavLink>
         )}
