@@ -5,10 +5,11 @@ interface ApiUserInterface {
   email: string;
   userName?: string;
   description?: string;
+  image?: string;
 }
 
 interface Result {
-  user: { email: string; userName: string; id: number; description: string };
+  user: { email: string; userName: string; id: number; description: string; image: string; password: string };
 }
 
 export const getApiResourse = async (url: string, data: ApiUserInterface): Promise<Result> => {
