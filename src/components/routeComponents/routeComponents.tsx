@@ -10,12 +10,10 @@ const Routecomponents = (): JSX.Element => (
     <Switch>
       <ProtectedRoute path="/products" component={Products} />
       <ProtectedRoute path="/about" component={About} />
-      {/* <Route path="/products" render={() => <Products />} />
-    <Route path="/about" render={() => <About />} /> */}
-      <Route path="/sign-in" render={() => <Products />} />
+      <ProtectedRoute path="/profile" component={ProfilePage} />
+      <Route path="/sign-in" render={() => <Home />} />
       <Route path="/sign-up" render={() => <Home />} />
       <Route path="/home" render={() => <Home />} />
-      <Route path="/profile" render={() => <ProfilePage />} />
     </Switch>
   </div>
 );
