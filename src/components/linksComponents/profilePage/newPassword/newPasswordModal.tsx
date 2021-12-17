@@ -2,11 +2,13 @@ import InputText from "@/elements/inputText/inputText";
 import { useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import { FaTimes } from "react-icons/fa";
+import { setUser } from "@/components/store/reducers/userReducer";
+import { useDispatch } from "react-redux";
 
 import styles from "./newPasswordModal.module.scss";
-import Modal from "../../../modal/modal";
+import Modal from "../../../../modal/modal";
 import "react-toastify/dist/ReactToastify.css";
-import { changeUser } from "../../../utils/network";
+import { changeUser } from "../../../../utils/network";
 
 interface RootState {
   user: {
@@ -14,13 +16,14 @@ interface RootState {
     id: number;
     email: string;
     description: string;
+    image: string;
   };
   closeModal: () => void;
 }
 
 const NewPasswordModal = ({ user, closeModal }: RootState): JSX.Element | null => {
-  const { userName, email, id, description } = user;
-  console.log(user);
+  const { userName, email, id, description, image } = user;
+  const dispatch = useDispatch();
 
   const [firstPassword, setFirstPassword] = useState("");
   const [secondPassword, setSecondPassword] = useState("");
@@ -34,13 +37,25 @@ const NewPasswordModal = ({ user, closeModal }: RootState): JSX.Element | null =
   };
 
   const changeUserPassword = async () => {
-    console.log(id, email, userName, description);
     if (firstPassword === secondPassword) {
       try {
+        closeModal();
+        dispatch(
+          setUser({
+            id,
+            email,
+            userName,
+            description,
+            password: firstPassword,
+            image,
+          })
+        );
         await changeUser(`http://localhost:3000/users/${id}`, {
           email,
           password: firstPassword,
           userName,
+          description,
+          image,
         });
       } catch (error) {
         notify();
@@ -71,7 +86,7 @@ const NewPasswordModal = ({ user, closeModal }: RootState): JSX.Element | null =
           </div>
           <div className={styles.inputBlock}>
             <InputText
-              message="Update password"
+              message="update password"
               inputType="text"
               value={secondPassword}
               onChange={(value: string) => {
