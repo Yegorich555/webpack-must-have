@@ -1,11 +1,13 @@
-import { changeUser, getUser } from "@/utils/network";
+import { changeUser } from "@/utils/network";
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { toast } from "react-toastify";
-import NewPasswordModal from "./newPasswordModal";
 import styles from "./profilePage.module.scss";
 
 import "react-toastify/dist/ReactToastify.css";
+import { setUser } from "@/components/store/reducers/userReducer";
+import NewPasswordModal from "./newPassword/newPasswordModal";
+import NewImageModal from "./newImage/newImage";
 
 interface RootState {
   user: {
@@ -14,24 +16,31 @@ interface RootState {
     email: string;
     description: string;
     password: string;
+    image: string;
   };
 }
 
 const ProfilePage = (): JSX.Element => {
   const [isChangePassword, setIsChangePassword] = useState(false);
+  const [isChangeImage, setIsChangeImage] = useState(false);
+  const dispatch = useDispatch();
   const user = useSelector((state: RootState) => state.user);
 
-  const { userName, description, email, id, password } = user;
+  const { userName, description, email, id, password, image } = user;
+
   const [newDescription, setNewDescription] = useState(description);
   const [newUserName, setNewUserName] = useState(userName);
-  // const [stateUser, setStateUser] = useState({});
 
   const updatePassword = () => {
     setIsChangePassword(true);
   };
+  const updateImage = () => {
+    setIsChangeImage(true);
+  };
 
   const closeModal = () => {
-    setIsChangePassword(false);
+    if (isChangePassword) setIsChangePassword(false);
+    if (isChangeImage) setIsChangeImage(false);
   };
 
   const notify = (textError = "something error") => {
@@ -42,15 +51,6 @@ const ProfilePage = (): JSX.Element => {
     });
   };
 
-  (async () => {
-    try {
-      const res = await getUser(`http://localhost:3000/users/0`);
-      console.log(res);
-    } catch (error) {
-      notify();
-    }
-  })();
-
   const changeDescription = (value: string) => {
     setNewDescription(value);
   };
@@ -60,11 +60,15 @@ const ProfilePage = (): JSX.Element => {
 
   const saveProfile = async () => {
     try {
+      user.description = newDescription;
+      user.userName = newUserName;
+      dispatch(setUser(user));
       await changeUser(`http://localhost:3000/users/${id}`, {
         email,
         userName: newUserName,
         description: newDescription,
         password,
+        image,
       });
     } catch (error) {
       notify();
@@ -83,14 +87,15 @@ const ProfilePage = (): JSX.Element => {
             <div className={styles.image_block}>
               <img
                 // src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/No_picture_available.png/401px-No_picture_available.png"
-                src="../../../../public/"
+                src={image}
                 alt="description"
                 className={styles.image}
               />
             </div>
-            <button type="button" className={styles.image_button}>
+            <button type="button" className={styles.image_button} onClick={() => updateImage()}>
               Change profile image
             </button>
+            {isChangeImage && <NewImageModal user={user} closeModal={closeModal} />}
           </div>
 
           <div className={styles.profile_description}>
@@ -123,7 +128,6 @@ const ProfilePage = (): JSX.Element => {
               </div>
             </form>
           </div>
-
           <div className={styles.profile_options}>
             <button type="button" className={styles.profile_button} onClick={() => saveProfile()}>
               Save profile

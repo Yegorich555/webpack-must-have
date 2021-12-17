@@ -1,67 +1,78 @@
 .profile_page {
-    background-color: lightblue;
-    width: 900px;
-    padding: 15px;
-    .header_profile {
+  background-color: lightblue;
+  width: 900px;
+  padding: 15px;
+
+  .header_profile {
+    margin-bottom: 15px;
+
+    hr {
+      border: none;
+      background-color: green;
+      color: green;
+      height: 2px;
+    }
+  }
+
+  .main_profile {
+    display: flex;
+    justify-content: space-evenly;
+
+    .profile_image {
+      margin-right: 25px;
+
+      .image_block {
+        width: 176px;
+        height: 180px;
+        margin-bottom: 20px;
+
+        .image {
+          width: 100%;
+          height: 100%;
+          border-radius: 10px;
+          object-fit: cover;
+        }
+      }
+
+      .image_button {
         margin-bottom: 15px;
-        hr {
-            border: none;
-            background-color: green;
-            color: green;
-            height: 2px;
-        }
+        width: 100%;
+        background-color: rgb(127, 62, 143);
+        border-radius: 7px;
+        border-color: transparent;
+        padding: 4px 7px;
+        text-align: center;
+      }
     }
-    .main_profile {
-        display: flex;
-        justify-content: space-evenly;
-        .profile_image {
-            margin-right: 25px;
-            .image_block {
-                width: 176px;
-                height: 180px;
-                margin-bottom: 20px;
-                .image {
-                    width: 100%;
-                    height: 100%;
-                    border-radius: 10px;
-                    object-fit: cover;
-                }
-            }
-            .image_button {
-                margin-bottom: 15px;
-                width: 100%;
-                background-color: rgb(127, 62, 143);
-                border-radius: 7px;
-                border-color: transparent;
-                padding: 4px 7px;
-                text-align: center;
-            }
+
+    .profile_description {
+      margin-right: 25px;
+
+      .profile_form {
+        // .username_form {
+        // }
+        .inputText {
+          margin-right: 10px;
+          padding: 4px;
+          background-color: black;
+          border: solid 1px white;
         }
-        .profile_description {
-            margin-right: 25px;
-            .profile_form {
-                // .username_form {
-                // }
-                .inputText {
-                    margin-right: 10px;
-                    padding: 4px;
-                    background-color: black;
-                    border: solid 1px white;
-                }
-                // .description_form {}
-            }
-        }
-        .profile_options {
-            display: flex;
-            flex-direction: column;
-            .profile_button {
-                margin-bottom: 15px;
-                background-color: rgb(127, 62, 143);
-                border-radius: 7px;
-                border-color: transparent;
-                padding: 4px 7px;
-                text-align: center;
-            }
-        }
+        // .description_form {}
+      }
     }
+
+    .profile_options {
+      display: flex;
+      flex-direction: column;
+
+      .profile_button {
+        margin-bottom: 15px;
+        background-color: rgb(127, 62, 143);
+        border-radius: 7px;
+        border-color: transparent;
+        padding: 4px 7px;
+        text-align: center;
+      }
+    }
+  }
 }
