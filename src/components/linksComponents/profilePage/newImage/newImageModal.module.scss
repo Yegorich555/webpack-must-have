@@ -1,0 +1,31 @@
+.submitForm {
+  .header_modal {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    padding: 10px 7px;
+
+    .close_icon {
+      cursor: pointer;
+    }
+  }
+
+  .inputBlock {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+  }
+
+  .button_block {
+    text-align: center;
+
+    .buttonSubmit {
+      background-color: rgb(127, 62, 143);
+      width: 30%;
+      border-radius: 7px;
+      border-color: transparent;
+      padding: 4px 7px;
+      text-align: center;
+    }
+  }
+}
