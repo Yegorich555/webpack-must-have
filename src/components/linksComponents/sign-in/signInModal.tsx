@@ -4,7 +4,7 @@ import { useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { setUserName } from "@/components/store/reducers/userReducer";
+import { setUser } from "@/components/store/reducers/userReducer";
 import { API_SIGN_IN } from "../../../constants/api";
 
 import styles from "./signInModal.module.scss";
@@ -41,7 +41,7 @@ const SignInModal = ({ isOpen, onClose, url }: MyState): JSX.Element | null => {
     });
   };
 
-  const redirectToComponent = () => {
+  const pushUrlToHistory = () => {
     history.push(url);
   };
 
@@ -52,15 +52,16 @@ const SignInModal = ({ isOpen, onClose, url }: MyState): JSX.Element | null => {
         password: userPassword,
       });
       dispatch(
-        setUserName({
+        setUser({
           userName: res.user.userName,
           email: login,
           id: res.user.id,
           description: res.user.description,
           password: userPassword,
+          image: res.user.image,
         })
       );
-      redirectToComponent();
+      pushUrlToHistory();
     } catch (error) {
       notify();
     }

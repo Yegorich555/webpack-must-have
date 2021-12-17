@@ -2,7 +2,7 @@ import { FaTimes } from "react-icons/fa";
 import InputText from "@/elements/inputText/inputText";
 import { useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
-import { setUserName } from "@/components/store/reducers/userReducer";
+import { setUser } from "@/components/store/reducers/userReducer";
 import { useDispatch } from "react-redux";
 import styles from "./signUpModal.module.scss";
 import Modal from "../../../modal/modal";
@@ -46,14 +46,23 @@ const SignUpModal = ({ isOpen, onClose }: MyState): JSX.Element | null => {
   const submitUser = async () => {
     if (firstUserPassword === secondUserPassword) {
       try {
-        await getApiResourse(API_SIGN_UP, {
+        const res = await getApiResourse(API_SIGN_UP, {
           userName: userNickName,
           email: login,
           password: firstUserPassword,
           description: "profile description",
+          image:
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/No_picture_available.png/401px-No_picture_available.png",
         });
         dispatch(
-          setUserName({ userName: userNickName, description: "profile description", password: firstUserPassword })
+          setUser({
+            userName: res.user.userName,
+            email: login,
+            id: res.user.id,
+            description: res.user.description,
+            password: firstUserPassword,
+            image: res.user.image,
+          })
         );
       } catch (error) {
         notify();

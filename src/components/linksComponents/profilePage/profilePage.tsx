@@ -2,12 +2,13 @@ import { changeUser } from "@/utils/network";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { toast } from "react-toastify";
+import { setUser } from "@/components/store/reducers/userReducer";
+
 import styles from "./profilePage.module.scss";
 
 import "react-toastify/dist/ReactToastify.css";
-import { setUser } from "@/components/store/reducers/userReducer";
 import NewPasswordModal from "./newPassword/newPasswordModal";
-import NewImageModal from "./newImage/newImage";
+import NewImageModal from "./newImage/newImageModal";
 
 interface RootState {
   user: {
