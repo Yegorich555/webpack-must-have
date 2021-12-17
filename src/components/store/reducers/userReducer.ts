@@ -1,4 +1,4 @@
-const SET_USER_NAME = "SET_USER_NAME";
+const SET_USER = "SET_USER";
 
 interface UserState {
   userName?: string;
@@ -7,14 +7,15 @@ interface UserState {
   description?: string;
   isLogged?: boolean;
   password?: string;
+  image?: string;
 }
 
-interface SetUserNameAction {
-  type: typeof SET_USER_NAME;
+interface SetUserAction {
+  type: typeof SET_USER;
   payload: UserState;
 }
 
-type UserAction = SetUserNameAction;
+type UserAction = SetUserAction;
 
 const defaultState: UserState = {
   userName: "user",
@@ -23,13 +24,15 @@ const defaultState: UserState = {
   description: "description",
   isLogged: false,
   password: "password",
+  image:
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/No_picture_available.png/401px-No_picture_available.png",
 };
 
 export const userReducer = (state = defaultState, action: UserAction): UserState => {
   const user = action.payload;
 
   switch (action.type) {
-    case SET_USER_NAME:
+    case SET_USER:
       return {
         userName: user.userName,
         email: user.email,
@@ -37,10 +40,11 @@ export const userReducer = (state = defaultState, action: UserAction): UserState
         id: user.id,
         description: user.description,
         password: user.password,
+        image: user.image,
       };
     default:
       return state;
   }
 };
 
-export const setUserName = (user: UserState): SetUserNameAction => ({ type: SET_USER_NAME, payload: user });
+export const setUser = (user: UserState): SetUserAction => ({ type: SET_USER, payload: user });
