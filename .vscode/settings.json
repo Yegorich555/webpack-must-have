@@ -10,10 +10,10 @@
     "**/*": { "when": "**/*.+(less|css|scss|sass)" } //exclude for css files because VSCode works fine with ones
   },
   "stylelint.enable": true,
+  "stylelint.validate": ["css", "scss", "sass", "postcss"],
   "css.validate": false,
   "less.validate": false,
   "scss.validate": false,
-
   /*
     if you want fix by format set the following in keybindings.json:
      {
