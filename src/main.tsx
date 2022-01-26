@@ -11,6 +11,7 @@ import someTypeScript from "./someTypeScript";
 interface AppProps {
   nothing: boolean;
 }
+
 interface AppState {
   title: string;
 }
