@@ -1,0 +1,17 @@
+.header {
+  display: flex;
+  height: 6vh;
+  justify-content: space-around;
+  background-color: #7b68ee;
+}
+
+.header__title {
+  width: 30%;
+  font-size: 200%;
+  text-decoration: none;
+  padding: 5px;
+}
+
+.header__title:hover {
+  color: #c5e56e;
+}

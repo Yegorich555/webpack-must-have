@@ -1,0 +1,24 @@
+.navbar {
+  display: flex;
+  justify-content: right;
+  margin-right: 0;
+  align-items: center;
+  width: 70%;
+}
+
+.active {
+  background: #c5e56e;
+  color: #212121;
+  border-bottom: 5px solid red;
+}
+
+.navbar a:hover {
+  background: #c5e56e;
+  color: #212121;
+  border-bottom: 5px solid red;
+}
+
+.navbar__links {
+  padding: 15px;
+  text-decoration: none;
+}
