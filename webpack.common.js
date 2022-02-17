@@ -8,8 +8,8 @@ const PreloadPlugin = require("preload-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const MinifyCssNames = require("mini-css-class-name/css-loader");
-const ObsoleteWebpackPlugin = require("obsolete-webpack-plugin");
-const ScriptExtHtmlWebpackPlugin = require("script-ext-html-webpack-plugin");
+// const ObsoleteWebpackPlugin = require("obsolete-webpack-plugin");
+// const ScriptExtHtmlWebpackPlugin = require("script-ext-html-webpack-plugin");
 const svgToMiniDataURI = require("mini-svg-data-uri");
 const path = require("path");
 const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
@@ -262,16 +262,17 @@ module.exports = function (env, argv) {
       new webpack.ProvidePlugin({
         React: "react", // optional: react. it adds [import React from 'react'] as ES6 module to every file into the project
       }),
-      new ObsoleteWebpackPlugin({
-        // optional: browser: provides popup via alert-script if browser unsupported (according to .browserlistrc)
-        name: "obsolete",
-        promptOnNonTargetBrowser: true, // show popup if browser is not listed in .browserlistrc
-        // optional: browser: [template: 'html string here']
-      }),
-      new ScriptExtHtmlWebpackPlugin({
-        // it adds to obsolete-plugin-script 'async' tag (for perfomance puprpose)
-        async: "obsolete",
-      }),
+      // todo issue `rBrowser.exec is not a function`
+      // new ObsoleteWebpackPlugin({
+      //   // optional: browser: provides popup via alert-script if browser unsupported (according to .browserlistrc)
+      //   name: "obsolete",
+      //   promptOnNonTargetBrowser: true, // show popup if browser is not listed in .browserlistrc
+      //   // optional: browser: [template: 'html string here']
+      // }),
+      // new ScriptExtHtmlWebpackPlugin({
+      //   // it adds to obsolete-plugin-script 'async' tag (for perfomance puprpose)
+      //   async: "obsolete",
+      // }),
       // optional: new BundleAnalyzerPlugin() // creates bundles-map in browser https://github.com/webpack-contrib/webpack-bundle-analyzer
     ],
   };
