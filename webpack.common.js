@@ -165,24 +165,14 @@ module.exports = function (env, argv) {
             isDevServer
               ? "style-loader" // it extracts style directly into html (MiniCssExtractPlugin works incorrect with hmr and modules architecture)
               : MiniCssExtractPlugin.loader, // it extracts styles into file *.css
-            // TODO: improve plugin for splitting by files for dev purpose
             {
               loader: "css-loader", // it interprets @import and url() like import/require() and it resolves them (you can use [import *.css] into *.js).
               options: {
                 modules: {
                   auto: /\.module\.\w+$/, // enable css-modules option for files *.module*.
                   getLocalIdent: isDevMode
-                    ? (loaderContext, _localIdentName, localName, options) => {
-                        // it simplifies classNames fo debug purpose
-                        const request = path
-                          .relative(options.context || "", loaderContext.resourcePath)
-                          .replace(`src${path.sep}`, "")
-                          .replace(".module.css", "")
-                          .replace(".module.scss", "")
-                          .replace(/\\|\//g, "-")
-                          .replace(/\./g, "_");
-                        return `${request}__${localName}`;
-                      }
+                    ? // eslint-disable-next-line @typescript-eslint/no-unused-vars
+                      (_loaderContext, _localIdentName, localName, _options) => localName
                     : MinifyCssNames(
                         // minify classNames for prod-build
                         { excludePattern: /[_dD]/gi } // exclude '_','d','D' because Adblock blocks '%ad%' classNames
