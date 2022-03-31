@@ -171,8 +171,12 @@ module.exports = function (env, argv) {
                 modules: {
                   auto: /\.module\.\w+$/, // enable css-modules option for files *.module*.
                   getLocalIdent: isDevMode
-                    ? // eslint-disable-next-line @typescript-eslint/no-unused-vars
-                      (_loaderContext, _localIdentName, localName, _options) => localName
+                    ? (() => {
+                        // it simplifies classNames fo debug purpose
+                        const getHash = MinifyCssNames();
+                        return (context, localIdentName, localName, options) =>
+                          `${localName}_${getHash(context, localIdentName, localName, options)}`;
+                      })()
                     : MinifyCssNames(
                         // minify classNames for prod-build
                         { excludePattern: /[_dD]/gi } // exclude '_','d','D' because Adblock blocks '%ad%' classNames
