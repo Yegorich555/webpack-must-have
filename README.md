@@ -45,3 +45,10 @@ Webpack version: 5+
 - add Prepack
 - add icomoon to fonts
 - Path autocomplete doesn't read path-alias-config from tsconfig.json
+
+## Troubleshooting
+
+- Impossible to run scripts from package.json
+  > try to change backslashes (npm-cli issue that flows between versions time to time)
+    from  `.\\node_modules\\.bin\\webpack serve --open --config webpack.devServer.js"`
+    to    `./node_modules/.bin/webpack serve --open --config webpack.devServer.js"`
