@@ -70,7 +70,7 @@
     "eslint-plugin-react-hooks": "^4.5.0",
     "eslint-plugin-unused-imports": "^2.0.0",
     "html-webpack-plugin": "^5.5.0",
-    "husky": "^7.0.4",
+    "husky": "^8.0.1",
     "lint-staged": "^12.4.2",
     "markdownlint": "^0.25.1",
     "markdownlint-cli": "^0.31.1",
