@@ -16,7 +16,7 @@ interface AppState {
 }
 
 class AppContainer extends Component<AppProps, AppState> {
-  ["constructor"]: typeof AppContainer;
+  // ["constructor"]: typeof AppContainer;
 
   constructor(props: AppProps) {
     super(props);
@@ -26,7 +26,7 @@ class AppContainer extends Component<AppProps, AppState> {
     // test class-dead-code
     const goExlcude = true;
     if (!goExlcude) {
-      console.warn("class-dead-code doesn't work");
+      console.warn("class-dead-code doesn't work", props.nothing);
     }
   }
 
