@@ -184,6 +184,7 @@ module.exports = function (env, argv) {
                 },
               },
             },
+            "css-unicode-loader", // fixes weird issue when browser sometimes doesn't render font-icons (https://stackoverflow.com/questions/69466120/troubles-with-webpack-sass-and-fontawesome/73363510#73363510)
             {
               loader: "sass-loader", // it compiles Sass to CSS, using Node Sass by default
               options: {
