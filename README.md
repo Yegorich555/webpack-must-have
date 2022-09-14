@@ -40,9 +40,13 @@ Webpack version: 5+
 - **MockServer**. For mocking api responses integrated [webpack-mock-server](https://www.npmjs.com/package/webpack-mock-server) that supports JS,TS and hot-replacement:
 - **Styles**. Integrated [CSS-Modules](https://github.com/css-modules/css-modules) and [postcss-autoprefixer](https://www.npmjs.com/package/autoprefixer), [postcss-normalize](https://www.npmjs.com/package/postcss-normalize), [OptimizeCSSAssetsPlugin](https://www.npmjs.com/package/optimize-css-assets-webpack-plugin) (uses [css-nano](https://cssnano.co/) for production build)
 
+## Recommened npm-packages
+
+[web-ui-pack](https://www.npmjs.com/package/web-ui-pack) - Nice package with form-controls, smart-popup, spinner and other elements and useful helpers
+[ytech-js-extensions](https://www.npmjs.com/package/ytech-js-extensions) - useful extensions for Arrays, Dates (that lacks in web-ui-pack)
+
 ## TODO. Issues
 
-- add Prepack
 - add icomoon to fonts
 - Path autocomplete doesn't read path-alias-config from tsconfig.json
 
@@ -50,5 +54,5 @@ Webpack version: 5+
 
 - Impossible to run scripts from package.json
   > try to change backslashes (npm-cli issue that flows between versions time to time)
-    from  `.\\node_modules\\.bin\\webpack serve --open --config webpack.devServer.js"`
-    to    `./node_modules/.bin/webpack serve --open --config webpack.devServer.js"`
+  > from `.\\node_modules\\.bin\\webpack serve --open --config webpack.devServer.js"`
+  > to `./node_modules/.bin/webpack serve --open --config webpack.devServer.js"`

@@ -4,8 +4,11 @@ import imgSmall from "images/testSmall.png"; // start-path is 'images' because w
 import imgCamera from "images/camera.svg";
 import { Component, StrictMode } from "react";
 import ReactDom from "react-dom";
+import { WUPFormElement, WUPTextControl } from "web-ui-pack";
 import style from "./styles/main.module.css";
 import someTypeScript from "./someTypeScript";
+
+!(WUPFormElement && WUPTextControl) && console.warn("err");
 
 interface AppProps {
   nothing: boolean;
@@ -47,6 +50,11 @@ class AppContainer extends Component<AppProps, AppState> {
           <h2>Test-block for assets-module (svg-url-loader)</h2>
           <img src={imgCamera} alt="small_SVG_Image" />
         </div>
+
+        <wup-form class={style.form}>
+          <wup-text name="TextControl" />
+          <button type="submit">Submit</button>
+        </wup-form>
       </StrictMode>
     );
   }

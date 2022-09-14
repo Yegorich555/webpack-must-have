@@ -92,7 +92,11 @@ module.exports = function (env, argv) {
         // rule for ts, tsx files
         {
           test: /\.(js|jsx)$/,
-          exclude: /node_modules/,
+          exclude: (() => {
+            // these packages must be included to change according to browserslist
+            const include = ["web-ui-pack", "ytech-js-extensions"];
+            return (v) => v.includes("node_modules") && !include.some((lib) => v.includes(lib));
+          })(),
           use: [
             "babel-loader", // transpile *.js, *.jsx, *.ts, *.tsx to result according to .browserlistrc and babel.config.js files
             // optional: "ifdef-loader" // prodives conditinal compilation: https://github.com/nippur72/ifdef-loader
