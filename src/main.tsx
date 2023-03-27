@@ -3,7 +3,7 @@ import "./styles/main.scss";
 import imgSmall from "images/testSmall.png"; // start-path is 'images' because we have an alias 'images' in webpack.common.js
 import imgCamera from "images/camera.svg";
 import { Component, StrictMode } from "react";
-import ReactDom from "react-dom";
+import ReactDOM from "react-dom/client";
 import { WUPFormElement, WUPTextControl } from "web-ui-pack";
 import style from "./styles/main.module.css";
 import someTypeScript from "./someTypeScript";
@@ -60,4 +60,4 @@ class AppContainer extends Component<AppProps, AppState> {
   }
 }
 
-ReactDom.render(<AppContainer nothing={false} />, document.getElementById("app"));
+ReactDOM.createRoot(document.getElementById("app")!).render(<AppContainer nothing={false} />);

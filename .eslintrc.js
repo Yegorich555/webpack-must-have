@@ -32,6 +32,7 @@ module.exports = {
     ],
     "@typescript-eslint/no-shadow": ["error"],
     "@typescript-eslint/no-use-before-define": "error",
+    "@typescript-eslint/no-non-null-assertion": "off",
 
     "react/jsx-filename-extension": ["error", { extensions: [".tsx"] }],
     "react/destructuring-assignment": 0,
