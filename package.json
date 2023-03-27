@@ -19,7 +19,7 @@
     "prepare": "husky install && shx rm -rf .git/hooks && shx ln -s ../.husky .git/hooks && git config --unset core.hooksPath"
   },
   "engines": {
-    "node": ">=14.17.0 <17"
+    "node": ">=16.17.0 <17"
   },
   "engineStrict": true,
   "repository": {
