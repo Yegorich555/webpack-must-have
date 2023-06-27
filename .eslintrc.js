@@ -12,7 +12,13 @@ module.exports = {
       jsx: true,
     },
   },
-  extends: ["eslint:recommended", "airbnb", "prettier", "plugin:@typescript-eslint/recommended"],
+  extends: [
+    "eslint:recommended",
+    "airbnb",
+    "prettier",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:css-modules/recommended", // shows unused classes: https://www.npmjs.com/package/eslint-plugin-css-modules
+  ],
   env: {
     es6: true,
     node: true,
@@ -21,8 +27,11 @@ module.exports = {
   globals: {
     DEV: true,
   },
-  plugins: ["json", "prettier", "import", "@typescript-eslint", "unused-imports"],
+  plugins: ["json", "prettier", "import", "@typescript-eslint", "unused-imports", "css-modules"],
   rules: {
+    "css-modules/no-unused-class": "warn",
+    "css-modules/no-undef-class": "error",
+    // TS
     "@typescript-eslint/no-explicit-any": [
       "error",
       {
@@ -33,7 +42,7 @@ module.exports = {
     "@typescript-eslint/no-shadow": ["error"],
     "@typescript-eslint/no-use-before-define": "error",
     "@typescript-eslint/no-non-null-assertion": "off",
-
+    // React
     "react/jsx-filename-extension": ["error", { extensions: [".tsx"] }],
     "react/destructuring-assignment": 0,
     // "react/jsx-max-props-per-line": [1, { maximum: 1 }], //it doesn't work with prettier, you can remove prettier from rules: 'prettier/prettier'...
@@ -45,9 +54,8 @@ module.exports = {
     "react/jsx-curly-newline": 0, // it conflicts with prettier
     "react/jsx-wrap-multilines": ["error", { arrow: true, return: true, declaration: true }],
     "react/function-component-definition": [2, { namedComponents: "function-declaration" }],
-
+    // Other
     "prettier/prettier": ["error"],
-
     "no-shadow": "off",
     "no-use-before-define": "off",
     "require-await": "error",
