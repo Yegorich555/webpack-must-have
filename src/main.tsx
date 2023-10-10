@@ -52,7 +52,7 @@ class AppContainer extends Component<AppProps, AppState> {
         </div>
 
         <wup-form class={style.form}>
-          <wup-text name="TextControl" />
+          <wup-text w-name="TextControl" />
           <button type="submit">Submit</button>
         </wup-form>
       </StrictMode>

@@ -183,7 +183,7 @@ module.exports = function (env, argv) {
                       })()
                     : MinifyCssNames(
                         // minify classNames for prod-build
-                        { excludePattern: /[_dD]/gi } // exclude '_','d','D' because Adblock blocks '%ad%' classNames
+                        { excludePattern: /[_dD]/gi }, // exclude '_','d','D' because Adblock blocks '%ad%' classNames
                       ),
                 },
               },
