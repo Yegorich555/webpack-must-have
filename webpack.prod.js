@@ -3,7 +3,7 @@
 const { merge } = require("webpack-merge");
 const CompressionPlugin = require("compression-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
-const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const common = require("./webpack.common");
 
 module.exports = (env, argv) => {
@@ -41,7 +41,7 @@ module.exports = (env, argv) => {
             compress: { pure_funcs: ["console.info", "console.debug", "console.warn"] }, // remove this functions when their return values are not used
           },
         }),
-        new OptimizeCSSAssetsPlugin({}), // it minifies css and optimize it with cssnano: https://cssnano.co/guides/optimisations
+        new CssMinimizerPlugin({}), // it minifies css and optimize it with cssnano: https://cssnano.co/guides/optimisations
       ],
     },
     plugins: [
