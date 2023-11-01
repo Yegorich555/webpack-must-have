@@ -38,12 +38,12 @@ Webpack version: 5+
 - **BrowserList**. All required browsers are pointed in **.browserslistrc**, so project will be compiled according to required browsers (babel, postcss, stylint use this file)
 - **BrowserList. Stylelint**. Integrated [no-unsupported-browser-features](https://www.npmjs.com/package/stylelint-no-unsupported-browser-features), so during the css,scss-coding stylelint will show on-css rule that unsupported (according to .browserslistrc)
 - **MockServer**. For mocking api responses integrated [webpack-mock-server](https://www.npmjs.com/package/webpack-mock-server) that supports JS,TS and hot-replacement:
-- **Styles**. Integrated [CSS-Modules](https://github.com/css-modules/css-modules) and [postcss-autoprefixer](https://www.npmjs.com/package/autoprefixer), [postcss-normalize](https://www.npmjs.com/package/postcss-normalize), [OptimizeCSSAssetsPlugin](https://www.npmjs.com/package/optimize-css-assets-webpack-plugin) (uses [css-nano](https://cssnano.co/) for production build)
+- **Styles**. Integrated [CSS-Modules](https://github.com/css-modules/css-modules) and [postcss-autoprefixer](https://www.npmjs.com/package/autoprefixer), [postcss-normalize](https://www.npmjs.com/package/postcss-normalize), [CssMinimizerPlugin](https://www.npmjs.com/package/css-minimizer-webpack-plugin) (uses [css-nano](https://cssnano.co/) for production build)
 
 ## Recommened npm-packages
 
-[web-ui-pack](https://www.npmjs.com/package/web-ui-pack) - Nice package with form-controls, smart-popup, spinner and other elements and useful helpers
-[ytech-js-extensions](https://www.npmjs.com/package/ytech-js-extensions) - useful extensions for Arrays, Dates (that lacks in web-ui-pack)
+- [web-ui-pack](https://www.npmjs.com/package/web-ui-pack) - nice package with form-controls, smart-popup, spinner and other elements and useful helpers
+- [ytech-js-extensions](https://www.npmjs.com/package/ytech-js-extensions) - useful extensions for Arrays, Dates (that lacks in web-ui-pack)
 
 ## TODO. Issues
 
