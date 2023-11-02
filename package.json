@@ -82,7 +82,6 @@
     "mini-css-extract-plugin": "^2.7.6",
     "mini-svg-data-uri": "^1.4.4",
     "node-sass": "^9.0.0",
-    "obsolete-webpack-plugin": "^0.5.6",
     "postcss": "^8.4.31",
     "postcss-hover-media-feature": "^1.0.2",
     "postcss-loader": "^7.3.3",
@@ -92,7 +91,6 @@
     "prettier": "^3.0.3",
     "prettier-eslint": "^16.1.2",
     "sass-loader": "^13.3.2",
-    "script-ext-html-webpack-plugin": "^2.1.5",
     "shx": "^0.3.4",
     "style-loader": "^3.3.3",
     "stylelint": "^15.11.0",
@@ -109,7 +107,8 @@
     "webpack-cli": "^5.1.4",
     "webpack-dev-server": "^4.15.1",
     "webpack-merge": "^5.10.0",
-    "webpack-mock-server": "^1.0.18"
+    "webpack-mock-server": "^1.0.18",
+    "webpack-obsolete-plugin": "^1.0.5"
   },
   "dependencies": {
     "react": "^18.2.0",

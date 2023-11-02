@@ -42,7 +42,7 @@ module.exports = (env, argv) => {
           modules: false,
         },
       },
-      onBeforeSetupMiddleware: (devServer) =>
+      setupMiddlewares: (middlewares, devServer) => {
         webpackMockServer.use(devServer.app, {
           entry: ["webpack.mock.ts"],
           tsConfigFileName: "tsconfig.json",
@@ -53,7 +53,9 @@ module.exports = (env, argv) => {
             // });
             next();
           },
-        }),
+        });
+        return middlewares;
+      },
       static: {
         directory: path.resolve(__dirname, assets), // folder with static content
         watch: true, // enable hot-reload by changes in contentBase folder
