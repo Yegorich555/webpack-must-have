@@ -3,11 +3,10 @@
   "path-autocomplete.includeExtension": true,
   "path-autocomplete.extensionOnImport": true,
   "path-autocomplete.excludedItems": {
-    //todo read path-alias from tsconfig.json
-    "**/*.+(ts|js|jsx|tsx)": { "when": "**" }, // ignore js files because VSCode works fine with ones
+    "**/*.+(ts|js|jsx|tsx|less|css|scss|sass|svg)": { "when": "**" }, // ignore all files that VSCode support by default
+    "**": { "when": "**", "isDir": true }, // always ignore `folder` suggestions
     "**/*.map": { "when": "**" }, // always ignore *.map files
     "**/{.git,node_modules}": { "when": "**" }, // always ignore .git and node_modules folders
-    "**/*": { "when": "**/*.+(less|css|scss|sass)" } //exclude for css files because VSCode works fine with ones
   },
   "stylelint.enable": true,
   "stylelint.validate": ["css", "scss", "sass", "postcss"],
