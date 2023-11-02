@@ -9,6 +9,7 @@ Webpack version: 5+
 - Better long term caching
 
 ### If you need Webpack4 take a look branch [webpack_v4](https://github.com/Yegorich555/WebpackMustHave/tree/webpack_v4)
+
 ### Intro into Webpack you can watch on youtube (russian only): [webpack-intro](https://www.youtube.com/watch?v=Ds0l__XMbIo&ab_channel=yahik)
 
 ## How to run project
@@ -43,8 +44,8 @@ Webpack version: 5+
 
 ## Recommened npm-packages
 
-- [web-ui-pack](https://www.npmjs.com/package/web-ui-pack) - nice package with form-controls, smart-popup, spinner and other elements and useful helpers
-- [ytech-js-extensions](https://www.npmjs.com/package/ytech-js-extensions) - useful extensions for Arrays, Dates (that lacks in web-ui-pack)
+- [web-ui-pack](https://www.npmjs.com/package/web-ui-pack) - nice package with form-controls, smart-popup, spinner etc. & useful helpers
+- [ytech-js-extensions](https://www.npmjs.com/package/ytech-js-extensions) - very common extensions for Arrays, Dates (that lacks in web-ui-pack)
 
 ## TODO. Issues
 
