@@ -1,0 +1,45 @@
+.header__box {
+  width: 100%;
+  min-height: 100px;
+  background-color: rgb(8, 8, 8);
+}
+
+.nav__box {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.title {
+  font-size: 36px;
+  letter-spacing: 1px;
+  font-weight: bold;
+}
+
+.ul__box {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 20px;
+}
+
+.li__box a {
+  text-decoration: none;
+  padding: 3px;
+  font-size: 24px;
+  letter-spacing: 2px;
+  color: $basicColor;
+}
+
+.li__box a:focus {
+  outline: 2px dashed rgb(250, 243, 243);
+}
+
+.li__box a:hover {
+  border-bottom: 2px solid skyblue;
+  opacity: 0.5;
+}
