@@ -4,7 +4,7 @@
   "rules": {
     "scss/at-import-partial-extension": "always",
     "scss/at-import-partial-extension-blacklist": [""],
-    "plugin/no-unsupported-browser-features": true,
+    "plugin/no-unsupported-browser-features": [true, { "ignore": ["css-nesting"] }],
     "rule-empty-line-before": ["always", { "except": ["first-nested"], "ignore": ["after-comment"] }]
   }
 }

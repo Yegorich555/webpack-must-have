@@ -1,9 +1,6 @@
-import "./about.scss";
+import style from "./about.module.scss";
+import Page from "./page";
 
 export default function About() {
-  return (
-    <div className="about__box">
-      <h1>About</h1>
-    </div>
-  );
+  return <Page style={style.aboutBox}>About</Page>;
 }

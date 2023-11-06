@@ -1,9 +1,6 @@
-import "./home.scss";
+import style from "./home.module.scss";
+import Page from "./page";
 
 export default function Home() {
-  return (
-    <div className="home__box">
-      <h1>Home</h1>
-    </div>
-  );
+  return <Page style={style.homeBox}>Home</Page>;
 }

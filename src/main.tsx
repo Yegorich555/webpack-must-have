@@ -10,7 +10,7 @@ import Home from "./components/home";
 import Products from "./components/products";
 import About from "./components/about";
 import Footer from "./components/footer";
-import routes from "./helpers/constans";
+import routes from "./routeConfig";
 
 // import style from "./styles/main.module.css";
 // import someTypeScript from "./someTypeScript";
