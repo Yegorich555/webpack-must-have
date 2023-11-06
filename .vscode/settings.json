@@ -63,5 +63,6 @@
   "[less]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.formatOnSave": true
-  }
+  },
+  "html.customData": ["node_modules/web-ui-pack/types.html.json"] // HTML support for web-ui-pack: https://github.com/Yegorich555/web-ui-pack#installing--usage
 }
