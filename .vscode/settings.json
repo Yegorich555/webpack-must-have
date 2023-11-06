@@ -6,7 +6,7 @@
     "**/*.+(ts|js|jsx|tsx|less|css|scss|sass|svg)": { "when": "**" }, // ignore all files that VSCode support by default
     "**": { "when": "**", "isDir": true }, // always ignore `folder` suggestions
     "**/*.map": { "when": "**" }, // always ignore *.map files
-    "**/{.git,node_modules}": { "when": "**" }, // always ignore .git and node_modules folders
+    "**/{.git,node_modules}": { "when": "**" } // always ignore .git and node_modules folders
   },
   "stylelint.enable": true,
   "stylelint.validate": ["css", "scss", "sass", "postcss"],
