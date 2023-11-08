@@ -1,6 +1,13 @@
 <!-- markdownlint-disable MD024 -->
 <!-- markdownlint-disable MD041 -->
 
+## 1.3.0 (November 02, 2023)
+
+- Added support NodeJS v18+
+- Improved config for VScode
+- Removed/replaced old packages
+- Updated webpack config according to last changes
+
 ## 1.2.0 (November 23, 2021)
 
 - update to assets-modules (breaking changes); deprecate url-loader, svg-url-loader, file-loader
@@ -31,7 +38,7 @@
 - add package webpack-mock-server
 - minor fixes
 
-### Stylelint
+### StyleLint
 
 - add basic config
 - add no-unsupported-browser-features plugin

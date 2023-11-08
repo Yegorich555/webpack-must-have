@@ -2,7 +2,7 @@ import "./styles/main.scss";
 // watch: native intellisense and file-peek for aliases from jsconfig.json and with none-js files doesn't work: https://github.com/microsoft/TypeScript/issues/29334
 import imgSmall from "images/testSmall.png"; // start-path is 'images' because we have an alias 'images' in webpack.common.js
 import imgCamera from "images/camera.svg";
-import { Component, StrictMode } from "react";
+import { Component, ErrorInfo, StrictMode } from "react";
 import ReactDOM from "react-dom/client";
 import { WUPFormElement, WUPTextControl } from "web-ui-pack";
 import style from "./styles/main.module.css";
@@ -18,6 +18,10 @@ interface AppState {
   title: string;
 }
 
+function Hello(): JSX.Element {
+  throw new Error("test me");
+}
+
 class AppContainer extends Component<AppProps, AppState> {
   // ["constructor"]: typeof AppContainer;
 
@@ -27,10 +31,14 @@ class AppContainer extends Component<AppProps, AppState> {
       title: someTypeScript("Test-block for css-modules"),
     };
     // test class-dead-code
-    const goExlcude = true;
-    if (!goExlcude) {
+    const goExclude = true;
+    if (!goExclude) {
       console.warn("class-dead-code doesn't work", props.nothing);
     }
+  }
+
+  componentDidCatch(error: Error, errorInfo: ErrorInfo): void {
+    console.error("got err", { error, errorInfo });
   }
 
   render() {
@@ -50,6 +58,8 @@ class AppContainer extends Component<AppProps, AppState> {
           <h2>Test-block for assets-module (svg-url-loader)</h2>
           <img src={imgCamera} alt="small_SVG_Image" />
         </div>
+
+        <Hello />
 
         <wup-form class={style.form}>
           <wup-text w-name="TextControl" />
