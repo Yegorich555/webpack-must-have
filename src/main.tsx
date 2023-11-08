@@ -18,10 +18,6 @@ interface AppState {
   title: string;
 }
 
-function Hello(): JSX.Element {
-  throw new Error("test me");
-}
-
 class AppContainer extends Component<AppProps, AppState> {
   // ["constructor"]: typeof AppContainer;
 
@@ -58,8 +54,6 @@ class AppContainer extends Component<AppProps, AppState> {
           <h2>Test-block for assets-module (svg-url-loader)</h2>
           <img src={imgCamera} alt="small_SVG_Image" />
         </div>
-
-        <Hello />
 
         <wup-form class={style.form}>
           <wup-text w-name="TextControl" />

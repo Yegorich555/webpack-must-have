@@ -44,8 +44,8 @@ module.exports = (env, argv) => {
       },
       setupMiddlewares: (middlewares, devServer) => {
         webpackMockServer.use(devServer.app, {
-          entry: ["webpack.mock.ts"],
-          tsConfigFileName: "tsconfig.json",
+          entry: [],
+          tsConfigFileName: "tsconfig.mock.json",
           before: (req, res, next) => {
             console.log(`Got request: ${req.method} ${req.url}`);
             // res.once("finish", () => {
