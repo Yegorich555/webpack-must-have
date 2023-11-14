@@ -172,7 +172,7 @@ module.exports = function (env, argv) {
               loader: "css-loader", // it interprets @import and url() like import/require() and it resolves them (you can use [import *.css] into *.js).
               options: {
                 modules: {
-                  auto: /\.module\.\w+$/, // enable css-modules option for files *.module*.
+                  auto: /\.(module|m)\.\w+$/, // enable css-modules option for files *.module*. & *.m.*
                   getLocalIdent: isDevMode
                     ? (() => {
                         // it simplifies classNames fo debug purpose

@@ -2,15 +2,27 @@
 @import "sanitize.css";
 @import "fontface.css";
 
+:root {
+  --base-margin: 1.6rem;
+}
+
 body {
   color: $basicColor;
-  font-family: "OpenSans-Regular", sans-serif;
+  // prettier-ignore
+  font: 14px "OpenSans-Regular", sans-serif;
+  min-height: 100vh;
+
+  // todo setup bg with images
+  // todo setup icon
+  // todo add h1
+}
+
+h1 {
+  font-size: 2.2em;
 }
 
 h2 {
-  font-size: 50px;
-  display: block;
-  background-color: white;
+  font-size: 2em;
 }
 
 ::placeholder {

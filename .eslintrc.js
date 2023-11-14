@@ -44,14 +44,15 @@ module.exports = {
     "@typescript-eslint/no-non-null-assertion": "off",
     // React
     "react/jsx-filename-extension": ["error", { extensions: [".tsx"] }],
-    "react/destructuring-assignment": 0,
+    "react/destructuring-assignment": "off",
     // "react/jsx-max-props-per-line": [1, { maximum: 1 }], //it doesn't work with prettier, you can remove prettier from rules: 'prettier/prettier'...
     // "react/jsx-first-prop-new-line": [1, "multiline"], //it doesn't work with prettier, you can remove prettier from rules: 'prettier/prettier'...
-    "react/prop-types": 0,
-    "react/prefer-stateless-function": 0,
-    "react/react-in-jsx-scope": 0,
-    "react/jsx-props-no-spreading": 0,
-    "react/jsx-curly-newline": 0, // it conflicts with prettier
+    "react/prop-types": "off",
+    "react/require-default-props": "off", // it's wrong for TS like { initValue?: string; }
+    "react/prefer-stateless-function": "off",
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-props-no-spreading": "off",
+    "react/jsx-curly-newline": "off", // it conflicts with prettier
     "react/jsx-wrap-multilines": ["error", { arrow: true, return: true, declaration: true }],
     "react/function-component-definition": [2, { namedComponents: "function-declaration" }],
     // Other
@@ -71,7 +72,7 @@ module.exports = {
     "max-len": [
       "warn",
       {
-        code: 120,
+        code: 140,
         tabWidth: 2,
         comments: 1000,
         ignoreComments: true,
