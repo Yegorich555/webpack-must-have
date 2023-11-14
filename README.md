@@ -34,6 +34,7 @@ Webpack version: 5+
 - Markdownlint: <https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint>
 - EditConfig for VS Code: <https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig>
 - Spell Checker: <https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker>
+- TodoTree: <https://marketplace.visualstudio.com/items?itemName=Gruntfuggly.todo-tree>
 
 ## Features
 
