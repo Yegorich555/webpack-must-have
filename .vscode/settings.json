@@ -64,9 +64,7 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.formatOnSave": true
   },
-  "html.customData": [
-    "node_modules/web-ui-pack/types.html.json"
-  ],
+  "html.customData": ["node_modules/web-ui-pack/types.html.json"],
   "cSpell.words": [
     "autoprefixer",
     "brotli",
