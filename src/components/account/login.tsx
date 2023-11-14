@@ -1,6 +1,6 @@
 import Form from "@/elements/form";
-import PasswordControl from "@/elements/controls/passwordControl";
-import TextControl from "@/elements/controls/textControl";
+import PasswordControl from "@/elements/controls/password";
+import TextControl from "@/elements/controls/text";
 
 export default function Login() {
   return (

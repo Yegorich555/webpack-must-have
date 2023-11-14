@@ -1,7 +1,7 @@
 import { WUPPasswordControl } from "web-ui-pack";
 import BaseControl, { BaseControlProps } from "./baseControl";
 //
-import styles from "./textControl.m.scss";
+import styles from "./text.m.scss";
 
 WUPPasswordControl.$use(); // register control in the browser
 // set defaults
