@@ -64,5 +64,20 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.formatOnSave": true
   },
-  "html.customData": ["node_modules/web-ui-pack/types.html.json"] // HTML support for web-ui-pack: https://github.com/Yegorich555/web-ui-pack#installing--usage
+  "html.customData": [
+    "node_modules/web-ui-pack/types.html.json"
+  ],
+  "cSpell.words": [
+    "autoprefixer",
+    "browserlist",
+    "browserslistrc",
+    "fontface",
+    "Golubchik",
+    "icomoon",
+    "iefix",
+    "postcss",
+    "stylelint",
+    "Yegor",
+    "ytech"
+  ] // HTML support for web-ui-pack: https://github.com/Yegorich555/web-ui-pack#installing--usage
 }
