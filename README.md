@@ -56,6 +56,8 @@ Webpack version: 5+
 
 ## Troubleshooting
 
+- Impossible to install anything with `npm i`
+  > check if your NodeJS version matches with pointed in **package.json: engines.node** section (use [NVM](https://github.com/coreybutler/nvm-windows/releases) to easy manage NodeJS versions)
 - Impossible to run scripts from package.json
   > try to change backslashes (npm-cli issue that flows between versions time to time)
   > from `.\\node_modules\\.bin\\webpack serve --open --config webpack.devServer.js"`
