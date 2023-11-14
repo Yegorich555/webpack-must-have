@@ -51,6 +51,7 @@ export default class Form extends React.Component<Props> {
         }}
       >
         {this.props.children}
+        <button type="submit">Submit</button>
       </wup-form>
     );
   }

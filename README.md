@@ -48,9 +48,9 @@ Webpack version: 5+
 - [web-ui-pack](https://www.npmjs.com/package/web-ui-pack) - nice package with form-controls, smart-popup, spinner etc. & useful helpers
 - [ytech-js-extensions](https://www.npmjs.com/package/ytech-js-extensions) - very common extensions for Arrays, Dates (that lacks in web-ui-pack)
 
-## TODO. Issues
+## TODO
 
-- add icomoon to fonts
+- Add icomoon to fonts
 - Path autocomplete doesn't read path-alias-config from tsconfig.json
 
 ## Troubleshooting
