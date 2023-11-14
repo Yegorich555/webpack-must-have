@@ -14,19 +14,19 @@ module.exports = (env, argv) => {
     mode: "production",
     devtool: argv.sourceMap != null ? "source-map" : false, // option controls how source maps are generated (affects on build speed dramatically): https://v4.webpack.js.org/configuration/devtool/
     output: {
-      filename: "[name].[contenthash:8].js", // contenthash-this is version for avoding browser-cache issue: user always has to get the last version of files
+      filename: "[name].[contenthash:8].js", // contenthash-this is version for avoiding browser-cache issue: user always has to get the last version of files
       chunkFilename: "[name].[contenthash:8].js",
     },
     performance: {
       assetFilter: function assetFilter(assetFilename) {
-        return !/(\.map$)|(fonts)|(images)/.test(assetFilename); // ignore these files from perfomance-hints
+        return !/(\.map$)|(fonts)|(images)/.test(assetFilename); // ignore these files from performance-hints
       },
     },
     optimization: {
       minimizer: [
         new TerserPlugin({
           // default webpack plugin for js-optimization which should be configured: https://v4.webpack.js.org/configuration/optimization/#optimizationminimizer
-          // speedest alternative of UglifyJS (it improves minifying js files)
+          // speediest alternative of UglifyJS (it improves minifying js files)
           test: /\.m?js(\?.*)?$/i,
           // exclude: /\.m?js(\?.*)?$/i, // uncomment if we don't need uglifying (for debug purpose)
           extractComments: false, // disable extracting comments to a different file

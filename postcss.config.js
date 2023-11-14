@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-var-requires, import/no-extraneous-dependencies, global-require */
 module.exports = {
-  // browser target config see in .browserlistsrc
+  // browser target config see in .browserslistrc
   parser: "postcss-scss",
   plugins: [
     require("postcss-hover-media-feature"), // it fixes twice-click issue on buttons with hover effect on IOS: https://css-tricks.com/annoying-mobile-double-tap-link-issue/

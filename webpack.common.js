@@ -34,7 +34,7 @@ module.exports = function (env, argv) {
       errors: true,
       errorDetails: true,
     },
-    // entryPoint for webpack; it can be object with key-value pairs for multibuild (https://webpack.js.org/concepts/entry-points/)
+    // entryPoint for webpack; it can be object with key-value pairs for multi build (https://webpack.js.org/concepts/entry-points/)
     entry: path.resolve(srcPath, "main.tsx"),
 
     output: {
@@ -46,7 +46,7 @@ module.exports = function (env, argv) {
     },
     resolve: {
       extensions: [".js", ".jsx", ".ts", ".tsx"], // using import without file-extensions
-      plugins: [new TsconfigPathsPlugin({ configFile: "./tsconfig.json" })], // plugin makes mapping from tsconfig.json to weback:alias
+      plugins: [new TsconfigPathsPlugin({ configFile: "./tsconfig.json" })], // plugin makes mapping from tsconfig.json to webpack:alias
     },
     optimization: {
       // config is taken from vue-cli
@@ -84,8 +84,8 @@ module.exports = function (env, argv) {
                 transpileOnly: true, // we don't type checking during the compilation - it's task for CodeEditor
               },
             },
-            // optional: "ifdef-loader" // prodives conditinal compilation: https://github.com/nippur72/ifdef-loader
-            // optional: "eslint-loader" //provides lint-errors into wepback output
+            // optional: "ifdef-loader" // provides conditional compilation: https://github.com/nippur72/ifdef-loader
+            // optional: "eslint-loader" // provides lint-errors into webpack output
           ],
         },
         // rule for ts, tsx files
@@ -98,13 +98,13 @@ module.exports = function (env, argv) {
           })(),
           use: [
             "babel-loader", // transpile *.js, *.jsx, *.ts, *.tsx to result according to .browserlistrc and babel.config.js files
-            // optional: "ifdef-loader" // prodives conditinal compilation: https://github.com/nippur72/ifdef-loader
-            // optional: "eslint-loader" //provides lint-errors into wepback output
+            // optional: "ifdef-loader" // provides conditional compilation: https://github.com/nippur72/ifdef-loader
+            // optional: "eslint-loader" // provides lint-errors into webpack output
           ],
         },
         // rule for images
         {
-          test: /\.(png|jpe?g|gif|webp)(\?.*)?$/, // optional: optimizing images via pngo etc.
+          test: /\.(png|jpe?g|gif|webp)(\?.*)?$/, // optional: optimizing images via PNGO etc.
           type: "asset",
           generator: {
             filename: "images/[name][ext][query]", // [hash][ext][query]",
@@ -118,7 +118,7 @@ module.exports = function (env, argv) {
         },
         // rule for svg-images
         {
-          test: /\.(svg)(\?.*)?$/, // for reducing file-size: OptimizeCSSAssetsPlugin > cssnano > SVGO, that congigured in webpack.prod.js
+          test: /\.(svg)(\?.*)?$/, // for reducing file-size: OptimizeCSSAssetsPlugin > cssnano > SVGO, that configured in webpack.prod.js
           exclude: /(fonts\\.+\.svg)(\?.*)?/,
           type: "asset",
           generator: {
@@ -148,7 +148,7 @@ module.exports = function (env, argv) {
         },
         // special rule for fonts in svg-format
         {
-          test: /(fonts\\.+\.svg)(\?.*)?$/i, // for reducing file-size: OptimizeCSSAssetsPlugin > cssnano > SVGO, that congigured in webpack.prod.js
+          test: /(fonts\\.+\.svg)(\?.*)?$/i, // for reducing file-size: OptimizeCSSAssetsPlugin > cssnano > SVGO, that configured in webpack.prod.js
           type: "asset",
           generator: {
             filename: "fonts/[name][ext][query]", // [hash][ext][query]",
@@ -193,7 +193,7 @@ module.exports = function (env, argv) {
               options: {
                 additionalData: '@import "variables";', // inject this import by default in each scss-file
                 sassOptions: {
-                  includePaths: [path.resolve(__dirname, "src/styles")], // using pathes as root
+                  includePaths: [path.resolve(__dirname, "src/styles")], // using paths as root
                 },
               },
             },

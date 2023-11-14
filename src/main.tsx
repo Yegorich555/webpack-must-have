@@ -39,5 +39,4 @@ class AppContainer extends Component<Props, State> {
 }
 
 ReactDOM.createRoot(document.getElementById("app")!).render(<AppContainer />);
-
 // React + TS: https://github.com/typescript-cheatsheets/react#reacttypescript-cheatsheets
