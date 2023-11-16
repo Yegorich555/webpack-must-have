@@ -52,7 +52,7 @@
     "autoprefixer": "^10.4.16",
     "babel-loader": "^9.1.3",
     "babel-plugin-jsx-classnames-advanced": "^1.0.2",
-    "browserlist": "^1.0.1",
+    "browserslist": "^4.22.1",
     "case-sensitive-paths-webpack-plugin": "^2.4.0",
     "compression-webpack-plugin": "^10.0.0",
     "copy-webpack-plugin": "^11.0.0",

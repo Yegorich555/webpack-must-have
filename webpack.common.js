@@ -77,9 +77,9 @@ module.exports = function (env, argv) {
           test: /\.(ts|tsx)$/,
           exclude: /node_modules/,
           use: [
-            "babel-loader", // transpile *.js, *.jsx, *.ts, *.tsx to result according to .browserlistrc and babel.config.js files
+            "babel-loader", // transpile *.js, *.jsx, *.ts, *.tsx to result according to .browserslistrc and babel.config.js files
             {
-              loader: "ts-loader", // transpile *.ts to *.js, despite babel-loader deals with typeScript without restrictions but doesn't have .browserlist support
+              loader: "ts-loader", // transpile *.ts to *.js, despite babel-loader deals with typeScript without restrictions but doesn't have .browserslist support
               options: {
                 transpileOnly: true, // we don't type checking during the compilation - it's task for CodeEditor
               },
@@ -97,7 +97,7 @@ module.exports = function (env, argv) {
             return (v) => v.includes("node_modules") && !include.some((lib) => v.includes(lib));
           })(),
           use: [
-            "babel-loader", // transpile *.js, *.jsx, *.ts, *.tsx to result according to .browserlistrc and babel.config.js files
+            "babel-loader", // transpile *.js, *.jsx, *.ts, *.tsx to result according to .browserslistrc and babel.config.js files
             // optional: "ifdef-loader" // provides conditional compilation: https://github.com/nippur72/ifdef-loader
             // optional: "eslint-loader" // provides lint-errors into webpack output
           ],
@@ -260,7 +260,7 @@ module.exports = function (env, argv) {
       new webpack.ProvidePlugin({
         React: "react", // optional: react. it adds [import React from 'react'] as ES6 module to every file into the project
       }),
-      new WebpackObsoletePlugin({ isStrict: true }), // provides popup via alert-script if browser unsupported (according to .browserlistrc)
+      new WebpackObsoletePlugin({ isStrict: true }), // provides popup via alert-script if browser unsupported (according to .browserslistrc)
       // optional: new BundleAnalyzerPlugin() // creates bundles-map in browser https://github.com/webpack-contrib/webpack-bundle-analyzer
     ],
   };
