@@ -5,9 +5,15 @@ import { Component, ErrorInfo /* , StrictMode */ } from "react";
 import ReactDOM from "react-dom/client";
 import TheHeader from "./components/theHeader";
 import Login from "./components/account/login";
+import apiEndpoints from "./api.endpoints";
 
 interface Props {}
 interface State {}
+
+async function testFetch(): Promise<void> {
+  const data = await (await fetch(apiEndpoints.testMock)).json();
+  console.warn("fetched data", data);
+}
 
 class AppContainer extends Component<Props, State> {
   // ["constructor"]: typeof AppContainer;
@@ -20,6 +26,10 @@ class AppContainer extends Component<Props, State> {
     if (!goExclude) {
       console.warn("class-dead-code doesn't work", props);
     }
+  }
+
+  componentDidMount(): void {
+    setTimeout(testFetch, 300);
   }
 
   componentDidCatch(error: Error, errorInfo: ErrorInfo): void {
