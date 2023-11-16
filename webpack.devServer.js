@@ -43,6 +43,10 @@ module.exports = (env, argv) => {
         },
       },
       setupMiddlewares: (middlewares, devServer) => {
+        if (proxy) {
+          console.log("<i> Proxy configured. webpack-mock-server is removed from config");
+          return middlewares;
+        }
         webpackMockServer.use(devServer.app, {
           entry: [],
           tsConfigFileName: "tsconfig.mock.json",
@@ -62,13 +66,6 @@ module.exports = (env, argv) => {
       },
     },
   };
-
-  if (proxy) {
-    delete extendedConfig.devServer.onBeforeSetupMiddleware;
-    console.log("<i> Proxy configured. webpack-mock-server is removed from config");
-  } else {
-    delete extendedConfig.devServer.proxy;
-  }
 
   return merge(devConfig, extendedConfig);
 };
