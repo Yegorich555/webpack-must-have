@@ -5,7 +5,7 @@ WUPFormElement.$use(); // register control in the browser
 // set defaults
 WUPFormElement.$defaults.autoStore = true;
 
-interface Props extends React.PropsWithChildren<Partial<WUP.Text.Options>> {
+interface Props extends React.PropsWithChildren<Partial<WUP.Form.Options>> {
   className?: string;
   initModel?: WUPFormElement["$initModel"];
   model?: WUPFormElement["$model"];
