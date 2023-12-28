@@ -21,6 +21,18 @@ Webpack version: 5+
    - `npm run build-dev` - building development version
    - `npm run serve` - building development hot-reloaded version with webpack-dev-server
 
+## How to install packages for CI/CD
+
+- Before build without lint use `npm ci -fund=false -ignore-scripts=true -audit=false -omit=optional -omit=peer`
+- Before lint use `npm i -fund=false -ignore-scripts=true -audit=false -omit=optional`
+
+- ### Explanation for package.json
+
+    **devDependencies** includes packages required `for production build` (so for prod need dependencies + devDependencies)
+    **dependencies** includes packages required for `all builds`
+    **optionalDependencies** includes packages required for `dev builds` (runtime development)
+    **peerDependencies** includes packages only for `linters` (ESLint, StyleLint etc.)
+
 ## Recommended VSCode extensions
 
 - CSS Modules: <https://marketplace.visualstudio.com/items?itemName=clinyong.vscode-css-modules>
@@ -43,6 +55,7 @@ Webpack version: 5+
 - **BrowserList. StyleLint**. Integrated [no-unsupported-browser-features](https://www.npmjs.com/package/stylelint-no-unsupported-browser-features), so during the css,scss-coding styleLint will show on-css rule that unsupported (according to .browserslistrc)
 - **MockServer**. For mocking api responses integrated [webpack-mock-server](https://www.npmjs.com/package/webpack-mock-server) that supports JS,TS and hot-replacement:
 - **Styles**. Integrated [CSS-Modules](https://github.com/css-modules/css-modules) and [postcss-autoprefixer](https://www.npmjs.com/package/autoprefixer), [postcss-normalize](https://www.npmjs.com/package/postcss-normalize), [CssMinimizerPlugin](https://www.npmjs.com/package/css-minimizer-webpack-plugin) (uses [css-nano](https://cssnano.co/) for production build)
+- All packages optimized for CI/CD. See [CI/CD section](#how-to-install-packages-for-cicd)
 
 ## Recommended npm-packages
 
@@ -52,7 +65,6 @@ Webpack version: 5+
 ## TODO
 
 - Add icomoon to fonts
-- Path autocomplete doesn't read path-alias-config from tsconfig.json
 
 ## Troubleshooting
 
