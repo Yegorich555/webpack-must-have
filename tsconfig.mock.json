@@ -2,7 +2,8 @@
   "extends": "./tsconfig.json", // you can point the main tsconfig file or remove that property if it's not required
   "include": [
     // wildcard-pattern is supported
-    "**/*.mock.ts"
+    "**/*.mock.ts",
+    "**/*.d.ts"
   ],
   "files": [] // beside 'include' option you can point exact files here
 }
