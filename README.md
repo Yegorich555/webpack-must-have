@@ -23,15 +23,14 @@ Webpack version: 5+
 
 ## How to install packages for CI/CD
 
-- Before build without lint use `npm ci -fund=false -ignore-scripts=true -audit=false -omit=optional -omit=peer`
-- Before lint use `npm i -fund=false -ignore-scripts=true -audit=false -omit=optional`
+- Before build without lint use `npm ci --ignore-scripts=true --omit=optional --omit=peer`
+- Before lint with auto-fix use `npm i --ignore-scripts=true`
 
 - ### Explanation for package.json
 
-    **devDependencies** includes packages required `for production build` (so for prod need dependencies + devDependencies)
-    **dependencies** includes packages required for `all builds`
-    **optionalDependencies** includes packages required for `dev builds` (runtime development)
-    **peerDependencies** includes packages only for `linters` (ESLint, StyleLint etc.)
+    **devDependencies** - packages for `dev & prod build` (so for prod need dependencies + devDependencies)
+    **dependencies** - UI (client-side) packages
+    **optionalDependencies** - packages for `linters` & `development` (webpack-dev-server, ESLint, StyleLint etc.)
 
 ## Recommended VSCode extensions
 
