@@ -23,8 +23,8 @@ Webpack version: 5+
 
 ## How to install packages for CI/CD
 
-- Before build without lint use `npm ci --ignore-scripts=true --omit=optional --omit=peer`
-- Before lint with auto-fix use `npm i --ignore-scripts=true`
+- Before build without lint use `npm ci --ignore-scripts --omit=optional --omit=peer`
+- Before lint with auto-fix use `npm i --ignore-scripts`
 
 - ### Explanation for package.json
 
