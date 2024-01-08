@@ -10,7 +10,7 @@
     "serve-proxy": "npm run serve -- --env=proxy=https://localhost:44360/",
     "build-prod": "webpack --mode production --config webpack.prod.js",
     "build-prod-withMap": "npm run build-prod -- --sourceMap",
-    "build-dev": ".webpack --mode development --config webpack.dev.js",
+    "build-dev": "webpack --mode development --config webpack.dev.js",
     "lint": "npm run lint-es && npm run lint-styles && npm run lint-ts && npm run lint-md",
     "lint-ts": "tsc --skipLibCheck --incremental --noEmit",
     "lint-es": "eslint --fix --cache ./**/*.{js,jsx,ts,tsx,json} && prettier --write **/*.{js,jsx,ts,tsx,json,html} --log-level warn",
