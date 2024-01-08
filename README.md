@@ -28,9 +28,9 @@ Webpack version: 5+
 
 - ### Explanation for package.json
 
-    - **devDependencies** - packages for `dev & prod build` (so for prod need dependencies + devDependencies)
-    - **dependencies** - UI (client-side) packages
-    - **optionalDependencies** - packages for `linters` & `development` (webpack-dev-server, ESLint, StyleLint etc.)
+  - **devDependencies** - packages for `dev & prod build` (so for prod need dependencies + devDependencies)
+  - **dependencies** - UI (client-side) packages
+  - **optionalDependencies** - packages for `linters` & `development` (webpack-dev-server, ESLint, StyleLint etc.)
 
 ## Recommended VSCode extensions
 
