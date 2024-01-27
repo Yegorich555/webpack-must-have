@@ -59,7 +59,7 @@ Webpack version: 5+
 ## Recommended npm-packages
 
 - [web-ui-pack](https://www.npmjs.com/package/web-ui-pack) - nice package with form-controls, smart-popup, spinner etc. & useful helpers
-- [ytech-js-extensions](https://www.npmjs.com/package/ytech-js-extensions) - very common extensions for Arrays, Dates (that lacks in web-ui-pack)
+- [ytech-js-extensions](https://www.npmjs.com/package/ytech-js-extensions) - generic extensions for Arrays, Dates (that lacks in web-ui-pack)
 
 ## TODO
 
