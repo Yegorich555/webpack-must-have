@@ -1,11 +1,14 @@
+interface IClassNames {
+  [className: string]: string;
+}
 /**WARNING: these definitions are required because typescript can't resolve import for non-ts/js files */
 declare module "*.scss" {
-  const content: { [className: string]: string };
-  export default content;
+  const content: IClassNames;
+  export = content;
 }
 
 declare module "*.css" {
-  const content: { [className: string]: string };
+  const content: IClassNames;
   export default content;
 }
 

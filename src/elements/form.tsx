@@ -1,6 +1,6 @@
 import { WUPFormElement } from "web-ui-pack";
 import BaseWUP from "./baseWUP";
-import styles from "./form.m.scss";
+import * as styles from "./form.m.scss";
 
 WUPFormElement.$use(); // register control in the browser
 // WUPFormElement.$defaults.autoStore = true;
