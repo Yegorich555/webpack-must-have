@@ -106,7 +106,6 @@
     "markdownlint-cli": "^0.41.0",
     "prettier": "^3.3.1",
     "prettier-eslint": "^16.3.0",
-    "shx": "^0.3.4",
     "stylelint": "^16.6.1",
     "stylelint-config-prettier": "^9.0.5",
     "stylelint-config-recommended-scss": "^14.0.0",
