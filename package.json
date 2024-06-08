@@ -16,7 +16,8 @@
     "lint-es": "eslint --fix --cache ./**/*.{mjs,js,jsx,ts,tsx,json} && prettier --write **/*.{mjs,js,jsx,ts,tsx,json,html} --log-level warn",
     "lint-styles": "stylelint --fix --cache ./**/*.{css,scss,less} && prettier --write **/*.{css,scss,less} --log-level warn",
     "lint-md": "markdownlint --fix **/*.md --ignore node_modules",
-    "prepare": "husky install && shx rm -rf .git/hooks && shx ln -s ../.husky .git/hooks && git config --unset core.hooksPath"
+    "prepare": "husky",
+    "prepareLegacy": "husky init && shx rm -rf .git/hooks && shx ln -s ../.husky .git/hooks && git config --unset core.hooksPath"
   },
   "engines": {
     "node": ">=18.12.0 <=20"
@@ -99,7 +100,7 @@
     "eslint-plugin-react-hooks": "^4.6.2",
     "eslint-plugin-unused-imports": "^4.0.0",
     "globals": "^15.4.0",
-    "husky": "^8.0.3",
+    "husky": "^9.0.11",
     "lint-staged": "^15.2.5",
     "markdownlint": "^0.34.0",
     "markdownlint-cli": "^0.41.0",
