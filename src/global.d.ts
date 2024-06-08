@@ -4,11 +4,11 @@ declare const DEV: boolean;
 /** Global page interface used on API side  */
 interface IPage {
   /** Current page number */
-  current: Number;
+  current: number;
   /** Total items count */
-  total: Number;
+  total: number;
   /** Page size, 12 for 12 items per page */
-  size: Number;
+  size: number;
 }
 
 /** Enum with Sorting Asc/Desc */

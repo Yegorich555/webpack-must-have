@@ -1,5 +1,5 @@
 /* This is file contains api-mock-response to help you develop UI without real API side */
-// eslint-disable-next-line import/no-extraneous-dependencies
+
 import webpackMockServer from "webpack-mock-server";
 import apiEndpoints from "./api.endpoints";
 

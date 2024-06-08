@@ -13,7 +13,7 @@
     "build-dev": "webpack --mode development --config webpack.dev.js",
     "lint": "npm run lint-es && npm run lint-styles && npm run lint-ts && npm run lint-md",
     "lint-ts": "tsc --skipLibCheck --incremental --noEmit",
-    "lint-es": "eslint --fix --cache ./**/*.{js,jsx,ts,tsx,json} && prettier --write **/*.{js,jsx,ts,tsx,json,html} --log-level warn",
+    "lint-es": "eslint --fix --cache ./**/*.{mjs,js,jsx,ts,tsx,json} && prettier --write **/*.{mjs,js,jsx,ts,tsx,json,html} --log-level warn",
     "lint-styles": "stylelint --fix --cache ./**/*.{css,scss,less} && prettier --write **/*.{css,scss,less} --log-level warn",
     "lint-md": "markdownlint --fix **/*.md --ignore node_modules",
     "prepare": "husky install && shx rm -rf .git/hooks && shx ln -s ../.husky .git/hooks && git config --unset core.hooksPath"
@@ -82,10 +82,11 @@
     "web-ui-pack": "^1.1.0"
   },
   "optionalDependencies": {
+    "@eslint/compat": "^1.0.3",
+    "@eslint/eslintrc": "^3.1.0",
+    "@eslint/js": "^9.4.0",
     "@types/express": "^4.17.21",
-    "@typescript-eslint/eslint-plugin": "^7.12.0",
-    "@typescript-eslint/parser": "^7.12.0",
-    "eslint": "^8.57.0",
+    "eslint": "^9.4.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-prettier": "^9.1.0",
     "eslint-import-resolver-typescript": "^3.6.1",
@@ -97,6 +98,7 @@
     "eslint-plugin-react": "^7.34.2",
     "eslint-plugin-react-hooks": "^4.6.2",
     "eslint-plugin-unused-imports": "^4.0.0",
+    "globals": "^15.3.0",
     "husky": "^8.0.3",
     "lint-staged": "^15.2.5",
     "markdownlint": "^0.34.0",
@@ -110,6 +112,7 @@
     "stylelint-no-unsupported-browser-features": "^8.0.1",
     "stylelint-prettier": "^5.0.0",
     "stylelint-scss": "^6.3.1",
+    "typescript-eslint": "^7.12.0",
     "webpack-dev-server": "^5.0.4",
     "webpack-mock-server": "^1.0.21"
   }
