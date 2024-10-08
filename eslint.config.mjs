@@ -77,7 +77,12 @@ export default eslintTs.config(
       "css-modules/no-unused-class": "warn",
       "css-modules/no-undef-class": "error",
       // TS
-      "@typescript-eslint/no-var-requires": "off",
+      "@typescript-eslint/no-empty-object-type": [
+        "error",
+        {
+          allowInterfaces: "always", // https://typescript-eslint.io/rules/no-empty-object-type/
+        },
+      ],
       "@typescript-eslint/no-explicit-any": [
         "error",
         {
@@ -88,6 +93,7 @@ export default eslintTs.config(
       "@typescript-eslint/no-shadow": ["error"],
       "@typescript-eslint/no-use-before-define": "error",
       "@typescript-eslint/no-non-null-assertion": "off",
+      "@typescript-eslint/no-unused-expressions": "off",
       // React
       "react/jsx-filename-extension": ["error", { extensions: [".tsx"] }],
       "react/destructuring-assignment": "off",
