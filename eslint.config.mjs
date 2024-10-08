@@ -1,6 +1,6 @@
 import path from "path";
 import { fileURLToPath } from "url";
-import { fixupPluginRules, fixupConfigRules } from "@eslint/compat";
+import { fixupConfigRules } from "@eslint/compat";
 import { FlatCompat } from "@eslint/eslintrc";
 import eslintJs from "@eslint/js";
 import eslintTs from "typescript-eslint";
@@ -10,6 +10,7 @@ import pluginPrettierRecommended from "eslint-plugin-prettier/recommended";
 import pluginJson from "eslint-plugin-json";
 import pluginUnusedImports from "eslint-plugin-unused-imports";
 import pluginCssModules from "eslint-plugin-css-modules";
+import pluginImport from "eslint-plugin-import";
 
 const project = "./tsconfig.json";
 const __filename = fileURLToPath(import.meta.url);
@@ -18,18 +19,6 @@ const compat = new FlatCompat({
   baseDirectory: __dirname,
   recommendedConfig: eslintJs.configs.recommended,
 });
-
-/**
- * @param {string} name the plugin name
- * @param {string} alias the plugin alias
- * @returns {import("eslint").ESLint.Plugin} */
-function legacyPlugin(name, alias = name) {
-  const plugin = compat.plugins(name)[0]?.plugins?.[alias];
-  if (!plugin) {
-    throw new Error(`Unable to resolve plugin ${name} and/or alias ${alias}`);
-  }
-  return fixupPluginRules(plugin);
-}
 
 export default eslintTs.config(
   {
@@ -48,24 +37,12 @@ export default eslintTs.config(
       "**/*.d.ts",
     ],
   },
-  {
-    rules: {
-      "import/no-extraneous-dependencies": [
-        "error",
-        {
-          devDependencies: false,
-          optionalDependencies: false,
-          peerDependencies: false,
-        },
-      ],
-    },
-  },
   // example of legacy config: https://eslint.org/blog/2024/05/eslint-compatibility-utilities/
   ...fixupConfigRules(compat.extends("eslint-config-airbnb")), // todo watchfix for support ESlint9+: https://github.com/airbnb/javascript/issues/2804
   eslintJs.configs.recommended,
   ...eslintTs.configs.recommended,
   pluginPrettierRecommended,
-  ...compat.extends("plugin:import/typescript"), // todo #1
+  pluginImport.flatConfigs.typescript,
   {
     files: ["**/*.json"],
     plugins: { json: pluginJson },
@@ -93,7 +70,6 @@ export default eslintTs.config(
       },
     },
     plugins: {
-      import: legacyPlugin("eslint-plugin-import", "import"), // todo #1 watchfix: // todo for support ESlint9+: https://github.com/import-js/eslint-plugin-import/issues/2948
       "unused-imports": pluginUnusedImports, // despite on plugin above it auto-removes unused imports
       "css-modules": pluginCssModules, // it check for unused/missed classes // todo it doesn't work for => import * as styles from "./theHeader.m.scss": watchfix: https://github.com/atfzl/eslint-plugin-css-modules/issues/98
     },
