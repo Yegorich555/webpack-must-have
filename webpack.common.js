@@ -11,6 +11,7 @@ const WebpackObsoletePlugin = require("webpack-obsolete-plugin");
 const svgToMiniDataURI = require("mini-svg-data-uri");
 const path = require("path");
 const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
+const sassCompiler = require("sass");
 
 const srcPath = path.resolve(__dirname, "./src/");
 const destPath = path.resolve(__dirname, "./build/"); // ('../Api/wwwroot')
@@ -191,7 +192,8 @@ module.exports = function defaultConfig(env, argv) {
               options: {
                 additionalData: '@import "variables";', // inject this import by default in each scss-file
                 sassOptions: {
-                  includePaths: [path.resolve(__dirname, "src/styles")], // using paths as root
+                  implementation: sassCompiler, // Prefer `dart-sass`, even if `sass-embedded` is available
+                  loadPaths: [path.resolve(__dirname, "src/styles")], // using paths as root: https://sass-lang.com/documentation/js-api/interfaces/options/#loadPaths
                 },
               },
             },
