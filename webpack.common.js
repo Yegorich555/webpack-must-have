@@ -190,7 +190,7 @@ module.exports = function defaultConfig(env, argv) {
             {
               loader: "sass-loader", // it compiles Sass to CSS, using Node Sass by default
               options: {
-                additionalData: '@import "variables";', // inject this import by default in each scss-file
+                additionalData: '@use "variables" as *;', // inject this import by default in each scss-file
                 sassOptions: {
                   implementation: sassCompiler, // Prefer `dart-sass`, even if `sass-embedded` is available
                   loadPaths: [path.resolve(__dirname, "src/styles")], // using paths as root: https://sass-lang.com/documentation/js-api/interfaces/options/#loadPaths

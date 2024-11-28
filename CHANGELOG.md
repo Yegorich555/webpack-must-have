@@ -1,6 +1,12 @@
 <!-- markdownlint-disable MD024 -->
 <!-- markdownlint-disable MD041 -->
 
+## 1.5.1 (November 14, 2023)
+
+- Updated packages
+- Adjusted some ESLint rules
+- Added support NodeJS v22 and dropped for v18
+
 ## 1.4.0 (November 14, 2023)
 
 - Updated packages
