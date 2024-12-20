@@ -1,11 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { Component } from "react";
 import WUPBaseElement from "web-ui-pack/baseElement";
 
 /** Base React wrapper for web-ui-pack elements */
 export default abstract class BaseWUP<
   T extends WUPBaseElement = WUPBaseElement,
   P extends Record<string, any> = object,
-> extends React.Component<P> {
+> extends Component<P> {
   domEl = {} as T;
 
   /* Called every time when DOM element is appended to document */
@@ -27,9 +28,9 @@ export default abstract class BaseWUP<
     Object.assign(this.domEl.$options, nextProps, { children: null });
   }
 
-  abstract goRender(props: React.ClassAttributes<HTMLDivElement> & { class?: string }): JSX.Element;
+  abstract goRender(props: React.ClassAttributes<HTMLDivElement> & { class?: string }): React.JSX.Element;
 
-  render(): JSX.Element {
+  render(): React.JSX.Element {
     return this.goRender({
       class: this.props.className,
       ref: (el) => {

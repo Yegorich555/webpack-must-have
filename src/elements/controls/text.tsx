@@ -8,7 +8,7 @@ WUPTextControl.$use(); // register control in the browser
 interface Props extends BaseControlProps<string, WUPTextControl, WUP.Text.Options> {}
 
 export default class TextControl extends BaseControl<WUPTextControl, Props> {
-  goRender(props: Record<string, unknown>): JSX.Element {
+  goRender(props: Record<string, unknown>): React.JSX.Element {
     return <wup-text {...props} class={`${styles.ctrl} ${props.className}`.trim()} />;
   }
 }

@@ -257,9 +257,9 @@ module.exports = function defaultConfig(env, argv) {
         ],
       }),
       new webpack.ProgressPlugin(), // it shows progress of building
-      new webpack.ProvidePlugin({
-        React: "react", // optional: react. it adds [import React from 'react'] as ES6 module to every file into the project
-      }),
+      // new webpack.ProvidePlugin({
+      //   // WARN: doesn't required from react19 React: "react", // optional: react. it adds [import React from 'react'] as ES6 module to every file into the project
+      // }),
       new WebpackObsoletePlugin({ isStrict: true }), // provides popup via alert-script if browser unsupported (according to .browserslistrc)
       // optional: new BundleAnalyzerPlugin() // creates bundles-map in browser https://github.com/webpack-contrib/webpack-bundle-analyzer
     ],
