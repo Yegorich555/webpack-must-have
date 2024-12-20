@@ -32,7 +32,7 @@ export default eslintTs.config(
       "build/",
       "dist/",
       "node_modules",
-      "assets/",
+      "src/assets/",
       "public/",
       "**/*.d.ts",
     ],
