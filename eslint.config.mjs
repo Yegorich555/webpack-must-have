@@ -10,15 +10,12 @@ import pluginPrettierRecommended from "eslint-plugin-prettier/recommended";
 import pluginJson from "eslint-plugin-json";
 import pluginUnusedImports from "eslint-plugin-unused-imports";
 import pluginCssModules from "eslint-plugin-css-modules";
-import pluginImport from "eslint-plugin-import";
+// import pluginImport from "eslint-plugin-import"; // defined in plugin-prettier OR eslint-plugin-unused-import
 
 const project = "./tsconfig.json";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-  recommendedConfig: eslintJs.configs.recommended,
-});
+const compat = new FlatCompat({ baseDirectory: __dirname, recommendedConfig: eslintJs.configs.recommended });
 
 export default eslintTs.config(
   {
@@ -42,15 +39,8 @@ export default eslintTs.config(
   eslintJs.configs.recommended,
   ...eslintTs.configs.recommended,
   pluginPrettierRecommended,
-  pluginImport.flatConfigs.typescript,
-  {
-    files: ["**/*.json"],
-    plugins: { json: pluginJson },
-    processor: "json/json",
-    rules: {
-      "json/*": ["error", { allowComments: true }],
-    },
-  },
+  // pluginImport.flatConfigs.typescript,
+  { files: ["**/*.json"], plugins: { json: pluginJson }, processor: "json/json", rules: { "json/*": ["error", { allowComments: true }] } },
   {
     languageOptions: {
       ecmaVersion: "latest",
@@ -58,9 +48,7 @@ export default eslintTs.config(
       parserOptions: {
         // project,
         tsconfigRootDir: import.meta.dirname,
-        ecmaFeatures: {
-          jsx: true,
-        },
+        ecmaFeatures: { jsx: true },
       },
       globals: {
         ...globals.browser, // enable browser global vars like 'window', 'document' etc.
@@ -83,13 +71,7 @@ export default eslintTs.config(
           allowInterfaces: "always", // https://typescript-eslint.io/rules/no-empty-object-type/
         },
       ],
-      "@typescript-eslint/no-explicit-any": [
-        "error",
-        {
-          fixToUnknown: true,
-          ignoreRestArgs: false,
-        },
-      ],
+      "@typescript-eslint/no-explicit-any": ["error", { fixToUnknown: true, ignoreRestArgs: false }],
       "@typescript-eslint/no-shadow": ["error"],
       "@typescript-eslint/no-use-before-define": "error",
       "@typescript-eslint/no-non-null-assertion": "off",
@@ -143,21 +125,10 @@ export default eslintTs.config(
           peerDependencies: false,
         },
       ],
-      "import/extensions": [
-        "error",
-        "ignorePackages",
-        {
-          js: "never",
-          jsx: "never",
-          ts: "never",
-          tsx: "never",
-        },
-      ],
+      "import/extensions": ["error", "ignorePackages", { js: "never", jsx: "never", ts: "never", tsx: "never" }],
     },
     settings: {
-      "import/parsers": {
-        "@typescript-eslint/parser": [".ts", ".tsx"],
-      },
+      "import/parsers": { "@typescript-eslint/parser": [".ts", ".tsx"] },
       "import/resolver": {
         typescript: {
           alwaysTryTypes: true, // always try to resolve types under `<root>@types` directory even it doesn't contain any source code, like `@types/unist`
