@@ -17,6 +17,8 @@ module.exports = (env, argv) => {
       chunkFilename: "[name].[contenthash:8].js",
     },
     performance: {
+      maxEntrypointSize: 1000000, // in bytes (e.g. 1Mb)
+      maxAssetSize: 1000000,
       assetFilter: function assetFilter(assetFilename) {
         return !/(\.map$)|(fonts)|(images)/.test(assetFilename); // ignore these files from performance-hints
       },
