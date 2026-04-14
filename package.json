@@ -57,7 +57,7 @@
     "css-minimizer-webpack-plugin": "^8.0.0",
     "css-unicode-loader": "^1.0.3",
     "html-webpack-plugin": "^5.6.6",
-    "mini-css-class-name": "^0.15.2",
+    "mini-css-class-name": "^0.16.0",
     "mini-css-extract-plugin": "^2.10.2",
     "mini-svg-data-uri": "^1.4.4",
     "postcss": "^8.5.9",
