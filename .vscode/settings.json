@@ -8,6 +8,11 @@
     "**/*.map": { "when": "**" }, // always ignore *.map files
     "**/{.git,node_modules}": { "when": "**" } // always ignore .git and node_modules folders
   },
+
+  // force to use TS version from current project
+  "js/ts.tsdk.path": "node_modules/typescript/lib",
+  "js/ts.tsdk.promptToUseWorkspaceVersion": true,
+
   "stylelint.enable": true,
   "stylelint.validate": ["css", "scss", "sass", "postcss"],
   "css.validate": false,
