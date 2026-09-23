@@ -20,7 +20,7 @@
     "prepareLegacy": "husky init && shx rm -rf .git/hooks && shx ln -s ../.husky .git/hooks && git config --unset core.hooksPath"
   },
   "engines": {
-    "node": "^20.19.0 || ^22.13.0 || <=24"
+    "node": "^22.22.2 || ^24.15.0 || >=26"
   },
   "engineStrict": true,
   "repository": {
@@ -41,8 +41,8 @@
   },
   "homepage": "https://github.com/Yegorich555/webpack-must-have#readme",
   "devDependencies": {
-    "@babel/core": "^7.29.7",
-    "@babel/preset-env": "^7.29.7",
+    "@babel/core": "^8.0.6",
+    "@babel/preset-env": "^8.0.6",
     "@types/express": "^5.0.6",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
@@ -88,13 +88,13 @@
     "@eslint/eslintrc": "^3.3.7",
     "@eslint/js": "^10.0.1",
     "@types/express": "^5.0.5",
-    "eslint": "^9.39.5",
+    "eslint": "^10.11.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-prettier": "^10.1.8",
     "eslint-import-resolver-typescript": "^4.4.5",
     "eslint-plugin-css-modules": "^2.12.0",
     "eslint-plugin-import": "^2.32.0",
-    "eslint-plugin-json": "^4.0.1",
+    "eslint-plugin-json": "^5.0.0",
     "eslint-plugin-jsx-a11y": "^6.10.2",
     "eslint-plugin-prettier": "^5.5.6",
     "eslint-plugin-react": "^7.37.5",
@@ -102,11 +102,11 @@
     "eslint-plugin-unused-imports": "^4.4.1",
     "globals": "^17.12.0",
     "husky": "^9.1.7",
-    "lint-staged": "^16.4.0",
-    "markdownlint": "^0.40.0",
-    "markdownlint-cli": "^0.48.0",
+    "lint-staged": "^17.5.1",
+    "markdownlint": "^0.41.1",
+    "markdownlint-cli": "^0.49.1",
     "prettier": "^3.9.9",
-    "prettier-eslint": "^16.4.2",
+    "prettier-eslint": "^17.1.2",
     "stylelint": "^17.15.0",
     "stylelint-config-prettier": "^9.0.5",
     "stylelint-config-recommended-scss": "^17.0.1",
