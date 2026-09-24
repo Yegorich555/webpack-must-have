@@ -24,6 +24,9 @@ module.exports = (env, argv) => {
       },
     },
     optimization: {
+      minimizeOptions: {
+        html: { collapseWhitespace: "smart" }, // options for webpack default html-minimizer: https://webpack.js.org/configuration/optimization/#optimizationminimizeoptions
+      },
       minimizer: [
         new TerserPlugin({
           // default webpack plugin for js-optimization which should be configured: https://v4.webpack.js.org/configuration/optimization/#optimizationminimizer
@@ -43,6 +46,7 @@ module.exports = (env, argv) => {
           },
         }),
         new CssMinimizerPlugin({}), // it minifies css and optimize it with cssnano: https://cssnano.co/guides/optimisations
+        "...", // webpack default minimizers: it minifies html (js-files are skipped since already minified by TerserPlugin above)
       ],
     },
     plugins: [

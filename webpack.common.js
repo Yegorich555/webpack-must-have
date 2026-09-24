@@ -1,9 +1,7 @@
 /* eslint-disable @typescript-eslint/no-require-imports */
 console.clear();
 const webpack = require("webpack");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CaseSensitivePathsPlugin = require("case-sensitive-paths-webpack-plugin");
-const PreloadPlugin = require("preload-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const MinifyCssNames = require("mini-css-class-name/css-loader");
@@ -34,12 +32,15 @@ module.exports = function defaultConfig(env, argv) {
       errorDetails: true,
     },
     // entryPoint for webpack; it can be object with key-value pairs for multi build (https://webpack.js.org/concepts/entry-points/)
-    entry: path.resolve(srcPath, "main.tsx"),
+    // html-entry instead of HtmlWebpackPlugin: it creates *.html with injecting js and css into template (https://webpack.js.org/configuration/experiments/#experimentshtml)
+    // key 'index' instead of default 'main': devServer adds its client into each entry, so 'main.js' conflicts with output of <script src="/src/main.tsx">
+    entry: { index: path.resolve(srcPath, "index.html") },
 
     output: {
       path: destPath,
       filename: "[name].js",
       chunkFilename: "[name].js",
+      htmlFilename: "[name].html", // otherwise it's taken from 'filename' (index.[contenthash].html in webpack.prod.js)
       publicPath: "/", // url that should be used for providing assets
       clean: true,
     },
@@ -70,6 +71,9 @@ module.exports = function defaultConfig(env, argv) {
       },
     },
     module: {
+      parser: {
+        javascript: { dynamicImportPrefetch: true }, // it adds 'prefetch' tag for async js-files: https://developer.mozilla.org/en-US/docs/Web/HTTP/Link_prefetching_FAQ
+      },
       rules: [
         // rule for js, jsx files
         {
@@ -207,6 +211,7 @@ module.exports = function defaultConfig(env, argv) {
       new webpack.IgnorePlugin({ resourceRegExp: /^\.\/locale$/, contextRegExp: /moment$/ }), // it adds force-ignoring unused parts of modules like moment/locale/*.js
       new webpack.DefinePlugin({
         // it adds custom Global definition to the project like BASE_URL for index.html
+        // WARN: index.html isn't template anymore (html-entry) so these are available only in js-code
         "process.env": {
           NODE_ENV: JSON.stringify(mode),
           BASE_URL: '"/"',
@@ -216,36 +221,23 @@ module.exports = function defaultConfig(env, argv) {
         "global.VERBOSE": JSON.stringify(false),
       }),
       new CaseSensitivePathsPlugin(), // it fixes bugs between OS in caseSensitivePaths (since Windows isn't CaseSensitive but Linux is)
-      new HtmlWebpackPlugin({
-        // it creates *.html with injecting js and css into template
-        template: path.resolve(srcPath, "index.html"),
-        minify: isDevMode
-          ? false
-          : {
-              removeComments: true,
-              collapseWhitespace: true,
-              removeAttributeQuotes: true,
-              collapseBooleanAttributes: true,
-              removeScriptTypeAttributes: true,
-            },
-      }),
-      // todo: watchFix for update to webpack5: https://github.com/GoogleChromeLabs/preload-webpack-plugin/issues/132
-      new PreloadPlugin({
-        // it adds 'preload' tag for async js-files: https://developer.mozilla.org/en-US/docs/Web/HTML/Preloading_content
-        rel: "preload",
-        include: "initial",
-        fileBlacklist: [/\.map$/, /hot-update\.js$/, /obsolete\.js$/],
-      }),
-      new PreloadPlugin({
-        // it adds 'prefetch' tag for async js-files: https://developer.mozilla.org/en-US/docs/Web/HTTP/Link_prefetching_FAQ
-        rel: "prefetch",
-        include: "asyncChunks",
-      }),
       new MiniCssExtractPlugin({
         // it extracts css-code from js into splitted file
         filename: isDevMode ? "[name].css" : "[name].[contenthash].css",
         chunkFilename: isDevMode ? "[id].css" : "[id].[contenthash].css",
       }),
+      {
+        // it injects css-files of MiniCssExtractPlugin into html since html-entry injects only native css (experiments.css)
+        apply: (compiler) =>
+          compiler.hooks.compilation.tap("InjectCss", (compilation) => {
+            webpack.html.HtmlModulesPlugin.getCompilationHooks(compilation).injectTags.tap("InjectCss", (tags) => {
+              const files = new Set([...compilation.entrypoints.values()].flatMap((e) => e.getFiles()));
+              const { publicPath } = compilation.outputOptions;
+              files.forEach((f) => f.endsWith(".css") && tags.push({ tag: "link", attrs: { rel: "stylesheet", href: publicPath + f } }));
+              return tags;
+            });
+          }),
+      },
       // it copies files like images, fonts etc. from 'public' path to 'destPath' (since not every file will be injected into css and js)
       new CopyWebpackPlugin({
         patterns: [
@@ -260,6 +252,7 @@ module.exports = function defaultConfig(env, argv) {
       // new webpack.ProvidePlugin({
       //   // WARN: doesn't required from react19 React: "react", // optional: react. it adds [import React from 'react'] as ES6 module to every file into the project
       // }),
+      // WARN: html-entry injects only files of own entries so obsolete.js is added into index.html manually
       new WebpackObsoletePlugin({ isStrict: true }), // provides popup via alert-script if browser unsupported (according to .browserslistrc)
       // optional: new BundleAnalyzerPlugin() // creates bundles-map in browser https://github.com/webpack-contrib/webpack-bundle-analyzer
     ],
