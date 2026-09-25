@@ -1,6 +1,6 @@
 {
   "name": "webpack-must-have",
-  "version": "1.5.1",
+  "version": "2.0.1",
   "description": "Must-have config for Webpack 5",
   "main": "main.tsx",
   "scripts": {
